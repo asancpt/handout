@@ -39,7 +39,7 @@ output:
   bookdown::tufte_book2: default
   bookdown::gitbook:
     df_print: kable
-    css: ../css/style.css
+    css: style.css
     split_by: chapter
     config:
       toolbar:
@@ -49,10 +49,10 @@ output:
         before: |
           <li><a href="./index.html">R을 사용한 비구획분석: 실습</a></li>
         after: |
-          <li><a href="http://github.com/asancpt/book-ncar">book-ncar Github 저장소</a></li>
+          <li><a href="http://github.com/asancpt/handout-ncar">handout-ncar Github 저장소</a></li>
       download: [pdf]
       edit:
-        link: https://github.com/asancpt/book-ncar/edit/master/%s
+        link: https://github.com/asancpt/handout-ncar/edit/master/%s
         text: "Edit"
 editor_options: 
   chunk_output_type: console
@@ -328,6 +328,7 @@ pkr::plotPK(Theoph, "Subject", "Time", "conc",
 패키지와 관련한 모든 의문은 <shan@acp.kr> / 02-3010-4614 으로 연락 주시면 빠르게 도움 드리겠습니다.
 혹은 StackOverflow^[https://stackoverflow.com]에 영어로 질문 올려주시고 링크를 보내주시면 더 좋습니다.
 아직 미완성이지만 Gitbook (일종의 웹북)^[https://asancpt.github.io/book-ncar]을 통해 전자출판도 진행 중이므로 시간 나실때 틈틈이 확인해 주시면 감사하겠습니다. (Figure \@ref(fig:gitbook))
+이 실습자료도 Gitbook^[https://asancpt.github.io/handout-ncar]으로 열람 가능합니다.
 
 서울아산병원 임상약리학과 전공의 한성필
 

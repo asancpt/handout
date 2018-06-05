@@ -114,7 +114,7 @@
 
 \title{R을 통한 비구획분석: 실습}
 \author{서울아산병원 임상약리학과 전공의 한성필}
-\date{2018-02-26}
+\date{2018-06-05}
 
 \begin{document}
 \maketitle
@@ -140,12 +140,12 @@ Administration)를 비롯한 대부분의 규제기관에서는 NCA하는 소프
 \tightlist
 \item
   NonCompart (Bae
-  \protect\hyperlink{ref-R-NonCompart}{2017}\protect\hyperlink{ref-R-NonCompart}{b})
+  \protect\hyperlink{ref-R-NonCompart}{2018}\protect\hyperlink{ref-R-NonCompart}{b})
 \item
   ncar (Bae
-  \protect\hyperlink{ref-R-ncar}{2017}\protect\hyperlink{ref-R-ncar}{a})
+  \protect\hyperlink{ref-R-ncar}{2018}\protect\hyperlink{ref-R-ncar}{a})
 \item
-  pkr (Bae and Lee \protect\hyperlink{ref-R-pkr}{2017})
+  pkr (Bae and Lee \protect\hyperlink{ref-R-pkr}{2018})
 \end{itemize}
 
 \section{설치}
@@ -198,7 +198,7 @@ R을 실행한 후, 콘솔 창에서 비구획분석을 위한 패키지를 설�
 
 \section{R에 대하여}\label{r-}
 
-R (R Core Team \protect\hyperlink{ref-R-base}{2017})은 통계 소프트웨어
+R (R Core Team \protect\hyperlink{ref-R-base}{2018})은 통계 소프트웨어
 입니다. 굉장히 유용한 소프트웨어이지만 이에 대해 여기서 자세히 설명하긴
 힘듭니다. R에 대한 많은 책들을 bookdown.org\footnote{\url{https://bookdown.org}}에서
 무료로 읽을 수 있습니다. Coursera\footnote{\url{https://coursera.com}}에서
@@ -375,25 +375,31 @@ VSSP & Vol Dist Steady State Pred (Vss\_pred)\\
 ##    3.2800000    3.2801465   24.3700000   14.3043776    0.0484570 
 ##       LAMZLL       LAMZUL      LAMZNPT       CORRXY           R2 
 ##    9.0500000   24.3700000    3.0000000   -0.9999999    0.9999997 
-##        R2ADJ       AUCLST       AUCALL       AUCIFO      AUCIFOD 
-##    0.9999995  148.9230500  148.9230500  216.6119330    0.6769123 
-##       AUCIFP      AUCIFPD       AUCPEO       AUCPEP      AUMCLST 
-##  216.6149558    0.6769217   31.2489169   31.2498763 1459.0711035 
-##      AUMCIFO      AUMCIFP      AUMCPEO      AUMCPEP         VZFO 
-## 4505.5348194 4505.6708646   67.6160287   67.6170065   30.4867482 
-##         VZFP         CLFO         CLFP     MRTEVLST     MRTEVIFO 
-##   30.4863228    1.4772963    1.4772757    9.7974834   20.8000305 
-##     MRTEVIFP 
-##   20.8003683 
+##        R2ADJ           C0       AUCLST       AUCALL       AUCIFO 
+##    0.9999995           NA  148.9230500  148.9230500  216.6119330 
+##      AUCIFOD       AUCIFP      AUCIFPD       AUCPEO       AUCPEP 
+##    0.6769123  216.6149558    0.6769217   31.2489169   31.2498763 
+##      AUCPBEO      AUCPBEP      AUMCLST      AUMCIFO      AUMCIFP 
+##           NA           NA 1459.0711035 4505.5348194 4505.6708646 
+##      AUMCPEO      AUMCPEP     MRTIVLST     MRTIVIFO     MRTIVIFP 
+##   67.6160287   67.6170065           NA           NA           NA 
+##     MRTEVLST     MRTEVIFO     MRTEVIFP          VZO          VZP 
+##    9.7974834   20.8000305   20.8003683           NA           NA 
+##         VZFO         VZFP          CLO          CLP         CLFO 
+##   30.4867482   30.4863228           NA           NA    1.4772963 
+##         CLFP         VSSO         VSSP 
+##    1.4772757           NA           NA 
 ## attr(,"units")
 ##  [1] ""          "mg/L"      "mg/L/mg"   "h"         "h"        
 ##  [6] "mg/L"      "mg/L"      "h"         "h"         "/h"       
 ## [11] "h"         "h"         ""          ""          ""         
-## [16] ""          "h*mg/L"    "h*mg/L"    "h*mg/L"    "h*mg/L/mg"
-## [21] "h*mg/L"    "h*mg/L/mg" "%"         "%"         "h2*mg/L"  
-## [26] "h2*mg/L"   "h2*mg/L"   "%"         "%"         "L"        
-## [31] "L"         "L/h"       "L/h"       "h"         "h"        
-## [36] "h"
+## [16] ""          "mg/L"      "h*mg/L"    "h*mg/L"    "h*mg/L"   
+## [21] "h*mg/L/mg" "h*mg/L"    "h*mg/L/mg" "%"         "%"        
+## [26] "%"         "%"         "h2*mg/L"   "h2*mg/L"   "h2*mg/L"  
+## [31] "%"         "%"         "h"         "h"         "h"        
+## [36] "h"         "h"         "h"         "L"         "L"        
+## [41] "L"         "L"         "L/h"       "L/h"       "L/h"      
+## [46] "L/h"       "L"         "L"
 \end{verbatim}
 
 이때의 그림은 다음과 같습니다. (Figure \ref{fig:ggtheophindi})
@@ -434,25 +440,25 @@ oral administration of Theoph (Subject 1)}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Theoph_tblNCA_selected <-}\StringTok{ }\NormalTok{Theoph_tblNCA[ , }\KeywordTok{c}\NormalTok{(}\StringTok{'Subject'}\NormalTok{, }\StringTok{'CMAX'}\NormalTok{, }\StringTok{'TMAX'}\NormalTok{, }\StringTok{'AUCLST'}\NormalTok{)]}
+\NormalTok{Theoph_tblNCA_selected <-}\StringTok{ }\NormalTok{Theoph_tblNCA[ , }\KeywordTok{c}\NormalTok{(}\StringTok{'ID'}\NormalTok{, }\StringTok{'CMAX'}\NormalTok{, }\StringTok{'TMAX'}\NormalTok{, }\StringTok{'AUCLST'}\NormalTok{)]}
 \NormalTok{Theoph_tblNCA_selected}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##       Subject CMAX    TMAX   AUCLST     
-##  [1,] "1"     "10.5"  "1.12" "148.92305"
-##  [2,] "2"     "8.33"  "1.92" "91.5268"  
-##  [3,] "3"     "8.2"   "1.02" "99.2865"  
-##  [4,] "4"     "8.6"   "1.07" "106.7963" 
-##  [5,] "5"     "11.4"  "1"    "121.2944" 
-##  [6,] "6"     "6.44"  "1.15" "73.77555" 
-##  [7,] "7"     "7.09"  "3.48" "90.7534"  
-##  [8,] "8"     "7.56"  "2.02" "88.55995" 
-##  [9,] "9"     "9.03"  "0.63" "86.32615" 
-## [10,] "10"    "10.21" "3.55" "138.3681" 
-## [11,] "11"    "8"     "0.98" "80.0936"  
-## [12,] "12"    "9.75"  "3.52" "119.9775"
+##       ID   CMAX    TMAX   AUCLST     
+##  [1,] "1"  "10.5"  "1.12" "148.92305"
+##  [2,] "2"  "8.33"  "1.92" "91.5268"  
+##  [3,] "3"  "8.2"   "1.02" "99.2865"  
+##  [4,] "4"  "8.6"   "1.07" "106.7963" 
+##  [5,] "5"  "11.4"  "1"    "121.2944" 
+##  [6,] "6"  "6.44"  "1.15" "73.77555" 
+##  [7,] "7"  "7.09"  "3.48" "90.7534"  
+##  [8,] "8"  "7.56"  "2.02" "88.55995" 
+##  [9,] "9"  "9.03"  "0.63" "86.32615" 
+## [10,] "10" "10.21" "3.55" "138.3681" 
+## [11,] "11" "8"     "0.98" "80.0936"  
+## [12,] "12" "9.75"  "3.52" "119.9775"
 \end{verbatim}
 
 인도메타신 정맥 투여시의 비구획 분석입니다. 함수인자 \texttt{adm}을
@@ -462,7 +468,7 @@ infusion으로 바꾼 것을 볼 수 있고 \texttt{dur}가 추가된 것을 볼
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{Indometh_tblNCA <-}\StringTok{ }\KeywordTok{tblNCA}\NormalTok{(Indometh, }\DataTypeTok{key=}\StringTok{"Subject"}\NormalTok{, }\DataTypeTok{colTime=}\StringTok{"time"}\NormalTok{, }\DataTypeTok{colConc=}\StringTok{"conc"}\NormalTok{, }\DataTypeTok{dose=}\DecValTok{25}\NormalTok{, }
-       \DataTypeTok{adm=}\StringTok{"Infusion"}\NormalTok{, }\DataTypeTok{dur=}\FloatTok{0.5}\NormalTok{, }\DataTypeTok{concUnit=}\StringTok{"mg/L"}\NormalTok{)}
+                          \DataTypeTok{adm=}\StringTok{"Infusion"}\NormalTok{, }\DataTypeTok{dur=}\FloatTok{0.5}\NormalTok{, }\DataTypeTok{concUnit=}\StringTok{"mg/L"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -471,19 +477,19 @@ AUC\textsubscript{last})만 표시할 수도 있습니다.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Indometh_tblNCA_selected <-}\StringTok{ }\NormalTok{Indometh_tblNCA[ , }\KeywordTok{c}\NormalTok{(}\StringTok{'Subject'}\NormalTok{, }\StringTok{'CMAX'}\NormalTok{, }\StringTok{'TMAX'}\NormalTok{, }\StringTok{'AUCLST'}\NormalTok{)]}
+\NormalTok{Indometh_tblNCA_selected <-}\StringTok{ }\NormalTok{Indometh_tblNCA[ , }\KeywordTok{c}\NormalTok{(}\StringTok{'ID'}\NormalTok{, }\StringTok{'CMAX'}\NormalTok{, }\StringTok{'TMAX'}\NormalTok{, }\StringTok{'AUCLST'}\NormalTok{)]}
 \NormalTok{Indometh_tblNCA_selected}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##      Subject CMAX   TMAX   AUCLST   
-## [1,] "1"     "1.5"  "0.25" "1.74125"
-## [2,] "2"     "2.03" "0.25" "2.9325" 
-## [3,] "3"     "2.72" "0.25" "2.93375"
-## [4,] "4"     "1.85" "0.25" "2.4775" 
-## [5,] "5"     "2.05" "0.25" "1.95375"
-## [6,] "6"     "2.31" "0.25" "2.8725"
+##      ID  CMAX   TMAX   AUCLST   
+## [1,] "1" "1.5"  "0.25" "1.74125"
+## [2,] "2" "2.03" "0.25" "2.9325" 
+## [3,] "3" "2.72" "0.25" "2.93375"
+## [4,] "4" "1.85" "0.25" "2.4775" 
+## [5,] "5" "2.05" "0.25" "1.95375"
+## [6,] "6" "2.31" "0.25" "2.8725"
 \end{verbatim}
 
 \section{기술통계 (Descriptive
@@ -496,7 +502,8 @@ R에서는 필요에 따라서 자신만의 함수를 만들 수도 있습니다
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{desc_tblNCA <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(tblNCA)\{}\KeywordTok{as.data.frame}\NormalTok{(tblNCA) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{    }\KeywordTok{mutate_all}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{as.character}\NormalTok{(x))) }\OperatorTok{%>%}\StringTok{ }\NormalTok{broom}\OperatorTok{::}\KeywordTok{tidy}\NormalTok{()\}}
+\StringTok{    }\KeywordTok{mutate_all}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{as.character}\NormalTok{(x))) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\NormalTok{broom}\OperatorTok{::}\KeywordTok{tidy}\NormalTok{()\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -515,7 +522,7 @@ R에서는 필요에 따라서 자신만의 함수를 만들 수도 있습니다
 \toprule
 column & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se\\
 \midrule
-Subject & 12 & 6.500000 & 3.605551 & 6.50000 & 6.5000 & 4.447800 & 1.00000 & 12.000 & 11.0000 & 0.0000000 & -1.501603 & 1.0408330\\
+ID & 12 & 6.500000 & 3.605551 & 6.50000 & 6.5000 & 4.447800 & 1.00000 & 12.000 & 11.0000 & 0.0000000 & -1.501603 & 1.0408330\\
 CMAX & 12 & 8.759167 & 1.472959 & 8.46500 & 8.7270 & 1.623447 & 6.44000 & 11.400 & 4.9600 & 0.2137012 & -1.186397 & 0.4252066\\
 TMAX & 12 & 1.788333 & 1.112408 & 1.13500 & 1.7280 & 0.489258 & 0.63000 & 3.550 & 2.9200 & 0.6998568 & -1.345075 & 0.3211245\\
 AUCLST & 12 & 103.806775 & 23.645216 & 95.40665 & 102.2983 & 19.794711 & 73.77555 & 148.923 & 75.1475 & 0.5625746 & -1.117566 & 6.8257858\\
@@ -531,7 +538,7 @@ AUCLST & 12 & 103.806775 & 23.645216 & 95.40665 & 102.2983 & 19.794711 & 73.7755
 \toprule
 column & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se\\
 \midrule
-Subject & 6 & 3.500000 & 1.8708287 & 3.500 & 3.500000 & 2.2239000 & 1.00000 & 6.00000 & 5.0000 & 0.0000000 & -1.797619 & 0.7637626\\
+ID & 6 & 3.500000 & 1.8708287 & 3.500 & 3.500000 & 2.2239000 & 1.00000 & 6.00000 & 5.0000 & 0.0000000 & -1.797619 & 0.7637626\\
 CMAX & 6 & 2.076667 & 0.4135537 & 2.040 & 2.076667 & 0.3409980 & 1.50000 & 2.72000 & 1.2200 & 0.1777485 & -1.361889 & 0.1688326\\
 TMAX & 6 & 0.250000 & 0.0000000 & 0.250 & 0.250000 & 0.0000000 & 0.25000 & 0.25000 & 0.0000 & NaN & NaN & 0.0000000\\
 AUCLST & 6 & 2.485208 & 0.5267325 & 2.675 & 2.485208 & 0.3826961 & 1.74125 & 2.93375 & 1.1925 & -0.3695625 & -1.940994 & 0.2150376\\
@@ -558,10 +565,10 @@ txtNCA()를 통해서 다음 결과를 얻을 수 있습니다.
 
 \begin{verbatim}
 ##  [1] "                        NONCOMPARTMENTAL ANALYSIS REPORT"                           
-##  [2] "                       Package version 0.3.7 (2017-08-16 KST)"                      
-##  [3] "                          R version 3.4.3 (2017-11-30)"                             
+##  [2] "                       Package version 0.1.2 (2018-06-04)"                          
+##  [3] "                          R version 3.5.0 (2018-04-23)"                             
 ##  [4] ""                                                                                   
-##  [5] "Date and Time: 2018-02-26 17:10:30 NA"                                              
+##  [5] "Date and Time: 2018-06-05 10:46:51 Asia/Seoul"                                      
 ##  [6] ""                                                                                   
 ##  [7] "Calculation Setting"                                                                
 ##  [8] "-------------------"                                                                
@@ -622,13 +629,13 @@ txtNCA()를 통해서 다음 결과를 얻을 수 있습니다.
 ## [63] "AUMCIFP    AUMC Infinity Pred                           4505.6709 h2*mg/L"          
 ## [64] "AUMCPEO    AUMC %Extrapolation Obs                        67.6160 %"                
 ## [65] "AUMCPEP    AUMC % Extrapolation Pred                      67.6170 %"                
-## [66] "VZFO       Vz Obs by F                                    30.4867 L"                
-## [67] "VZFP       Vz Pred by F                                   30.4863 L"                
-## [68] "CLFO       Total CL Obs by F                               1.4773 L/h"              
-## [69] "CLFP       Total CL Pred by F                              1.4773 L/h"              
-## [70] "MRTEVLST   MRT Extravasc to Last Nonzero Conc              9.7975 h"                
-## [71] "MRTEVIFO   MRT Extravasc Infinity Obs                     20.8000 h"                
-## [72] "MRTEVIFP   MRT Extravasc Infinity Pred                    20.8004 h"
+## [66] "MRTEVLST   MRT Extravasc to Last Nonzero Conc              9.7975 h"                
+## [67] "MRTEVIFO   MRT Extravasc Infinity Obs                     20.8000 h"                
+## [68] "MRTEVIFP   MRT Extravasc Infinity Pred                    20.8004 h"                
+## [69] "VZFO       Vz Obs by F                                    30.4867 L"                
+## [70] "VZFP       Vz Pred by F                                   30.4863 L"                
+## [71] "CLFO       Total CL Obs by F                               1.4773 L/h"              
+## [72] "CLFP       Total CL Pred by F                              1.4773 L/h"
 \end{verbatim}
 
 파일로 저장하려면 다음을 입력합니다.
@@ -649,8 +656,9 @@ pdfNCA()로 pdf로 결과를 볼 수 있습니다.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{pdfNCA}\NormalTok{(}\DataTypeTok{fileName=}\StringTok{"Output-ncar/pdfNCA-Theoph.pdf"}\NormalTok{, Theoph, }\DataTypeTok{colSubj=}\StringTok{"Subject"}\NormalTok{, }\DataTypeTok{colTime=}\StringTok{"Time"}\NormalTok{, }
-       \DataTypeTok{colConc=}\StringTok{"conc"}\NormalTok{, }\DataTypeTok{dose=}\DecValTok{320}\NormalTok{, }\DataTypeTok{doseUnit=}\StringTok{"mg"}\NormalTok{, }\DataTypeTok{timeUnit=}\StringTok{"h"}\NormalTok{, }\DataTypeTok{concUnit=}\StringTok{"mg/L"}\NormalTok{)}
+\KeywordTok{pdfNCA}\NormalTok{(}\DataTypeTok{fileName=}\StringTok{"Output-ncar/pdfNCA-Theoph.pdf"}\NormalTok{, Theoph, }\DataTypeTok{colSubj=}\StringTok{"Subject"}\NormalTok{, }
+       \DataTypeTok{colTime=}\StringTok{"Time"}\NormalTok{,  }\DataTypeTok{colConc=}\StringTok{"conc"}\NormalTok{, }\DataTypeTok{dose=}\DecValTok{320}\NormalTok{, }\DataTypeTok{doseUnit=}\StringTok{"mg"}\NormalTok{, }
+       \DataTypeTok{timeUnit=}\StringTok{"h"}\NormalTok{, }\DataTypeTok{concUnit=}\StringTok{"mg/L"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -665,8 +673,9 @@ pdfNCA()로 pdf로 결과를 볼 수 있습니다.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{rtfNCA}\NormalTok{(}\DataTypeTok{fileName=}\StringTok{"rtfNCA-Theoph.rtf"}\NormalTok{, Theoph, }\DataTypeTok{colSubj=}\StringTok{"Subject"}\NormalTok{, }\DataTypeTok{colTime=}\StringTok{"Time"}\NormalTok{, }
-       \DataTypeTok{colConc=}\StringTok{"conc"}\NormalTok{, }\DataTypeTok{dose=}\DecValTok{320}\NormalTok{, }\DataTypeTok{doseUnit=}\StringTok{"mg"}\NormalTok{, }\DataTypeTok{timeUnit=}\StringTok{"h"}\NormalTok{, }\DataTypeTok{concUnit=}\StringTok{"mg/L"}\NormalTok{)}
+\KeywordTok{rtfNCA}\NormalTok{(}\DataTypeTok{fileName=}\StringTok{"rtfNCA-Theoph.rtf"}\NormalTok{, Theoph, }\DataTypeTok{colSubj=}\StringTok{"Subject"}\NormalTok{, }
+       \DataTypeTok{colTime=}\StringTok{"Time"}\NormalTok{, }\DataTypeTok{colConc=}\StringTok{"conc"}\NormalTok{, }\DataTypeTok{dose=}\DecValTok{320}\NormalTok{, }\DataTypeTok{doseUnit=}\StringTok{"mg"}\NormalTok{, }
+       \DataTypeTok{timeUnit=}\StringTok{"h"}\NormalTok{, }\DataTypeTok{concUnit=}\StringTok{"mg/L"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -745,20 +754,20 @@ Gitbook\footnote{\url{https://asancpt.github.io/handout-ncar}}으로 열람
 
 \hypertarget{refs}{}
 \hypertarget{ref-R-ncar}{}
-Bae, Kyun-Seop. 2017a. \emph{Ncar: Noncompartmental Analysis for
+Bae, Kyun-Seop. 2018a. \emph{Ncar: Noncompartmental Analysis for
 Pharmacokinetic Report}. \url{https://CRAN.R-project.org/package=ncar}.
 
 \hypertarget{ref-R-NonCompart}{}
----------. 2017b. \emph{NonCompart: Noncompartmental Analysis for
+---------. 2018b. \emph{NonCompart: Noncompartmental Analysis for
 Pharmacokinetic Data}.
 \url{https://CRAN.R-project.org/package=NonCompart}.
 
 \hypertarget{ref-R-pkr}{}
-Bae, Kyun-Seop, and Jee Eun Lee. 2017. \emph{Pkr: Pharmacokinetics in
+Bae, Kyun-Seop, and Jee Eun Lee. 2018. \emph{Pkr: Pharmacokinetics in
 R}. \url{https://CRAN.R-project.org/package=pkr}.
 
 \hypertarget{ref-R-base}{}
-R Core Team. 2017. \emph{R: A Language and Environment for Statistical
+R Core Team. 2018. \emph{R: A Language and Environment for Statistical
 Computing}. Vienna, Austria: R Foundation for Statistical Computing.
 \url{https://www.R-project.org/}.
 

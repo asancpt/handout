@@ -4,8 +4,11 @@ gitbook:
 pdf:
 	Rscript --quiet _render.R "bookdown::pdf_book"
 
-openpdf:
-	start ../docs-handout/handout.pdf
+pdf2:
+	Rscript -e  "rmarkdown::render('index.Rmd', output_format = 'bookdown::pdf_document2')"
+
+pdf:
+	Rscript --quiet _render.R "bookdown::pdf_book"
 
 all:
 	Rscript --quiet _render.R
@@ -18,3 +21,7 @@ publish:
 
 rmd:
 	Rscript -e "rmarkdown::render('keynote.Rmd', output_format = 'html_document', encoding = 'UTF-8')"
+
+book:
+	Rscript -e "bookdown::render_book('index.Rmd', encoding = 'UTF-8')"
+

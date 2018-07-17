@@ -107,7 +107,8 @@ library(pkr)
 아래 두 패키지는 비구획분석과는 관계없지만 자료 처리 혹은 그림 등을 그리는데 도움을 줍니다. 
 
 ```{r}
-# install.packages(c('tidyverse', 'knitr')) # 설치 안되어 있으면 맨앞의 #을 지우고 설치.
+# install.packages(c('tidyverse', 'knitr')) 
+# 설치 안되어 있으면 맨앞의 #을 지우고 설치.
 library(tidyverse) # For presentation only, dplyr, tidyr, ggplot2
 library(knitr) # For reports
 ```
@@ -356,3 +357,10 @@ include_graphics('assets/gitbook.png')
 ```{r include = FALSE}
 write_bib(c('base', 'NonCompart', 'ncar', 'pkr'), file = 'keynote.bib')
 ```
+
+# 세션 정보 {#sessioninfo}
+
+```{r}
+devtools::session_info()
+```
+

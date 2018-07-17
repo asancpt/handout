@@ -1,16 +1,13 @@
+all: gitbook pdf
 gitbook:
 	Rscript --quiet _render.R "bookdown::gitbook"
-
 pdf:
 	Rscript --quiet _render.R "bookdown::pdf_book"
 
 pdf2:
 	Rscript -e  "rmarkdown::render('index.Rmd', output_format = 'bookdown::pdf_document2')"
 
-pdf:
-	Rscript --quiet _render.R "bookdown::pdf_book"
-
-all:
+render-all:
 	Rscript --quiet _render.R
 
 clean:

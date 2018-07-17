@@ -180,7 +180,8 @@ R을 실행한 후, 콘솔 창에서 비구획분석을 위한 패키지를 설�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# install.packages(c('tidyverse', 'knitr')) # 설치 안되어 있으면 맨앞의 #을 지우고 설치.}
+\CommentTok{# install.packages(c('tidyverse', 'knitr')) }
+\CommentTok{# 설치 안되어 있으면 맨앞의 #을 지우고 설치.}
 \KeywordTok{library}\NormalTok{(tidyverse) }\CommentTok{# For presentation only, dplyr, tidyr, ggplot2}
 \KeywordTok{library}\NormalTok{(knitr) }\CommentTok{# For reports}
 \end{Highlighting}
@@ -570,7 +571,7 @@ txtNCA()를 통해서 다음 결과를 얻을 수 있습니다.
 ##  [2] "                       Package version 0.1.2 (2018-06-04)"                          
 ##  [3] "                          R version 3.5.1 (2018-07-02)"                             
 ##  [4] ""                                                                                   
-##  [5] "Date and Time: 2018-07-17 14:57:42 Asia/Seoul"                                      
+##  [5] "Date and Time: 2018-07-17 16:43:03 Asia/Seoul"                                      
 ##  [6] ""                                                                                   
 ##  [7] "Calculation Setting"                                                                
 ##  [8] "-------------------"                                                                
@@ -753,6 +754,110 @@ Gitbook\footnote{\url{https://asancpt.github.io/handout-ncar}}으로 열람
 (NRF-2016-936606).
 
 \chapter{참고문헌}\label{references}
+
+\chapter{세션 정보}\label{sessioninfo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{devtools}\OperatorTok{::}\KeywordTok{session_info}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  setting  value                       
+##  version  R version 3.5.1 (2018-07-02)
+##  system   x86_64, darwin17.6.0        
+##  ui       unknown                     
+##  language (EN)                        
+##  collate  en_US.UTF-8                 
+##  tz       Asia/Seoul                  
+##  date     2018-07-17                  
+## 
+##  package     * version date       source        
+##  assertthat    0.2.0   2017-04-11 CRAN (R 3.5.0)
+##  backports     1.1.2   2017-12-13 CRAN (R 3.5.0)
+##  base        * 3.5.1   2018-07-03 local         
+##  bindr         0.1.1   2018-03-13 CRAN (R 3.5.0)
+##  bindrcpp    * 0.2.2   2018-03-29 CRAN (R 3.5.0)
+##  binr        * 1.1     2015-03-10 CRAN (R 3.5.0)
+##  bookdown      0.7     2018-02-18 CRAN (R 3.5.0)
+##  broom         0.4.5   2018-07-03 CRAN (R 3.5.1)
+##  cellranger    1.1.0   2016-07-27 CRAN (R 3.5.0)
+##  checkmate   * 1.8.5   2017-10-24 CRAN (R 3.5.0)
+##  cli           1.0.0   2017-11-05 CRAN (R 3.5.0)
+##  colorspace    1.3-2   2016-12-14 CRAN (R 3.5.0)
+##  compiler      3.5.1   2018-07-03 local         
+##  crayon        1.3.4   2017-09-16 CRAN (R 3.5.0)
+##  datasets    * 3.5.1   2018-07-03 local         
+##  devtools      1.13.6  2018-06-27 CRAN (R 3.5.0)
+##  digest        0.6.15  2018-01-28 CRAN (R 3.5.0)
+##  dplyr       * 0.7.6   2018-06-29 CRAN (R 3.5.0)
+##  evaluate      0.10.1  2017-06-24 CRAN (R 3.5.0)
+##  forcats     * 0.3.0   2018-02-19 CRAN (R 3.5.0)
+##  foreign     * 0.8-70  2017-11-28 CRAN (R 3.5.1)
+##  forestplot  * 1.7.2   2017-09-16 CRAN (R 3.5.0)
+##  ggplot2     * 3.0.0   2018-07-03 CRAN (R 3.5.1)
+##  glue          1.2.0   2017-10-29 CRAN (R 3.5.0)
+##  graphics    * 3.5.1   2018-07-03 local         
+##  grDevices   * 3.5.1   2018-07-03 local         
+##  grid        * 3.5.1   2018-07-03 local         
+##  gtable        0.2.0   2016-02-26 CRAN (R 3.5.1)
+##  haven         1.1.2   2018-06-27 CRAN (R 3.5.0)
+##  highr         0.7     2018-06-09 CRAN (R 3.5.0)
+##  hms           0.4.2   2018-03-10 CRAN (R 3.5.0)
+##  htmltools     0.3.6   2017-04-28 CRAN (R 3.5.0)
+##  httr          1.3.1   2017-08-20 CRAN (R 3.5.0)
+##  jsonlite      1.5     2017-06-01 CRAN (R 3.5.0)
+##  knitr       * 1.20    2018-02-20 CRAN (R 3.5.0)
+##  labeling      0.3     2014-08-23 CRAN (R 3.5.0)
+##  lattice       0.20-35 2017-03-25 CRAN (R 3.5.1)
+##  lazyeval      0.2.1   2017-10-29 CRAN (R 3.5.0)
+##  lubridate     1.7.4   2018-04-11 CRAN (R 3.5.0)
+##  magrittr    * 1.5     2014-11-22 CRAN (R 3.5.0)
+##  memoise       1.1.0   2017-04-21 CRAN (R 3.5.0)
+##  methods     * 3.5.1   2018-07-03 local         
+##  mnormt        1.5-5   2016-10-15 CRAN (R 3.5.0)
+##  modelr        0.1.2   2018-05-11 CRAN (R 3.5.0)
+##  munsell       0.5.0   2018-06-12 CRAN (R 3.5.0)
+##  ncar        * 0.4.0   2018-06-20 CRAN (R 3.5.0)
+##  nlme          3.1-137 2018-04-07 CRAN (R 3.5.1)
+##  NonCompart  * 0.4.4   2018-07-10 CRAN (R 3.5.1)
+##  parallel      3.5.1   2018-07-03 local         
+##  pillar        1.3.0   2018-07-14 CRAN (R 3.5.1)
+##  pkgconfig     2.0.1   2017-03-21 CRAN (R 3.5.0)
+##  pkr         * 0.1.2   2018-06-04 CRAN (R 3.5.0)
+##  plyr          1.8.4   2016-06-08 CRAN (R 3.5.0)
+##  psych         1.8.4   2018-05-06 CRAN (R 3.5.0)
+##  purrr       * 0.2.5   2018-05-29 CRAN (R 3.5.0)
+##  R.methodsS3   1.7.1   2016-02-16 CRAN (R 3.5.0)
+##  R.oo          1.22.0  2018-04-22 CRAN (R 3.5.0)
+##  R6            2.2.2   2017-06-17 CRAN (R 3.5.0)
+##  Rcpp          0.12.17 2018-05-18 CRAN (R 3.5.0)
+##  readr       * 1.1.1   2017-05-16 CRAN (R 3.5.0)
+##  readxl        1.1.0   2018-04-20 CRAN (R 3.5.0)
+##  reshape2      1.4.3   2017-12-11 CRAN (R 3.5.0)
+##  rlang         0.2.1   2018-05-30 CRAN (R 3.5.0)
+##  rmarkdown     1.10    2018-06-11 CRAN (R 3.5.0)
+##  rprojroot     1.3-2   2018-01-03 CRAN (R 3.5.0)
+##  rstudioapi    0.7     2017-09-07 CRAN (R 3.5.0)
+##  rtf         * 0.4-13  2018-05-17 CRAN (R 3.5.0)
+##  rvest         0.3.2   2016-06-17 CRAN (R 3.5.0)
+##  scales        0.5.0   2017-08-24 CRAN (R 3.5.0)
+##  stats       * 3.5.1   2018-07-03 local         
+##  stringi       1.2.3   2018-06-12 CRAN (R 3.5.0)
+##  stringr     * 1.3.1   2018-05-10 CRAN (R 3.5.0)
+##  tibble      * 1.4.2   2018-01-22 CRAN (R 3.5.0)
+##  tidyr       * 0.8.1   2018-05-18 CRAN (R 3.5.0)
+##  tidyselect    0.2.4   2018-02-26 CRAN (R 3.5.0)
+##  tidyverse   * 1.2.1   2017-11-14 CRAN (R 3.5.0)
+##  tools         3.5.1   2018-07-03 local         
+##  utils       * 3.5.1   2018-07-03 local         
+##  viridisLite   0.3.0   2018-02-01 CRAN (R 3.5.0)
+##  withr         2.1.2   2018-03-15 CRAN (R 3.5.0)
+##  xfun          0.3     2018-07-06 CRAN (R 3.5.1)
+##  xml2          1.2.0   2018-01-24 CRAN (R 3.5.0)
+##  yaml          2.1.19  2018-05-01 CRAN (R 3.5.0)
+\end{verbatim}
 
 \hypertarget{refs}{}
 \hypertarget{ref-R-ncar}{}

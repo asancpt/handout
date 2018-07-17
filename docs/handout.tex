@@ -114,7 +114,7 @@
 
 \title{R을 통한 비구획분석: 실습}
 \author{서울아산병원 임상약리학과 전공의 한성필}
-\date{2018-06-05}
+\date{2018-07-17}
 
 \begin{document}
 \maketitle
@@ -261,7 +261,7 @@ Subject & Wt & Dose & Time & conc\\
 administration of Theoph (N = 12)}
 \end{figure}
 
-\section{파라메터의 의미}\label{-}
+\section{파라메터의 의미}\label{parameters}
 
 비구획분석 시 여러 파라메터가 나오며 약어로 표현하는 경우가 많습니다.
 또한 소프트웨어마다 약어가 상이하기 때문에 자주 그 의미를 찾아볼 필요가
@@ -354,74 +354,6 @@ VSSP & Vol Dist Steady State Pred (Vss\_pred)\\
 
 \chapter{패키지: NonCompart}\label{-noncompart}
 
-\section{sNCA()}\label{snca}
-
-한명의 대상자에 대해 비구획 분석을 시행합니다.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# For one subject}
-\NormalTok{x =}\StringTok{ }\NormalTok{Theoph[Theoph}\OperatorTok{$}\NormalTok{Subject}\OperatorTok{==}\StringTok{"1"}\NormalTok{,}\StringTok{"Time"}\NormalTok{]}
-\NormalTok{y =}\StringTok{ }\NormalTok{Theoph[Theoph}\OperatorTok{$}\NormalTok{Subject}\OperatorTok{==}\StringTok{"1"}\NormalTok{,}\StringTok{"conc"}\NormalTok{]}
-
-\KeywordTok{sNCA}\NormalTok{(x, y, }\DataTypeTok{dose=}\DecValTok{320}\NormalTok{, }\DataTypeTok{doseUnit=}\StringTok{"mg"}\NormalTok{, }\DataTypeTok{concUnit=}\StringTok{"mg/L"}\NormalTok{, }\DataTypeTok{timeUnit=}\StringTok{"h"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##           b0         CMAX        CMAXD         TMAX         TLAG 
-##    2.3687851   10.5000000    0.0328125    1.1200000    0.0000000 
-##         CLST        CLSTP         TLST       LAMZHL         LAMZ 
-##    3.2800000    3.2801465   24.3700000   14.3043776    0.0484570 
-##       LAMZLL       LAMZUL      LAMZNPT       CORRXY           R2 
-##    9.0500000   24.3700000    3.0000000   -0.9999999    0.9999997 
-##        R2ADJ           C0       AUCLST       AUCALL       AUCIFO 
-##    0.9999995           NA  148.9230500  148.9230500  216.6119330 
-##      AUCIFOD       AUCIFP      AUCIFPD       AUCPEO       AUCPEP 
-##    0.6769123  216.6149558    0.6769217   31.2489169   31.2498763 
-##      AUCPBEO      AUCPBEP      AUMCLST      AUMCIFO      AUMCIFP 
-##           NA           NA 1459.0711035 4505.5348194 4505.6708646 
-##      AUMCPEO      AUMCPEP     MRTIVLST     MRTIVIFO     MRTIVIFP 
-##   67.6160287   67.6170065           NA           NA           NA 
-##     MRTEVLST     MRTEVIFO     MRTEVIFP          VZO          VZP 
-##    9.7974834   20.8000305   20.8003683           NA           NA 
-##         VZFO         VZFP          CLO          CLP         CLFO 
-##   30.4867482   30.4863228           NA           NA    1.4772963 
-##         CLFP         VSSO         VSSP 
-##    1.4772757           NA           NA 
-## attr(,"units")
-##  [1] ""          "mg/L"      "mg/L/mg"   "h"         "h"        
-##  [6] "mg/L"      "mg/L"      "h"         "h"         "/h"       
-## [11] "h"         "h"         ""          ""          ""         
-## [16] ""          "mg/L"      "h*mg/L"    "h*mg/L"    "h*mg/L"   
-## [21] "h*mg/L/mg" "h*mg/L"    "h*mg/L/mg" "%"         "%"        
-## [26] "%"         "%"         "h2*mg/L"   "h2*mg/L"   "h2*mg/L"  
-## [31] "%"         "%"         "h"         "h"         "h"        
-## [36] "h"         "h"         "h"         "L"         "L"        
-## [41] "L"         "L"         "L/h"       "L/h"       "L/h"      
-## [46] "L/h"       "L"         "L"
-\end{verbatim}
-
-이때의 그림은 다음과 같습니다. (Figure \ref{fig:ggtheophindi})
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(Theoph }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(Subject }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{), }
-       \KeywordTok{aes}\NormalTok{(Time, conc, }\DataTypeTok{group =}\NormalTok{ Subject, }\DataTypeTok{color =}\NormalTok{ Subject)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \DecValTok{4}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_line}\NormalTok{(}\DataTypeTok{size =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{'Oral Administration of Theoph (320 mg) (Subject 1)'}\NormalTok{,}
-       \DataTypeTok{x =} \StringTok{'Time (hour)'}\NormalTok{, }\DataTypeTok{y =} \StringTok{'Concentration (ng/mL)'}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
-\includegraphics{handout_files/figure-latex/ggtheophindi-1.pdf}
-\caption{\label{fig:ggtheophindi}Individual concentration-time curves of
-oral administration of Theoph (Subject 1)}
-\end{figure}
-
 \section{tblNCA(): 전체 대상자 비구획 분석}\label{tblnca----}
 
 가장 많이 쓰는 함수 입니다! NonCompart 패키지의 핵심적인 기능입니다.
@@ -492,18 +424,88 @@ AUC\textsubscript{last})만 표시할 수도 있습니다.
 ## [6,] "6" "2.31" "0.25" "2.8725"
 \end{verbatim}
 
+\section{sNCA()}\label{snca}
+
+한명의 대상자에 대해 비구획 분석을 시행합니다.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# For one subject}
+\NormalTok{x =}\StringTok{ }\NormalTok{Theoph[Theoph}\OperatorTok{$}\NormalTok{Subject}\OperatorTok{==}\StringTok{"1"}\NormalTok{,}\StringTok{"Time"}\NormalTok{]}
+\NormalTok{y =}\StringTok{ }\NormalTok{Theoph[Theoph}\OperatorTok{$}\NormalTok{Subject}\OperatorTok{==}\StringTok{"1"}\NormalTok{,}\StringTok{"conc"}\NormalTok{]}
+
+\KeywordTok{sNCA}\NormalTok{(x, y, }\DataTypeTok{dose=}\DecValTok{320}\NormalTok{, }\DataTypeTok{doseUnit=}\StringTok{"mg"}\NormalTok{, }\DataTypeTok{concUnit=}\StringTok{"mg/L"}\NormalTok{, }\DataTypeTok{timeUnit=}\StringTok{"h"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           b0         CMAX        CMAXD         TMAX         TLAG 
+##    2.3687851   10.5000000    0.0328125    1.1200000    0.0000000 
+##         CLST        CLSTP         TLST       LAMZHL         LAMZ 
+##    3.2800000    3.2801465   24.3700000   14.3043776    0.0484570 
+##       LAMZLL       LAMZUL      LAMZNPT       CORRXY           R2 
+##    9.0500000   24.3700000    3.0000000   -0.9999999    0.9999997 
+##        R2ADJ           C0       AUCLST       AUCALL       AUCIFO 
+##    0.9999995           NA  148.9230500  148.9230500  216.6119330 
+##      AUCIFOD       AUCIFP      AUCIFPD       AUCPEO       AUCPEP 
+##    0.6769123  216.6149558    0.6769217   31.2489169   31.2498763 
+##      AUCPBEO      AUCPBEP      AUMCLST      AUMCIFO      AUMCIFP 
+##           NA           NA 1459.0711035 4505.5348194 4505.6708646 
+##      AUMCPEO      AUMCPEP     MRTIVLST     MRTIVIFO     MRTIVIFP 
+##   67.6160287   67.6170065           NA           NA           NA 
+##     MRTEVLST     MRTEVIFO     MRTEVIFP          VZO          VZP 
+##    9.7974834   20.8000305   20.8003683           NA           NA 
+##         VZFO         VZFP          CLO          CLP         CLFO 
+##   30.4867482   30.4863228           NA           NA    1.4772963 
+##         CLFP         VSSO         VSSP 
+##    1.4772757           NA           NA 
+## attr(,"units")
+##  [1] ""          "mg/L"      "mg/L/mg"   "h"         "h"        
+##  [6] "mg/L"      "mg/L"      "h"         "h"         "/h"       
+## [11] "h"         "h"         ""          ""          ""         
+## [16] ""          "mg/L"      "h*mg/L"    "h*mg/L"    "h*mg/L"   
+## [21] "h*mg/L/mg" "h*mg/L"    "h*mg/L/mg" "%"         "%"        
+## [26] "%"         "%"         "h2*mg/L"   "h2*mg/L"   "h2*mg/L"  
+## [31] "%"         "%"         "h"         "h"         "h"        
+## [36] "h"         "h"         "h"         "L"         "L"        
+## [41] "L"         "L"         "L/h"       "L/h"       "L/h"      
+## [46] "L/h"       "L"         "L"
+\end{verbatim}
+
+이때의 그림은 다음과 같습니다. (Figure \ref{fig:ggtheophindi})
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(Theoph }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(Subject }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{), }
+       \KeywordTok{aes}\NormalTok{(Time, conc, }\DataTypeTok{group =}\NormalTok{ Subject, }\DataTypeTok{color =}\NormalTok{ Subject)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \DecValTok{4}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_line}\NormalTok{(}\DataTypeTok{size =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{'Oral Administration of Theoph (320 mg) (Subject 1)'}\NormalTok{,}
+       \DataTypeTok{x =} \StringTok{'Time (hour)'}\NormalTok{, }\DataTypeTok{y =} \StringTok{'Concentration (ng/mL)'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{handout_files/figure-latex/ggtheophindi-1.pdf}
+\caption{\label{fig:ggtheophindi}Individual concentration-time curves of
+oral administration of Theoph (Subject 1)}
+\end{figure}
+
 \section{기술통계 (Descriptive
 statistics)}\label{-descriptive-statistics}
 
-R에서는 필요에 따라서 자신만의 함수를 만들 수도 있습니다. 아래 두줄을
+R에서는 필요에 따라서 자신만의 함수를 만들 수도 있습니다. 아래를
 실행하면 \texttt{desc\_tblNCA()} 함수를 사용하여 기술통계량을 쉽게 구할
 수 있습니다. (Table \ref{tab:theodesc} and \ref{tab:indodesc})
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{desc_tblNCA <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(tblNCA)\{}\KeywordTok{as.data.frame}\NormalTok{(tblNCA) }\OperatorTok{%>%}\StringTok{ }
+\NormalTok{desc_tblNCA <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(tblNCA)\{}
+  \KeywordTok{as.data.frame}\NormalTok{(tblNCA) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{    }\KeywordTok{mutate_all}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{as.character}\NormalTok{(x))) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{    }\NormalTok{broom}\OperatorTok{::}\KeywordTok{tidy}\NormalTok{()\}}
+\StringTok{    }\NormalTok{broom}\OperatorTok{::}\KeywordTok{tidy}\NormalTok{()}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -566,9 +568,9 @@ txtNCA()를 통해서 다음 결과를 얻을 수 있습니다.
 \begin{verbatim}
 ##  [1] "                        NONCOMPARTMENTAL ANALYSIS REPORT"                           
 ##  [2] "                       Package version 0.1.2 (2018-06-04)"                          
-##  [3] "                          R version 3.5.0 (2018-04-23)"                             
+##  [3] "                          R version 3.5.1 (2018-07-02)"                             
 ##  [4] ""                                                                                   
-##  [5] "Date and Time: 2018-06-05 10:46:51 Asia/Seoul"                                      
+##  [5] "Date and Time: 2018-07-17 14:57:42 Asia/Seoul"                                      
 ##  [6] ""                                                                                   
 ##  [7] "Calculation Setting"                                                                
 ##  [8] "-------------------"                                                                

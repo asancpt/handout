@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>R을 통한 비구획분석: 실습</title>
-  <meta name="description" content="R을 통한 비구획분석: 실습">
+  <title></title>
+  <meta name="description" content="">
   <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
-  <meta property="og:title" content="R을 통한 비구획분석: 실습" />
+  <meta property="og:title" content="" />
   <meta property="og:type" content="book" />
   
   
@@ -17,15 +17,13 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="R을 통한 비구획분석: 실습" />
+  <meta name="twitter:title" content="" />
   
   
   
 
-<meta name="author" content="서울아산병원 임상약리학과 전공의 한성필">
 
 
-<meta name="date" content="2018-07-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -87,7 +85,6 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -100,9 +97,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./index.html">R을 사용한 비구획분석: 실습</a></li>
-
-<li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 서론</a><ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#section-1.1"><i class="fa fa-check"></i><b>1.1</b> 설치</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#r-"><i class="fa fa-check"></i><b>1.2</b> R에 대하여</a></li>
@@ -129,9 +123,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="6" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>6</b> 참고문헌</a></li>
 <li class="chapter" data-level="7" data-path="sessioninfo.html"><a href="sessioninfo.html"><i class="fa fa-check"></i><b>7</b> 세션 정보</a></li>
-<li class="divider"></li>
-<li><a href="http://github.com/asancpt/handout-ncar">handout-ncar Github 저장소</a></li>
-
 </ul>
 
       </nav>
@@ -141,7 +132,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R을 통한 비구획분석: 실습</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
           </h1>
         </div>
 
@@ -156,34 +147,34 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>가장 많이 쓰는 함수 입니다! NonCompart 패키지의 핵심적인 기능입니다. 아래의 코드를 R의 콘솔창에 넣어보세요. 테오필린 경구 투여시의 비구획 분석입니다.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Theoph_tblNCA &lt;-<span class="st"> </span><span class="kw">tblNCA</span>(Theoph, <span class="dt">key=</span><span class="st">&quot;Subject&quot;</span>, <span class="dt">dose=</span><span class="dv">320</span>, <span class="dt">concUnit=</span><span class="st">&quot;mg/L&quot;</span>)</code></pre></div>
 <p>결과는 matrix 형태인데 너무 길기 때문에 핵심적인 일부 파라메터 (C<sub>max</sub>, T<sub>max</sub>, AUC<sub>last</sub>)만 표시할 수도 있습니다.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Theoph_tblNCA_selected &lt;-<span class="st"> </span>Theoph_tblNCA[ , <span class="kw">c</span>(<span class="st">&#39;ID&#39;</span>, <span class="st">&#39;CMAX&#39;</span>, <span class="st">&#39;TMAX&#39;</span>, <span class="st">&#39;AUCLST&#39;</span>)]
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Theoph_tblNCA_selected &lt;-<span class="st"> </span>Theoph_tblNCA[ , <span class="kw">c</span>(<span class="st">&#39;Subject&#39;</span>, <span class="st">&#39;CMAX&#39;</span>, <span class="st">&#39;TMAX&#39;</span>, <span class="st">&#39;AUCLST&#39;</span>)]
 Theoph_tblNCA_selected</code></pre></div>
-<pre><code>##       ID   CMAX    TMAX   AUCLST     
-##  [1,] &quot;1&quot;  &quot;10.5&quot;  &quot;1.12&quot; &quot;148.92305&quot;
-##  [2,] &quot;2&quot;  &quot;8.33&quot;  &quot;1.92&quot; &quot;91.5268&quot;  
-##  [3,] &quot;3&quot;  &quot;8.2&quot;   &quot;1.02&quot; &quot;99.2865&quot;  
-##  [4,] &quot;4&quot;  &quot;8.6&quot;   &quot;1.07&quot; &quot;106.7963&quot; 
-##  [5,] &quot;5&quot;  &quot;11.4&quot;  &quot;1&quot;    &quot;121.2944&quot; 
-##  [6,] &quot;6&quot;  &quot;6.44&quot;  &quot;1.15&quot; &quot;73.77555&quot; 
-##  [7,] &quot;7&quot;  &quot;7.09&quot;  &quot;3.48&quot; &quot;90.7534&quot;  
-##  [8,] &quot;8&quot;  &quot;7.56&quot;  &quot;2.02&quot; &quot;88.55995&quot; 
-##  [9,] &quot;9&quot;  &quot;9.03&quot;  &quot;0.63&quot; &quot;86.32615&quot; 
-## [10,] &quot;10&quot; &quot;10.21&quot; &quot;3.55&quot; &quot;138.3681&quot; 
-## [11,] &quot;11&quot; &quot;8&quot;     &quot;0.98&quot; &quot;80.0936&quot;  
-## [12,] &quot;12&quot; &quot;9.75&quot;  &quot;3.52&quot; &quot;119.9775&quot;</code></pre>
+<pre><code>##       Subject CMAX    TMAX   AUCLST     
+##  [1,] &quot;1&quot;     &quot;10.5&quot;  &quot;1.12&quot; &quot;148.92305&quot;
+##  [2,] &quot;2&quot;     &quot;8.33&quot;  &quot;1.92&quot; &quot;91.5268&quot;  
+##  [3,] &quot;3&quot;     &quot;8.2&quot;   &quot;1.02&quot; &quot;99.2865&quot;  
+##  [4,] &quot;4&quot;     &quot;8.6&quot;   &quot;1.07&quot; &quot;106.7963&quot; 
+##  [5,] &quot;5&quot;     &quot;11.4&quot;  &quot;1&quot;    &quot;121.2944&quot; 
+##  [6,] &quot;6&quot;     &quot;6.44&quot;  &quot;1.15&quot; &quot;73.77555&quot; 
+##  [7,] &quot;7&quot;     &quot;7.09&quot;  &quot;3.48&quot; &quot;90.7534&quot;  
+##  [8,] &quot;8&quot;     &quot;7.56&quot;  &quot;2.02&quot; &quot;88.55995&quot; 
+##  [9,] &quot;9&quot;     &quot;9.03&quot;  &quot;0.63&quot; &quot;86.32615&quot; 
+## [10,] &quot;10&quot;    &quot;10.21&quot; &quot;3.55&quot; &quot;138.3681&quot; 
+## [11,] &quot;11&quot;    &quot;8&quot;     &quot;0.98&quot; &quot;80.0936&quot;  
+## [12,] &quot;12&quot;    &quot;9.75&quot;  &quot;3.52&quot; &quot;119.9775&quot;</code></pre>
 <p>인도메타신 정맥 투여시의 비구획 분석입니다. 함수인자 <code>adm</code>을 infusion으로 바꾼 것을 볼 수 있고 <code>dur</code>가 추가된 것을 볼 수 있습니다.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Indometh_tblNCA &lt;-<span class="st"> </span><span class="kw">tblNCA</span>(Indometh, <span class="dt">key=</span><span class="st">&quot;Subject&quot;</span>, <span class="dt">colTime=</span><span class="st">&quot;time&quot;</span>, <span class="dt">colConc=</span><span class="st">&quot;conc&quot;</span>, <span class="dt">dose=</span><span class="dv">25</span>, 
                           <span class="dt">adm=</span><span class="st">&quot;Infusion&quot;</span>, <span class="dt">dur=</span><span class="fl">0.5</span>, <span class="dt">concUnit=</span><span class="st">&quot;mg/L&quot;</span>)</code></pre></div>
 <p>역시 핵심적인 일부 파라메터 (C<sub>max</sub>, T<sub>max</sub>, AUC<sub>last</sub>)만 표시할 수도 있습니다.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Indometh_tblNCA_selected &lt;-<span class="st"> </span>Indometh_tblNCA[ , <span class="kw">c</span>(<span class="st">&#39;ID&#39;</span>, <span class="st">&#39;CMAX&#39;</span>, <span class="st">&#39;TMAX&#39;</span>, <span class="st">&#39;AUCLST&#39;</span>)]
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Indometh_tblNCA_selected &lt;-<span class="st"> </span>Indometh_tblNCA[ , <span class="kw">c</span>(<span class="st">&#39;Subject&#39;</span>, <span class="st">&#39;CMAX&#39;</span>, <span class="st">&#39;TMAX&#39;</span>, <span class="st">&#39;AUCLST&#39;</span>)]
 Indometh_tblNCA_selected</code></pre></div>
-<pre><code>##      ID  CMAX   TMAX   AUCLST   
-## [1,] &quot;1&quot; &quot;1.5&quot;  &quot;0.25&quot; &quot;1.74125&quot;
-## [2,] &quot;2&quot; &quot;2.03&quot; &quot;0.25&quot; &quot;2.9325&quot; 
-## [3,] &quot;3&quot; &quot;2.72&quot; &quot;0.25&quot; &quot;2.93375&quot;
-## [4,] &quot;4&quot; &quot;1.85&quot; &quot;0.25&quot; &quot;2.4775&quot; 
-## [5,] &quot;5&quot; &quot;2.05&quot; &quot;0.25&quot; &quot;1.95375&quot;
-## [6,] &quot;6&quot; &quot;2.31&quot; &quot;0.25&quot; &quot;2.8725&quot;</code></pre>
+<pre><code>##      Subject CMAX   TMAX   AUCLST   
+## [1,] &quot;1&quot;     &quot;1.5&quot;  &quot;0.25&quot; &quot;1.74125&quot;
+## [2,] &quot;2&quot;     &quot;2.03&quot; &quot;0.25&quot; &quot;2.9325&quot; 
+## [3,] &quot;3&quot;     &quot;2.72&quot; &quot;0.25&quot; &quot;2.93375&quot;
+## [4,] &quot;4&quot;     &quot;1.85&quot; &quot;0.25&quot; &quot;2.4775&quot; 
+## [5,] &quot;5&quot;     &quot;2.05&quot; &quot;0.25&quot; &quot;1.95375&quot;
+## [6,] &quot;6&quot;     &quot;2.31&quot; &quot;0.25&quot; &quot;2.8725&quot;</code></pre>
 </div>
 <div id="snca" class="section level2">
 <h2><span class="header-section-number">2.2</span> sNCA()</h2>
@@ -199,31 +190,25 @@ y =<span class="st"> </span>Theoph[Theoph<span class="op">$</span>Subject<span c
 ##    3.2800000    3.2801465   24.3700000   14.3043776    0.0484570 
 ##       LAMZLL       LAMZUL      LAMZNPT       CORRXY           R2 
 ##    9.0500000   24.3700000    3.0000000   -0.9999999    0.9999997 
-##        R2ADJ           C0       AUCLST       AUCALL       AUCIFO 
-##    0.9999995           NA  148.9230500  148.9230500  216.6119330 
-##      AUCIFOD       AUCIFP      AUCIFPD       AUCPEO       AUCPEP 
-##    0.6769123  216.6149558    0.6769217   31.2489169   31.2498763 
-##      AUCPBEO      AUCPBEP      AUMCLST      AUMCIFO      AUMCIFP 
-##           NA           NA 1459.0711035 4505.5348194 4505.6708646 
-##      AUMCPEO      AUMCPEP     MRTIVLST     MRTIVIFO     MRTIVIFP 
-##   67.6160287   67.6170065           NA           NA           NA 
-##     MRTEVLST     MRTEVIFO     MRTEVIFP          VZO          VZP 
-##    9.7974834   20.8000305   20.8003683           NA           NA 
-##         VZFO         VZFP          CLO          CLP         CLFO 
-##   30.4867482   30.4863228           NA           NA    1.4772963 
-##         CLFP         VSSO         VSSP 
-##    1.4772757           NA           NA 
+##        R2ADJ       AUCLST       AUCALL       AUCIFO      AUCIFOD 
+##    0.9999995  148.9230500  148.9230500  216.6119330    0.6769123 
+##       AUCIFP      AUCIFPD       AUCPEO       AUCPEP      AUMCLST 
+##  216.6149558    0.6769217   31.2489169   31.2498763 1459.0711035 
+##      AUMCIFO      AUMCIFP      AUMCPEO      AUMCPEP         VZFO 
+## 4505.5348194 4505.6708646   67.6160287   67.6170065   30.4867482 
+##         VZFP         CLFO         CLFP     MRTEVLST     MRTEVIFO 
+##   30.4863228    1.4772963    1.4772757    9.7974834   20.8000305 
+##     MRTEVIFP 
+##   20.8003683 
 ## attr(,&quot;units&quot;)
 ##  [1] &quot;&quot;          &quot;mg/L&quot;      &quot;mg/L/mg&quot;   &quot;h&quot;         &quot;h&quot;        
 ##  [6] &quot;mg/L&quot;      &quot;mg/L&quot;      &quot;h&quot;         &quot;h&quot;         &quot;/h&quot;       
 ## [11] &quot;h&quot;         &quot;h&quot;         &quot;&quot;          &quot;&quot;          &quot;&quot;         
-## [16] &quot;&quot;          &quot;mg/L&quot;      &quot;h*mg/L&quot;    &quot;h*mg/L&quot;    &quot;h*mg/L&quot;   
-## [21] &quot;h*mg/L/mg&quot; &quot;h*mg/L&quot;    &quot;h*mg/L/mg&quot; &quot;%&quot;         &quot;%&quot;        
-## [26] &quot;%&quot;         &quot;%&quot;         &quot;h2*mg/L&quot;   &quot;h2*mg/L&quot;   &quot;h2*mg/L&quot;  
-## [31] &quot;%&quot;         &quot;%&quot;         &quot;h&quot;         &quot;h&quot;         &quot;h&quot;        
-## [36] &quot;h&quot;         &quot;h&quot;         &quot;h&quot;         &quot;L&quot;         &quot;L&quot;        
-## [41] &quot;L&quot;         &quot;L&quot;         &quot;L/h&quot;       &quot;L/h&quot;       &quot;L/h&quot;      
-## [46] &quot;L/h&quot;       &quot;L&quot;         &quot;L&quot;</code></pre>
+## [16] &quot;&quot;          &quot;h*mg/L&quot;    &quot;h*mg/L&quot;    &quot;h*mg/L&quot;    &quot;h*mg/L/mg&quot;
+## [21] &quot;h*mg/L&quot;    &quot;h*mg/L/mg&quot; &quot;%&quot;         &quot;%&quot;         &quot;h2*mg/L&quot;  
+## [26] &quot;h2*mg/L&quot;   &quot;h2*mg/L&quot;   &quot;%&quot;         &quot;%&quot;         &quot;L&quot;        
+## [31] &quot;L&quot;         &quot;L/h&quot;       &quot;L/h&quot;       &quot;h&quot;         &quot;h&quot;        
+## [36] &quot;h&quot;</code></pre>
 <p>이때의 그림은 다음과 같습니다. (Figure <a href="-noncompart.html#fig:ggtheophindi">2.1</a>)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(Theoph <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(Subject <span class="op">==</span><span class="st"> </span><span class="dv">1</span>), 
        <span class="kw">aes</span>(Time, conc, <span class="dt">group =</span> Subject, <span class="dt">color =</span> Subject)) <span class="op">+</span>
@@ -269,7 +254,7 @@ Figure 2.1: Individual concentration-time curves of oral administration of Theop
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">ID</td>
+<td align="left">Subject</td>
 <td align="right">12</td>
 <td align="right">6.500000</td>
 <td align="right">3.605551</td>
@@ -351,7 +336,7 @@ Figure 2.1: Individual concentration-time curves of oral administration of Theop
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">ID</td>
+<td align="left">Subject</td>
 <td align="right">6</td>
 <td align="right">3.500000</td>
 <td align="right">1.8708287</td>
@@ -450,16 +435,12 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/asancpt/handout-ncar/edit/master/index.Rmd",
-"text": "Edit"
+"link": null,
+"text": null
 },
 "download": ["handout.pdf"],
 "toc": {
-"collapse": "section",
-"download": "pdf"
-},
-"toolbar": {
-"position": "static"
+"collapse": "subsection"
 }
 });
 });

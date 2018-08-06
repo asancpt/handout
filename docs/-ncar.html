@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>R을 통한 비구획분석: 실습</title>
-  <meta name="description" content="R을 통한 비구획분석: 실습">
+  <title></title>
+  <meta name="description" content="">
   <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
-  <meta property="og:title" content="R을 통한 비구획분석: 실습" />
+  <meta property="og:title" content="" />
   <meta property="og:type" content="book" />
   
   
@@ -17,15 +17,13 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="R을 통한 비구획분석: 실습" />
+  <meta name="twitter:title" content="" />
   
   
   
 
-<meta name="author" content="서울아산병원 임상약리학과 전공의 한성필">
 
 
-<meta name="date" content="2018-07-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -87,7 +85,6 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -100,9 +97,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./index.html">R을 사용한 비구획분석: 실습</a></li>
-
-<li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 서론</a><ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#section-1.1"><i class="fa fa-check"></i><b>1.1</b> 설치</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#r-"><i class="fa fa-check"></i><b>1.2</b> R에 대하여</a></li>
@@ -129,9 +123,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="6" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>6</b> 참고문헌</a></li>
 <li class="chapter" data-level="7" data-path="sessioninfo.html"><a href="sessioninfo.html"><i class="fa fa-check"></i><b>7</b> 세션 정보</a></li>
-<li class="divider"></li>
-<li><a href="http://github.com/asancpt/handout-ncar">handout-ncar Github 저장소</a></li>
-
 </ul>
 
       </nav>
@@ -141,7 +132,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R을 통한 비구획분석: 실습</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
           </h1>
         </div>
 
@@ -159,10 +150,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
        Theoph[Theoph<span class="op">$</span>Subject<span class="op">==</span><span class="st">&quot;1&quot;</span>,<span class="st">&quot;conc&quot;</span>], 
        <span class="dt">dose=</span><span class="dv">320</span>, <span class="dt">doseUnit=</span><span class="st">&quot;mg&quot;</span>, <span class="dt">concUnit=</span><span class="st">&quot;mg/L&quot;</span>, <span class="dt">timeUnit=</span><span class="st">&quot;h&quot;</span>)</code></pre></div>
 <pre><code>##  [1] &quot;                        NONCOMPARTMENTAL ANALYSIS REPORT&quot;                           
-##  [2] &quot;                       Package version 0.1.2 (2018-06-04)&quot;                          
-##  [3] &quot;                          R version 3.5.1 (2018-07-02)&quot;                             
+##  [2] &quot;                       Package version 0.3.8 (2018-04-10 KST)&quot;                      
+##  [3] &quot;                          R version 3.5.0 (2018-04-23)&quot;                             
 ##  [4] &quot;&quot;                                                                                   
-##  [5] &quot;Date and Time: 2018-07-17 16:42:50 Asia/Seoul&quot;                                      
+##  [5] &quot;Date and Time: 2018-08-06 11:33:09 Asia/Seoul&quot;                                      
 ##  [6] &quot;&quot;                                                                                   
 ##  [7] &quot;Calculation Setting&quot;                                                                
 ##  [8] &quot;-------------------&quot;                                                                
@@ -223,13 +214,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## [63] &quot;AUMCIFP    AUMC Infinity Pred                           4505.6709 h2*mg/L&quot;          
 ## [64] &quot;AUMCPEO    AUMC %Extrapolation Obs                        67.6160 %&quot;                
 ## [65] &quot;AUMCPEP    AUMC % Extrapolation Pred                      67.6170 %&quot;                
-## [66] &quot;MRTEVLST   MRT Extravasc to Last Nonzero Conc              9.7975 h&quot;                
-## [67] &quot;MRTEVIFO   MRT Extravasc Infinity Obs                     20.8000 h&quot;                
-## [68] &quot;MRTEVIFP   MRT Extravasc Infinity Pred                    20.8004 h&quot;                
-## [69] &quot;VZFO       Vz Obs by F                                    30.4867 L&quot;                
-## [70] &quot;VZFP       Vz Pred by F                                   30.4863 L&quot;                
-## [71] &quot;CLFO       Total CL Obs by F                               1.4773 L/h&quot;              
-## [72] &quot;CLFP       Total CL Pred by F                              1.4773 L/h&quot;</code></pre>
+## [66] &quot;VZFO       Vz Obs by F                                    30.4867 L&quot;                
+## [67] &quot;VZFP       Vz Pred by F                                   30.4863 L&quot;                
+## [68] &quot;CLFO       Total CL Obs by F                               1.4773 L/h&quot;              
+## [69] &quot;CLFP       Total CL Pred by F                              1.4773 L/h&quot;              
+## [70] &quot;MRTEVLST   MRT Extravasc to Last Nonzero Conc              9.7975 h&quot;                
+## [71] &quot;MRTEVIFO   MRT Extravasc Infinity Obs                     20.8000 h&quot;                
+## [72] &quot;MRTEVIFP   MRT Extravasc Infinity Pred                    20.8004 h&quot;</code></pre>
 <p>파일로 저장하려면 다음을 입력합니다.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">writeLines</span>(<span class="kw">txtNCA</span>(Theoph[Theoph<span class="op">$</span>Subject<span class="op">==</span><span class="st">&quot;1&quot;</span>,<span class="st">&quot;Time&quot;</span>],
                   Theoph[Theoph<span class="op">$</span>Subject<span class="op">==</span><span class="st">&quot;1&quot;</span>,<span class="st">&quot;conc&quot;</span>], 
@@ -243,8 +234,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pdfNCA</span>(<span class="dt">fileName=</span><span class="st">&quot;Output-ncar/pdfNCA-Theoph.pdf&quot;</span>, Theoph, <span class="dt">colSubj=</span><span class="st">&quot;Subject&quot;</span>, 
        <span class="dt">colTime=</span><span class="st">&quot;Time&quot;</span>,  <span class="dt">colConc=</span><span class="st">&quot;conc&quot;</span>, <span class="dt">dose=</span><span class="dv">320</span>, <span class="dt">doseUnit=</span><span class="st">&quot;mg&quot;</span>, 
        <span class="dt">timeUnit=</span><span class="st">&quot;h&quot;</span>, <span class="dt">concUnit=</span><span class="st">&quot;mg/L&quot;</span>)</code></pre></div>
-<pre><code>## quartz_off_screen 
-##                 2</code></pre>
+<pre><code>## png 
+##   2</code></pre>
 </div>
 <div id="rtfnca" class="section level2">
 <h2><span class="header-section-number">3.3</span> rtfNCA()</h2>
@@ -290,16 +281,12 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/asancpt/handout-ncar/edit/master/index.Rmd",
-"text": "Edit"
+"link": null,
+"text": null
 },
 "download": ["handout.pdf"],
 "toc": {
-"collapse": "section",
-"download": "pdf"
-},
-"toolbar": {
-"position": "static"
+"collapse": "subsection"
 }
 });
 });

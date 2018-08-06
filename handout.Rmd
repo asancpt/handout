@@ -364,3 +364,6 @@ write_bib(c('base', 'NonCompart', 'ncar', 'pkr'), file = 'keynote.bib')
 devtools::session_info()
 ```
 
+
+<!--chapter:end:index.Rmd-->
+

@@ -1,3 +1,7 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+%
 \documentclass[9pt,]{krantz}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
@@ -6,13 +10,11 @@
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
 \else % if luatex or xelatex
-  \ifxetex
-    \usepackage{mathspec}
-  \else
-    \usepackage{fontspec}
-  \fi
+  \usepackage{unicode-math}
   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+    \setmainfont[]{NanumGothic}
 \fi
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -21,9 +23,14 @@
 \usepackage[]{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
-\usepackage[unicode=true]{hyperref}
-\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{xcolor}
+\usepackage{hyperref}
 \hypersetup{
             pdftitle={R을 통한 비구획분석: 실습},
             pdfauthor={서울아산병원 임상약리학과 전공의 한성필},
@@ -42,40 +49,40 @@
 \usepackage{framed}
 \definecolor{shadecolor}{RGB}{248,248,248}
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
 % Fix footnotes in tables (requires footnote package)
-\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{long table}}{}
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -85,12 +92,6 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -114,19 +115,20 @@
 
 \title{R을 통한 비구획분석: 실습}
 \author{서울아산병원 임상약리학과 전공의 한성필}
-\date{2018-07-17}
+\date{2018-08-07}
 
 \begin{document}
 \maketitle
 
 {
-\hypersetup{linkcolor=black}
+\hypersetup{linkcolor=}
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
 \mainmatter
 
-\chapter{서론}\label{intro}
+\hypertarget{intro}{%
+\chapter{서론}\label{intro}}
 
 약동학 분야에서 가장 간단하고도 객관적이며 널리 쓰이는 방법은 비구획분석
 (Non-compartmental analysis, NCA)입니다. \emph{미국의 FDA (Food and Drug
@@ -171,7 +173,7 @@ R을 실행한 후, 콘솔 창에서 비구획분석을 위한 패키지를 설�
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(NonCompart)}
 \KeywordTok{library}\NormalTok{(ncar)}
-\KeywordTok{library}\NormalTok{(pkr)}
+\CommentTok{#library(pkr) # NonCompart::tblNCA() can be overwritten.}
 \end{Highlighting}
 \end{Shaded}
 
@@ -197,7 +199,8 @@ R을 실행한 후, 콘솔 창에서 비구획분석을 위한 패키지를 설�
 \end{Highlighting}
 \end{Shaded}
 
-\section{R에 대하여}\label{r-}
+\hypertarget{r-}{%
+\section{R에 대하여}\label{r-}}
 
 R (R Core Team \protect\hyperlink{ref-R-base}{2018})은 통계 소프트웨어
 입니다. 굉장히 유용한 소프트웨어이지만 이에 대해 여기서 자세히 설명하긴
@@ -205,7 +208,8 @@ R (R Core Team \protect\hyperlink{ref-R-base}{2018})은 통계 소프트웨어
 무료로 읽을 수 있습니다. Coursera\footnote{\url{https://coursera.com}}에서
 무료 온라인 강의를 들을 수 있습니다.
 
-\section{자료 탐색}\label{-}
+\hypertarget{-}{%
+\section{자료 탐색}\label{-}}
 
 자료의 첫 10개 (Table \ref{tab:head}) 혹은 마지막 10개 관찰값만 보고
 싶으면 다음을 입력합니다. 대상자 번호가 첫 열에 나와있고 시간 순서대로
@@ -262,7 +266,8 @@ Subject & Wt & Dose & Time & conc\\
 administration of Theoph (N = 12)}
 \end{figure}
 
-\section{파라메터의 의미}\label{parameters}
+\hypertarget{parameters}{%
+\section{파라메터의 의미}\label{parameters}}
 
 비구획분석 시 여러 파라메터가 나오며 약어로 표현하는 경우가 많습니다.
 또한 소프트웨어마다 약어가 상이하기 때문에 자주 그 의미를 찾아볼 필요가
@@ -353,9 +358,11 @@ VSSP & Vol Dist Steady State Pred (Vss\_pred)\\
 \bottomrule
 \end{longtable}
 
-\chapter{패키지: NonCompart}\label{-noncompart}
+\hypertarget{-noncompart}{%
+\chapter{패키지: NonCompart}\label{-noncompart}}
 
-\section{tblNCA(): 전체 대상자 비구획 분석}\label{tblnca----}
+\hypertarget{tblnca----}{%
+\section{tblNCA(): 전체 대상자 비구획 분석}\label{tblnca----}}
 
 가장 많이 쓰는 함수 입니다! NonCompart 패키지의 핵심적인 기능입니다.
 아래의 코드를 R의 콘솔창에 넣어보세요. 테오필린 경구 투여시의 비구획
@@ -363,35 +370,36 @@ VSSP & Vol Dist Steady State Pred (Vss\_pred)\\
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Theoph_tblNCA <-}\StringTok{ }\KeywordTok{tblNCA}\NormalTok{(Theoph, }\DataTypeTok{key=}\StringTok{"Subject"}\NormalTok{, }\DataTypeTok{dose=}\DecValTok{320}\NormalTok{, }\DataTypeTok{concUnit=}\StringTok{"mg/L"}\NormalTok{)}
+\NormalTok{Theoph_tblNCA <-}\StringTok{ }\KeywordTok{tblNCA}\NormalTok{(Theoph)}
 \end{Highlighting}
 \end{Shaded}
 
-결과는 matrix 형태인데 너무 길기 때문에 핵심적인 일부 파라메터
-(C\textsubscript{max}, T\textsubscript{max}, AUC\textsubscript{last})만
-표시할 수도 있습니다.
+결과는 \texttt{data.frame} 형태인데 너무 길기 때문에 핵심적인 일부
+파라메터 (C\textsubscript{max}, T\textsubscript{max},
+AUC\textsubscript{last})만 표시할 수도 있습니다.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Theoph_tblNCA_selected <-}\StringTok{ }\NormalTok{Theoph_tblNCA[ , }\KeywordTok{c}\NormalTok{(}\StringTok{'ID'}\NormalTok{, }\StringTok{'CMAX'}\NormalTok{, }\StringTok{'TMAX'}\NormalTok{, }\StringTok{'AUCLST'}\NormalTok{)]}
-\NormalTok{Theoph_tblNCA_selected}
+\NormalTok{Theoph_tblNCA_selected <-}\StringTok{ }\NormalTok{Theoph_tblNCA }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(Subject, CMAX, TMAX, AUCLST) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{print}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##       ID   CMAX    TMAX   AUCLST     
-##  [1,] "1"  "10.5"  "1.12" "148.92305"
-##  [2,] "2"  "8.33"  "1.92" "91.5268"  
-##  [3,] "3"  "8.2"   "1.02" "99.2865"  
-##  [4,] "4"  "8.6"   "1.07" "106.7963" 
-##  [5,] "5"  "11.4"  "1"    "121.2944" 
-##  [6,] "6"  "6.44"  "1.15" "73.77555" 
-##  [7,] "7"  "7.09"  "3.48" "90.7534"  
-##  [8,] "8"  "7.56"  "2.02" "88.55995" 
-##  [9,] "9"  "9.03"  "0.63" "86.32615" 
-## [10,] "10" "10.21" "3.55" "138.3681" 
-## [11,] "11" "8"     "0.98" "80.0936"  
-## [12,] "12" "9.75"  "3.52" "119.9775"
+##    Subject  CMAX TMAX    AUCLST
+## 1        1 10.50 1.12 148.92305
+## 2        2  8.33 1.92  91.52680
+## 3        3  8.20 1.02  99.28650
+## 4        4  8.60 1.07 106.79630
+## 5        5 11.40 1.00 121.29440
+## 6        6  6.44 1.15  73.77555
+## 7        7  7.09 3.48  90.75340
+## 8        8  7.56 2.02  88.55995
+## 9        9  9.03 0.63  86.32615
+## 10      10 10.21 3.55 138.36810
+## 11      11  8.00 0.98  80.09360
+## 12      12  9.75 3.52 119.97750
 \end{verbatim}
 
 인도메타신 정맥 투여시의 비구획 분석입니다. 함수인자 \texttt{adm}을
@@ -400,8 +408,10 @@ infusion으로 바꾼 것을 볼 수 있고 \texttt{dur}가 추가된 것을 볼
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Indometh_tblNCA <-}\StringTok{ }\KeywordTok{tblNCA}\NormalTok{(Indometh, }\DataTypeTok{key=}\StringTok{"Subject"}\NormalTok{, }\DataTypeTok{colTime=}\StringTok{"time"}\NormalTok{, }\DataTypeTok{colConc=}\StringTok{"conc"}\NormalTok{, }\DataTypeTok{dose=}\DecValTok{25}\NormalTok{, }
-                          \DataTypeTok{adm=}\StringTok{"Infusion"}\NormalTok{, }\DataTypeTok{dur=}\FloatTok{0.5}\NormalTok{, }\DataTypeTok{concUnit=}\StringTok{"mg/L"}\NormalTok{)}
+\NormalTok{Indometh_tblNCA <-}\StringTok{ }\KeywordTok{tblNCA}\NormalTok{(Indometh, }\DataTypeTok{key=}\StringTok{"Subject"}\NormalTok{, }
+                          \DataTypeTok{colTime=}\StringTok{"time"}\NormalTok{, }\DataTypeTok{colConc=}\StringTok{"conc"}\NormalTok{, }\DataTypeTok{dose=}\DecValTok{25}\NormalTok{, }
+                          \DataTypeTok{adm=}\StringTok{"Infusion"}\NormalTok{, }\DataTypeTok{dur=}\FloatTok{0.5}\NormalTok{, }
+                          \DataTypeTok{concUnit=}\StringTok{"mg/L"}\NormalTok{, }\DataTypeTok{R2ADJ =} \FloatTok{0.8}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -410,22 +420,24 @@ AUC\textsubscript{last})만 표시할 수도 있습니다.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Indometh_tblNCA_selected <-}\StringTok{ }\NormalTok{Indometh_tblNCA[ , }\KeywordTok{c}\NormalTok{(}\StringTok{'ID'}\NormalTok{, }\StringTok{'CMAX'}\NormalTok{, }\StringTok{'TMAX'}\NormalTok{, }\StringTok{'AUCLST'}\NormalTok{)]}
-\NormalTok{Indometh_tblNCA_selected}
+\NormalTok{Indometh_tblNCA_selected <-}\StringTok{ }\NormalTok{Indometh_tblNCA }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(Subject, CMAX, TMAX, AUCLST) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{print}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##      ID  CMAX   TMAX   AUCLST   
-## [1,] "1" "1.5"  "0.25" "1.74125"
-## [2,] "2" "2.03" "0.25" "2.9325" 
-## [3,] "3" "2.72" "0.25" "2.93375"
-## [4,] "4" "1.85" "0.25" "2.4775" 
-## [5,] "5" "2.05" "0.25" "1.95375"
-## [6,] "6" "2.31" "0.25" "2.8725"
+##   Subject CMAX TMAX  AUCLST
+## 1       1 1.50 0.25 1.74125
+## 2       2 2.03 0.25 2.93250
+## 3       3 2.72 0.25 2.93375
+## 4       4 1.85 0.25 2.47750
+## 5       5 2.05 0.25 1.95375
+## 6       6 2.31 0.25 2.87250
 \end{verbatim}
 
-\section{sNCA()}\label{snca}
+\hypertarget{snca}{%
+\section{sNCA()}\label{snca}}
 
 한명의 대상자에 대해 비구획 분석을 시행합니다.
 
@@ -446,31 +458,27 @@ AUC\textsubscript{last})만 표시할 수도 있습니다.
 ##    3.2800000    3.2801465   24.3700000   14.3043776    0.0484570 
 ##       LAMZLL       LAMZUL      LAMZNPT       CORRXY           R2 
 ##    9.0500000   24.3700000    3.0000000   -0.9999999    0.9999997 
-##        R2ADJ           C0       AUCLST       AUCALL       AUCIFO 
-##    0.9999995           NA  148.9230500  148.9230500  216.6119330 
-##      AUCIFOD       AUCIFP      AUCIFPD       AUCPEO       AUCPEP 
-##    0.6769123  216.6149558    0.6769217   31.2489169   31.2498763 
-##      AUCPBEO      AUCPBEP      AUMCLST      AUMCIFO      AUMCIFP 
-##           NA           NA 1459.0711035 4505.5348194 4505.6708646 
-##      AUMCPEO      AUMCPEP     MRTIVLST     MRTIVIFO     MRTIVIFP 
-##   67.6160287   67.6170065           NA           NA           NA 
-##     MRTEVLST     MRTEVIFO     MRTEVIFP          VZO          VZP 
-##    9.7974834   20.8000305   20.8003683           NA           NA 
-##         VZFO         VZFP          CLO          CLP         CLFO 
-##   30.4867482   30.4863228           NA           NA    1.4772963 
-##         CLFP         VSSO         VSSP 
-##    1.4772757           NA           NA 
+##        R2ADJ       AUCLST       AUCALL       AUCIFO      AUCIFOD 
+##    0.9999995  148.9230500  148.9230500  216.6119330    0.6769123 
+##       AUCIFP      AUCIFPD       AUCPEO       AUCPEP      AUMCLST 
+##  216.6149558    0.6769217   31.2489169   31.2498763 1459.0711035 
+##      AUMCIFO      AUMCIFP      AUMCPEO      AUMCPEP         VZFO 
+## 4505.5348194 4505.6708646   67.6160287   67.6170065   30.4867482 
+##         VZFP         CLFO         CLFP     MRTEVLST     MRTEVIFO 
+##   30.4863228    1.4772963    1.4772757    9.7974834   20.8000305 
+##     MRTEVIFP 
+##   20.8003683 
 ## attr(,"units")
 ##  [1] ""          "mg/L"      "mg/L/mg"   "h"         "h"        
 ##  [6] "mg/L"      "mg/L"      "h"         "h"         "/h"       
 ## [11] "h"         "h"         ""          ""          ""         
-## [16] ""          "mg/L"      "h*mg/L"    "h*mg/L"    "h*mg/L"   
-## [21] "h*mg/L/mg" "h*mg/L"    "h*mg/L/mg" "%"         "%"        
-## [26] "%"         "%"         "h2*mg/L"   "h2*mg/L"   "h2*mg/L"  
-## [31] "%"         "%"         "h"         "h"         "h"        
-## [36] "h"         "h"         "h"         "L"         "L"        
-## [41] "L"         "L"         "L/h"       "L/h"       "L/h"      
-## [46] "L/h"       "L"         "L"
+## [16] ""          "h*mg/L"    "h*mg/L"    "h*mg/L"    "h*mg/L/mg"
+## [21] "h*mg/L"    "h*mg/L/mg" "%"         "%"         "h2*mg/L"  
+## [26] "h2*mg/L"   "h2*mg/L"   "%"         "%"         "L"        
+## [31] "L"         "L/h"       "L/h"       "h"         "h"        
+## [36] "h"        
+## attr(,"UsedPoints")
+## [1]  9 10 11
 \end{verbatim}
 
 이때의 그림은 다음과 같습니다. (Figure \ref{fig:ggtheophindi})
@@ -493,8 +501,9 @@ AUC\textsubscript{last})만 표시할 수도 있습니다.
 oral administration of Theoph (Subject 1)}
 \end{figure}
 
+\hypertarget{-descriptive-statistics}{%
 \section{기술통계 (Descriptive
-statistics)}\label{-descriptive-statistics}
+statistics)}\label{-descriptive-statistics}}
 
 R에서는 필요에 따라서 자신만의 함수를 만들 수도 있습니다. 아래를
 실행하면 \texttt{desc\_tblNCA()} 함수를 사용하여 기술통계량을 쉽게 구할
@@ -503,9 +512,8 @@ R에서는 필요에 따라서 자신만의 함수를 만들 수도 있습니다
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{desc_tblNCA <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(tblNCA)\{}
-  \KeywordTok{as.data.frame}\NormalTok{(tblNCA) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{    }\KeywordTok{mutate_all}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{as.character}\NormalTok{(x))) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{    }\NormalTok{broom}\OperatorTok{::}\KeywordTok{tidy}\NormalTok{()}
+\NormalTok{  tblNCA }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\NormalTok{psych}\OperatorTok{::}\KeywordTok{describe}\NormalTok{()}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -521,14 +529,14 @@ R에서는 필요에 따라서 자신만의 함수를 만들 수도 있습니다
 
 \caption{\label{tab:theodesc}Descriptive statistics of selected PK parameters of Theoph oral administration}
 \centering
-\begin{tabular}[t]{lrrrrrrrrrrrr}
+\begin{tabular}[t]{lrrrrrrrrrrrrr}
 \toprule
-column & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se\\
+  & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se\\
 \midrule
-ID & 12 & 6.500000 & 3.605551 & 6.50000 & 6.5000 & 4.447800 & 1.00000 & 12.000 & 11.0000 & 0.0000000 & -1.501603 & 1.0408330\\
-CMAX & 12 & 8.759167 & 1.472959 & 8.46500 & 8.7270 & 1.623447 & 6.44000 & 11.400 & 4.9600 & 0.2137012 & -1.186397 & 0.4252066\\
-TMAX & 12 & 1.788333 & 1.112408 & 1.13500 & 1.7280 & 0.489258 & 0.63000 & 3.550 & 2.9200 & 0.6998568 & -1.345075 & 0.3211245\\
-AUCLST & 12 & 103.806775 & 23.645216 & 95.40665 & 102.2983 & 19.794711 & 73.77555 & 148.923 & 75.1475 & 0.5625746 & -1.117566 & 6.8257858\\
+Subject* & 1 & 12 & 6.500000 & 3.605551 & 6.50000 & 6.5000 & 4.447800 & 1.00000 & 12.000 & 11.0000 & 0.0000000 & -1.501603 & 1.0408330\\
+CMAX & 2 & 12 & 8.759167 & 1.472959 & 8.46500 & 8.7270 & 1.623447 & 6.44000 & 11.400 & 4.9600 & 0.2137012 & -1.186397 & 0.4252066\\
+TMAX & 3 & 12 & 1.788333 & 1.112408 & 1.13500 & 1.7280 & 0.489258 & 0.63000 & 3.550 & 2.9200 & 0.6998568 & -1.345075 & 0.3211245\\
+AUCLST & 4 & 12 & 103.806775 & 23.645216 & 95.40665 & 102.2983 & 19.794711 & 73.77555 & 148.923 & 75.1475 & 0.5625746 & -1.117566 & 6.8257858\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -537,24 +545,26 @@ AUCLST & 12 & 103.806775 & 23.645216 & 95.40665 & 102.2983 & 19.794711 & 73.7755
 
 \caption{\label{tab:indodesc}Descriptive statistics of selected PK parameters of Indometh IV infusion}
 \centering
-\begin{tabular}[t]{lrrrrrrrrrrrr}
+\begin{tabular}[t]{lrrrrrrrrrrrrr}
 \toprule
-column & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se\\
+  & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se\\
 \midrule
-ID & 6 & 3.500000 & 1.8708287 & 3.500 & 3.500000 & 2.2239000 & 1.00000 & 6.00000 & 5.0000 & 0.0000000 & -1.797619 & 0.7637626\\
-CMAX & 6 & 2.076667 & 0.4135537 & 2.040 & 2.076667 & 0.3409980 & 1.50000 & 2.72000 & 1.2200 & 0.1777485 & -1.361889 & 0.1688326\\
-TMAX & 6 & 0.250000 & 0.0000000 & 0.250 & 0.250000 & 0.0000000 & 0.25000 & 0.25000 & 0.0000 & NaN & NaN & 0.0000000\\
-AUCLST & 6 & 2.485208 & 0.5267325 & 2.675 & 2.485208 & 0.3826961 & 1.74125 & 2.93375 & 1.1925 & -0.3695625 & -1.940994 & 0.2150376\\
+Subject* & 1 & 6 & 3.500000 & 1.8708287 & 3.500 & 3.500000 & 2.2239000 & 1.00000 & 6.00000 & 5.0000 & 0.0000000 & -1.797619 & 0.7637626\\
+CMAX & 2 & 6 & 2.076667 & 0.4135537 & 2.040 & 2.076667 & 0.3409980 & 1.50000 & 2.72000 & 1.2200 & 0.1777485 & -1.361889 & 0.1688326\\
+TMAX & 3 & 6 & 0.250000 & 0.0000000 & 0.250 & 0.250000 & 0.0000000 & 0.25000 & 0.25000 & 0.0000 & NaN & NaN & 0.0000000\\
+AUCLST & 4 & 6 & 2.485208 & 0.5267325 & 2.675 & 2.485208 & 0.3826961 & 1.74125 & 2.93375 & 1.1925 & -0.3695625 & -1.940994 & 0.2150376\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\chapter{패키지: ncar}\label{-ncar}
+\hypertarget{-ncar}{%
+\chapter{패키지: ncar}\label{-ncar}}
 
 보고서를 만드는 패키지입니다. 현재 설정된 working directory에 결과
 파일이 생성됩니다.
 
-\section{txtNCA()}\label{txtnca}
+\hypertarget{txtnca}{%
+\section{txtNCA()}\label{txtnca}}
 
 txtNCA()를 통해서 다음 결과를 얻을 수 있습니다.
 
@@ -568,10 +578,10 @@ txtNCA()를 통해서 다음 결과를 얻을 수 있습니다.
 
 \begin{verbatim}
 ##  [1] "                        NONCOMPARTMENTAL ANALYSIS REPORT"                           
-##  [2] "                       Package version 0.1.2 (2018-06-04)"                          
+##  [2] "                       Package version 0.4.1 (2018-06-20 KST)"                      
 ##  [3] "                          R version 3.5.1 (2018-07-02)"                             
 ##  [4] ""                                                                                   
-##  [5] "Date and Time: 2018-07-17 16:43:03 Asia/Seoul"                                      
+##  [5] "Date and Time: 2018-08-07 11:57:04 Asia/Seoul"                                      
 ##  [6] ""                                                                                   
 ##  [7] "Calculation Setting"                                                                
 ##  [8] "-------------------"                                                                
@@ -632,13 +642,13 @@ txtNCA()를 통해서 다음 결과를 얻을 수 있습니다.
 ## [63] "AUMCIFP    AUMC Infinity Pred                           4505.6709 h2*mg/L"          
 ## [64] "AUMCPEO    AUMC %Extrapolation Obs                        67.6160 %"                
 ## [65] "AUMCPEP    AUMC % Extrapolation Pred                      67.6170 %"                
-## [66] "MRTEVLST   MRT Extravasc to Last Nonzero Conc              9.7975 h"                
-## [67] "MRTEVIFO   MRT Extravasc Infinity Obs                     20.8000 h"                
-## [68] "MRTEVIFP   MRT Extravasc Infinity Pred                    20.8004 h"                
-## [69] "VZFO       Vz Obs by F                                    30.4867 L"                
-## [70] "VZFP       Vz Pred by F                                   30.4863 L"                
-## [71] "CLFO       Total CL Obs by F                               1.4773 L/h"              
-## [72] "CLFP       Total CL Pred by F                              1.4773 L/h"
+## [66] "VZFO       Vz Obs by F                                    30.4867 L"                
+## [67] "VZFP       Vz Pred by F                                   30.4863 L"                
+## [68] "CLFO       Total CL Obs by F                               1.4773 L/h"              
+## [69] "CLFP       Total CL Pred by F                              1.4773 L/h"              
+## [70] "MRTEVLST   MRT Extravasc to Last Nonzero Conc              9.7975 h"                
+## [71] "MRTEVIFO   MRT Extravasc Infinity Obs                     20.8000 h"                
+## [72] "MRTEVIFP   MRT Extravasc Infinity Pred                    20.8004 h"
 \end{verbatim}
 
 파일로 저장하려면 다음을 입력합니다.
@@ -653,15 +663,16 @@ txtNCA()를 통해서 다음 결과를 얻을 수 있습니다.
 \end{Highlighting}
 \end{Shaded}
 
-\section{pdfNCA()}\label{pdfnca}
+\hypertarget{pdfnca}{%
+\section{pdfNCA()}\label{pdfnca}}
 
-pdfNCA()로 pdf로 결과를 볼 수 있습니다.
+pdfNCA()로 pdf로 결과를 볼 수 있습니다. (Figure \ref{fig:pdfnca-output})
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{pdfNCA}\NormalTok{(}\DataTypeTok{fileName=}\StringTok{"Output-ncar/pdfNCA-Theoph.pdf"}\NormalTok{, Theoph, }\DataTypeTok{colSubj=}\StringTok{"Subject"}\NormalTok{, }
-       \DataTypeTok{colTime=}\StringTok{"Time"}\NormalTok{,  }\DataTypeTok{colConc=}\StringTok{"conc"}\NormalTok{, }\DataTypeTok{dose=}\DecValTok{320}\NormalTok{, }\DataTypeTok{doseUnit=}\StringTok{"mg"}\NormalTok{, }
-       \DataTypeTok{timeUnit=}\StringTok{"h"}\NormalTok{, }\DataTypeTok{concUnit=}\StringTok{"mg/L"}\NormalTok{)}
+\NormalTok{ncar}\OperatorTok{::}\KeywordTok{pdfNCA}\NormalTok{(}\DataTypeTok{fileName=}\StringTok{"Output-ncar/pdfNCA-Theoph.pdf"}\NormalTok{, Theoph, }\DataTypeTok{key=}\StringTok{"Subject"}\NormalTok{, }
+             \DataTypeTok{colTime=}\StringTok{"Time"}\NormalTok{,  }\DataTypeTok{colConc=}\StringTok{"conc"}\NormalTok{, }\DataTypeTok{dose=}\DecValTok{320}\NormalTok{, }\DataTypeTok{doseUnit=}\StringTok{"mg"}\NormalTok{, }
+             \DataTypeTok{timeUnit=}\StringTok{"h"}\NormalTok{, }\DataTypeTok{concUnit=}\StringTok{"mg/L"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -670,27 +681,38 @@ pdfNCA()로 pdf로 결과를 볼 수 있습니다.
 ##   2
 \end{verbatim}
 
-\section{rtfNCA()}\label{rtfnca}
+\begin{figure}
+\includegraphics[width=17.71in]{Output-ncar/pdfNCA-Theoph-01} \caption{pdfNCA() output}\label{fig:pdfnca-output1}
+\end{figure}
+\begin{figure}
+\includegraphics[width=17.71in]{Output-ncar/pdfNCA-Theoph-02} \caption{pdfNCA() output}\label{fig:pdfnca-output2}
+\end{figure}
+
+\hypertarget{rtfnca}{%
+\section{rtfNCA()}\label{rtfnca}}
 
 마이크로소프트 워드에서 편집가능한 rtf파일을 만듭니다.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{rtfNCA}\NormalTok{(}\DataTypeTok{fileName=}\StringTok{"rtfNCA-Theoph.rtf"}\NormalTok{, Theoph, }\DataTypeTok{colSubj=}\StringTok{"Subject"}\NormalTok{, }
-       \DataTypeTok{colTime=}\StringTok{"Time"}\NormalTok{, }\DataTypeTok{colConc=}\StringTok{"conc"}\NormalTok{, }\DataTypeTok{dose=}\DecValTok{320}\NormalTok{, }\DataTypeTok{doseUnit=}\StringTok{"mg"}\NormalTok{, }
-       \DataTypeTok{timeUnit=}\StringTok{"h"}\NormalTok{, }\DataTypeTok{concUnit=}\StringTok{"mg/L"}\NormalTok{)}
+\NormalTok{ncar}\OperatorTok{::}\KeywordTok{rtfNCA}\NormalTok{(}\DataTypeTok{fileName=}\StringTok{"rtfNCA-Theoph.rtf"}\NormalTok{, Theoph, }\DataTypeTok{key=}\StringTok{"Subject"}\NormalTok{, }
+             \DataTypeTok{colTime=}\StringTok{"Time"}\NormalTok{, }\DataTypeTok{colConc=}\StringTok{"conc"}\NormalTok{, }\DataTypeTok{dose=}\DecValTok{320}\NormalTok{, }\DataTypeTok{doseUnit=}\StringTok{"mg"}\NormalTok{, }
+             \DataTypeTok{timeUnit=}\StringTok{"h"}\NormalTok{, }\DataTypeTok{concUnit=}\StringTok{"mg/L"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\chapter{패키지: pkr}\label{-pkr}
+\hypertarget{-pkr}{%
+\chapter{패키지: pkr}\label{-pkr}}
 
-\section{plotPK()}\label{plotpk}
+\hypertarget{plotpk}{%
+\section{plotPK()}\label{plotpk}}
 
 여러가지 기본적인 그림을 그려봅니다. Output 폴더 아래에 여러 파일이
 생성됩니다.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(pkr)}
 \NormalTok{pkr}\OperatorTok{::}\KeywordTok{plotPK}\NormalTok{(Theoph, }\StringTok{"Subject"}\NormalTok{, }\StringTok{"Time"}\NormalTok{, }\StringTok{"conc"}\NormalTok{, }
             \DataTypeTok{unitTime =} \StringTok{"hr"}\NormalTok{, }\DataTypeTok{unitConc =} \StringTok{"mg/L"}\NormalTok{, }\DataTypeTok{dose =} \DecValTok{320}\NormalTok{)}
 \end{Highlighting}
@@ -701,9 +723,11 @@ pdfNCA()로 pdf로 결과를 볼 수 있습니다.
 ##   2
 \end{verbatim}
 
-\chapter{기타 사항}\label{etc}
+\hypertarget{etc}{%
+\chapter{기타 사항}\label{etc}}
 
-\section{shiny 앱}\label{shiny-}
+\hypertarget{shiny-}{%
+\section{shiny 앱}\label{shiny-}}
 
 웹브라우저를 통해 간단히 비구획분석을 할 수 있는 앱을 개발하였습니다.
 
@@ -738,142 +762,39 @@ pdfNCA()로 pdf로 결과를 볼 수 있습니다.
 Gitbook (일종의 웹북)\footnote{\url{https://asancpt.github.io/book-ncar}}을
 통해 전자출판도 진행 중이므로 시간 나실때 틈틈이 확인해 주시면
 감사하겠습니다. (Figure \ref{fig:gitbook}) 이 실습자료도
-Gitbook\footnote{\url{https://asancpt.github.io/handout-ncar}}으로 열람
+Gitbook\footnote{\url{https://asancpt.github.io/handout}}으로 열람
 가능합니다.
 
 서울아산병원 임상약리학과 전공의 한성필
 
 \begin{figure}
-\includegraphics[width=400px]{assets/gitbook} \caption{Gitbook: Noncompartmental analysis by R (work in progress)}\label{fig:gitbook}
+\includegraphics[width=17.74in]{assets/gitbook} \caption{Gitbook: Noncompartmental analysis by R (work in progress)}\label{fig:gitbook}
 \end{figure}
 
 \section{고지}
 
-본 출판물은 2016, 2017년도 정부(미래창조과학부)의 재원으로 한국연구재단
-첨단 사이언스·교육 허브 개발 사업의 지원을 받아 수행된 결과입니다
-(NRF-2016-936606).
+본 출판물은 2016, 2017, 2018년도 정부(미래창조과학부)의 재원으로
+한국연구재단 첨단 사이언스·교육 허브 개발 사업의 지원을 받아 수행된
+결과입니다 (NRF-2016-936606).
 
-\chapter{참고문헌}\label{references}
-
-\chapter{세션 정보}\label{sessioninfo}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{devtools}\OperatorTok{::}\KeywordTok{session_info}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  setting  value                       
-##  version  R version 3.5.1 (2018-07-02)
-##  system   x86_64, darwin17.6.0        
-##  ui       unknown                     
-##  language (EN)                        
-##  collate  en_US.UTF-8                 
-##  tz       Asia/Seoul                  
-##  date     2018-07-17                  
-## 
-##  package     * version date       source        
-##  assertthat    0.2.0   2017-04-11 CRAN (R 3.5.0)
-##  backports     1.1.2   2017-12-13 CRAN (R 3.5.0)
-##  base        * 3.5.1   2018-07-03 local         
-##  bindr         0.1.1   2018-03-13 CRAN (R 3.5.0)
-##  bindrcpp    * 0.2.2   2018-03-29 CRAN (R 3.5.0)
-##  binr        * 1.1     2015-03-10 CRAN (R 3.5.0)
-##  bookdown      0.7     2018-02-18 CRAN (R 3.5.0)
-##  broom         0.4.5   2018-07-03 CRAN (R 3.5.1)
-##  cellranger    1.1.0   2016-07-27 CRAN (R 3.5.0)
-##  checkmate   * 1.8.5   2017-10-24 CRAN (R 3.5.0)
-##  cli           1.0.0   2017-11-05 CRAN (R 3.5.0)
-##  colorspace    1.3-2   2016-12-14 CRAN (R 3.5.0)
-##  compiler      3.5.1   2018-07-03 local         
-##  crayon        1.3.4   2017-09-16 CRAN (R 3.5.0)
-##  datasets    * 3.5.1   2018-07-03 local         
-##  devtools      1.13.6  2018-06-27 CRAN (R 3.5.0)
-##  digest        0.6.15  2018-01-28 CRAN (R 3.5.0)
-##  dplyr       * 0.7.6   2018-06-29 CRAN (R 3.5.0)
-##  evaluate      0.10.1  2017-06-24 CRAN (R 3.5.0)
-##  forcats     * 0.3.0   2018-02-19 CRAN (R 3.5.0)
-##  foreign     * 0.8-70  2017-11-28 CRAN (R 3.5.1)
-##  forestplot  * 1.7.2   2017-09-16 CRAN (R 3.5.0)
-##  ggplot2     * 3.0.0   2018-07-03 CRAN (R 3.5.1)
-##  glue          1.2.0   2017-10-29 CRAN (R 3.5.0)
-##  graphics    * 3.5.1   2018-07-03 local         
-##  grDevices   * 3.5.1   2018-07-03 local         
-##  grid        * 3.5.1   2018-07-03 local         
-##  gtable        0.2.0   2016-02-26 CRAN (R 3.5.1)
-##  haven         1.1.2   2018-06-27 CRAN (R 3.5.0)
-##  highr         0.7     2018-06-09 CRAN (R 3.5.0)
-##  hms           0.4.2   2018-03-10 CRAN (R 3.5.0)
-##  htmltools     0.3.6   2017-04-28 CRAN (R 3.5.0)
-##  httr          1.3.1   2017-08-20 CRAN (R 3.5.0)
-##  jsonlite      1.5     2017-06-01 CRAN (R 3.5.0)
-##  knitr       * 1.20    2018-02-20 CRAN (R 3.5.0)
-##  labeling      0.3     2014-08-23 CRAN (R 3.5.0)
-##  lattice       0.20-35 2017-03-25 CRAN (R 3.5.1)
-##  lazyeval      0.2.1   2017-10-29 CRAN (R 3.5.0)
-##  lubridate     1.7.4   2018-04-11 CRAN (R 3.5.0)
-##  magrittr    * 1.5     2014-11-22 CRAN (R 3.5.0)
-##  memoise       1.1.0   2017-04-21 CRAN (R 3.5.0)
-##  methods     * 3.5.1   2018-07-03 local         
-##  mnormt        1.5-5   2016-10-15 CRAN (R 3.5.0)
-##  modelr        0.1.2   2018-05-11 CRAN (R 3.5.0)
-##  munsell       0.5.0   2018-06-12 CRAN (R 3.5.0)
-##  ncar        * 0.4.0   2018-06-20 CRAN (R 3.5.0)
-##  nlme          3.1-137 2018-04-07 CRAN (R 3.5.1)
-##  NonCompart  * 0.4.4   2018-07-10 CRAN (R 3.5.1)
-##  parallel      3.5.1   2018-07-03 local         
-##  pillar        1.3.0   2018-07-14 CRAN (R 3.5.1)
-##  pkgconfig     2.0.1   2017-03-21 CRAN (R 3.5.0)
-##  pkr         * 0.1.2   2018-06-04 CRAN (R 3.5.0)
-##  plyr          1.8.4   2016-06-08 CRAN (R 3.5.0)
-##  psych         1.8.4   2018-05-06 CRAN (R 3.5.0)
-##  purrr       * 0.2.5   2018-05-29 CRAN (R 3.5.0)
-##  R.methodsS3   1.7.1   2016-02-16 CRAN (R 3.5.0)
-##  R.oo          1.22.0  2018-04-22 CRAN (R 3.5.0)
-##  R6            2.2.2   2017-06-17 CRAN (R 3.5.0)
-##  Rcpp          0.12.17 2018-05-18 CRAN (R 3.5.0)
-##  readr       * 1.1.1   2017-05-16 CRAN (R 3.5.0)
-##  readxl        1.1.0   2018-04-20 CRAN (R 3.5.0)
-##  reshape2      1.4.3   2017-12-11 CRAN (R 3.5.0)
-##  rlang         0.2.1   2018-05-30 CRAN (R 3.5.0)
-##  rmarkdown     1.10    2018-06-11 CRAN (R 3.5.0)
-##  rprojroot     1.3-2   2018-01-03 CRAN (R 3.5.0)
-##  rstudioapi    0.7     2017-09-07 CRAN (R 3.5.0)
-##  rtf         * 0.4-13  2018-05-17 CRAN (R 3.5.0)
-##  rvest         0.3.2   2016-06-17 CRAN (R 3.5.0)
-##  scales        0.5.0   2017-08-24 CRAN (R 3.5.0)
-##  stats       * 3.5.1   2018-07-03 local         
-##  stringi       1.2.3   2018-06-12 CRAN (R 3.5.0)
-##  stringr     * 1.3.1   2018-05-10 CRAN (R 3.5.0)
-##  tibble      * 1.4.2   2018-01-22 CRAN (R 3.5.0)
-##  tidyr       * 0.8.1   2018-05-18 CRAN (R 3.5.0)
-##  tidyselect    0.2.4   2018-02-26 CRAN (R 3.5.0)
-##  tidyverse   * 1.2.1   2017-11-14 CRAN (R 3.5.0)
-##  tools         3.5.1   2018-07-03 local         
-##  utils       * 3.5.1   2018-07-03 local         
-##  viridisLite   0.3.0   2018-02-01 CRAN (R 3.5.0)
-##  withr         2.1.2   2018-03-15 CRAN (R 3.5.0)
-##  xfun          0.3     2018-07-06 CRAN (R 3.5.1)
-##  xml2          1.2.0   2018-01-24 CRAN (R 3.5.0)
-##  yaml          2.1.19  2018-05-01 CRAN (R 3.5.0)
-\end{verbatim}
+\hypertarget{references}{%
+\chapter{참고문헌}\label{references}}
 
 \hypertarget{refs}{}
-\hypertarget{ref-R-ncar}{}
+\leavevmode\hypertarget{ref-R-ncar}{}%
 Bae, Kyun-Seop. 2018a. \emph{Ncar: Noncompartmental Analysis for
 Pharmacokinetic Report}. \url{https://CRAN.R-project.org/package=ncar}.
 
-\hypertarget{ref-R-NonCompart}{}
+\leavevmode\hypertarget{ref-R-NonCompart}{}%
 ---------. 2018b. \emph{NonCompart: Noncompartmental Analysis for
 Pharmacokinetic Data}.
 \url{https://CRAN.R-project.org/package=NonCompart}.
 
-\hypertarget{ref-R-pkr}{}
+\leavevmode\hypertarget{ref-R-pkr}{}%
 Bae, Kyun-Seop, and Jee Eun Lee. 2018. \emph{Pkr: Pharmacokinetics in
 R}. \url{https://CRAN.R-project.org/package=pkr}.
 
-\hypertarget{ref-R-base}{}
+\leavevmode\hypertarget{ref-R-base}{}%
 R Core Team. 2018. \emph{R: A Language and Environment for Statistical
 Computing}. Vienna, Austria: R Foundation for Statistical Computing.
 \url{https://www.R-project.org/}.

@@ -21,6 +21,7 @@ colorlinks: yes
 fontsize: 9pt
 header-includes:
   - \usepackage{kotex}
+mainfont: NanumGothic
 output:
   bookdown::pdf_book: 
     keep_tex: yes
@@ -186,27 +187,33 @@ NonCompart 패키지의 핵심적인 기능입니다.
 테오필린 경구 투여시의 비구획 분석입니다. 
 
 ```{r}
-Theoph_tblNCA <- NonCompart::tblNCA(Theoph, key="Subject", dose=320, concUnit="mg/L")
+Theoph_tblNCA <- tblNCA(Theoph)
 ```
 
-결과는 matrix 형태인데 너무 길기 때문에 핵심적인 일부 파라메터 (C~max~, T~max~, AUC~last~)만 표시할 수도 있습니다.
+결과는 `data.frame` 형태인데 너무 길기 때문에 핵심적인 일부 파라메터 (C~max~, T~max~, AUC~last~)만 표시할 수도 있습니다.
 
 ```{r}
-(Theoph_tblNCA_selected <- Theoph_tblNCA %>% select(Subject, CMAX, TMAX, AUCLST))
+Theoph_tblNCA_selected <- Theoph_tblNCA %>% 
+  select(Subject, CMAX, TMAX, AUCLST) %>% 
+  print()
 ```
 
 인도메타신 정맥 투여시의 비구획 분석입니다. 
 함수인자 `adm`을 infusion으로 바꾼 것을 볼 수 있고 `dur`가 추가된 것을 볼 수 있습니다.
 
 ```{r}
-Indometh_tblNCA <- tblNCA(Indometh, key="Subject", colTime="time", colConc="conc", dose=25, 
-                          adm="Infusion", dur=0.5, concUnit="mg/L", R2ADJ = 0.8)
+Indometh_tblNCA <- tblNCA(Indometh, key="Subject", 
+                          colTime="time", colConc="conc", dose=25, 
+                          adm="Infusion", dur=0.5, 
+                          concUnit="mg/L", R2ADJ = 0.8)
 ```
 
 역시 핵심적인 일부 파라메터 (C~max~, T~max~, AUC~last~)만 표시할 수도 있습니다.
 
 ```{r}
-(Indometh_tblNCA_selected <- Indometh_tblNCA %>% select(Subject, CMAX, TMAX, AUCLST))
+Indometh_tblNCA_selected <- Indometh_tblNCA %>% 
+  select(Subject, CMAX, TMAX, AUCLST) %>% 
+  print()
 ```
 
 ## sNCA()
@@ -297,9 +304,10 @@ ncar::pdfNCA(fileName="Output-ncar/pdfNCA-Theoph.pdf", Theoph, key="Subject",
 
 ```{r include = FALSE}
 system("magick -density 150 Output-ncar/pdfNCA-Theoph.pdf Output-ncar/pdfNCA-Theoph-%02d.png")
+system("magick montage Output-ncar/pdfNCA-Theoph-01.png Output-ncar/pdfNCA-Theoph-02.png Output-ncar/montage.png")
 ```
 
-```{r pdfnca-output, fig.cap = 'pdfNCA() output', fig.width = 6, echo = FALSE, out.width = "400px"}
+```{r pdfnca-output, fig.cap = 'pdfNCA() output', fig.width = 6, echo = FALSE}
 #knitr::include_graphics('Output-ncar/pdfNCA-Theoph-01.png')
 knitr::include_graphics(c('Output-ncar/pdfNCA-Theoph-01.png', 'Output-ncar/pdfNCA-Theoph-02.png'))
 #include_graphics('Output-ncar/pdfNCA-Theoph-02.png')
@@ -352,7 +360,7 @@ pkr::plotPK(Theoph, "Subject", "Time", "conc",
 
 서울아산병원 임상약리학과 전공의 한성필
 
-```{r gitbook, fig.cap = 'Gitbook: Noncompartmental analysis by R (work in progress)', fig.width = 6, echo = FALSE, out.width = "400px"}
+```{r gitbook, fig.cap = 'Gitbook: Noncompartmental analysis by R (work in progress)', fig.width = 6, echo = FALSE}
 include_graphics('assets/gitbook.png')
 ```
 
@@ -367,9 +375,10 @@ include_graphics('assets/gitbook.png')
 write_bib(c('base', 'NonCompart', 'ncar', 'pkr'), file = 'keynote.bib')
 ```
 
+<!--
 # 세션 정보 {#sessioninfo}
 
 ```{r}
 devtools::session_info()
 ```
-
+-->

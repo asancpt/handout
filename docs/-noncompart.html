@@ -25,7 +25,7 @@
 <meta name="author" content="서울아산병원 임상약리학과 전공의 한성필">
 
 
-<meta name="date" content="2018-08-06">
+<meta name="date" content="2018-08-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -156,7 +156,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="etc.html"><a href="etc.html#section-5.3"><i class="fa fa-check"></i><b>5.3</b> 고지</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>6</b> 참고문헌</a></li>
-<li class="chapter" data-level="7" data-path="sessioninfo.html"><a href="sessioninfo.html"><i class="fa fa-check"></i><b>7</b> 세션 정보</a></li>
 <li class="divider"></li>
 <li><a href="http://github.com/asancpt/handout-ncar">handout-ncar Github 저장소</a></li>
 
@@ -185,160 +184,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 NonCompart 패키지의 핵심적인 기능입니다.
 아래의 코드를 R의 콘솔창에 넣어보세요.
 테오필린 경구 투여시의 비구획 분석입니다.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">Theoph_tblNCA &lt;-<span class="st"> </span>NonCompart<span class="op">::</span><span class="kw">tblNCA</span>(Theoph, <span class="dt">key=</span><span class="st">&quot;Subject&quot;</span>, <span class="dt">dose=</span><span class="dv">320</span>, <span class="dt">concUnit=</span><span class="st">&quot;mg/L&quot;</span>)</a></code></pre></div>
-<p>결과는 matrix 형태인데 너무 길기 때문에 핵심적인 일부 파라메터 (C<sub>max</sub>, T<sub>max</sub>, AUC<sub>last</sub>)만 표시할 수도 있습니다.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">(Theoph_tblNCA_selected &lt;-<span class="st"> </span>Theoph_tblNCA <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Subject, CMAX, TMAX, AUCLST))</a></code></pre></div>
-<div class="kable-table">
-<table>
-<thead>
-<tr class="header">
-<th align="left">Subject</th>
-<th align="right">CMAX</th>
-<th align="right">TMAX</th>
-<th align="right">AUCLST</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">1</td>
-<td align="right">10.50</td>
-<td align="right">1.12</td>
-<td align="right">148.92305</td>
-</tr>
-<tr class="even">
-<td align="left">2</td>
-<td align="right">8.33</td>
-<td align="right">1.92</td>
-<td align="right">91.52680</td>
-</tr>
-<tr class="odd">
-<td align="left">3</td>
-<td align="right">8.20</td>
-<td align="right">1.02</td>
-<td align="right">99.28650</td>
-</tr>
-<tr class="even">
-<td align="left">4</td>
-<td align="right">8.60</td>
-<td align="right">1.07</td>
-<td align="right">106.79630</td>
-</tr>
-<tr class="odd">
-<td align="left">5</td>
-<td align="right">11.40</td>
-<td align="right">1.00</td>
-<td align="right">121.29440</td>
-</tr>
-<tr class="even">
-<td align="left">6</td>
-<td align="right">6.44</td>
-<td align="right">1.15</td>
-<td align="right">73.77555</td>
-</tr>
-<tr class="odd">
-<td align="left">7</td>
-<td align="right">7.09</td>
-<td align="right">3.48</td>
-<td align="right">90.75340</td>
-</tr>
-<tr class="even">
-<td align="left">8</td>
-<td align="right">7.56</td>
-<td align="right">2.02</td>
-<td align="right">88.55995</td>
-</tr>
-<tr class="odd">
-<td align="left">9</td>
-<td align="right">9.03</td>
-<td align="right">0.63</td>
-<td align="right">86.32615</td>
-</tr>
-<tr class="even">
-<td align="left">10</td>
-<td align="right">10.21</td>
-<td align="right">3.55</td>
-<td align="right">138.36810</td>
-</tr>
-<tr class="odd">
-<td align="left">11</td>
-<td align="right">8.00</td>
-<td align="right">0.98</td>
-<td align="right">80.09360</td>
-</tr>
-<tr class="even">
-<td align="left">12</td>
-<td align="right">9.75</td>
-<td align="right">3.52</td>
-<td align="right">119.97750</td>
-</tr>
-</tbody>
-</table>
-</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">Theoph_tblNCA &lt;-<span class="st"> </span><span class="kw">tblNCA</span>(Theoph)</a></code></pre></div>
+<p>결과는 <code>data.frame</code> 형태인데 너무 길기 때문에 핵심적인 일부 파라메터 (C<sub>max</sub>, T<sub>max</sub>, AUC<sub>last</sub>)만 표시할 수도 있습니다.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">Theoph_tblNCA_selected &lt;-<span class="st"> </span>Theoph_tblNCA <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(Subject, CMAX, TMAX, AUCLST) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw">print</span>()</a></code></pre></div>
+<pre><code>##    Subject  CMAX TMAX    AUCLST
+## 1        1 10.50 1.12 148.92305
+## 2        2  8.33 1.92  91.52680
+## 3        3  8.20 1.02  99.28650
+## 4        4  8.60 1.07 106.79630
+## 5        5 11.40 1.00 121.29440
+## 6        6  6.44 1.15  73.77555
+## 7        7  7.09 3.48  90.75340
+## 8        8  7.56 2.02  88.55995
+## 9        9  9.03 0.63  86.32615
+## 10      10 10.21 3.55 138.36810
+## 11      11  8.00 0.98  80.09360
+## 12      12  9.75 3.52 119.97750</code></pre>
 <p>인도메타신 정맥 투여시의 비구획 분석입니다.
 함수인자 <code>adm</code>을 infusion으로 바꾼 것을 볼 수 있고 <code>dur</code>가 추가된 것을 볼 수 있습니다.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">Indometh_tblNCA &lt;-<span class="st"> </span><span class="kw">tblNCA</span>(Indometh, <span class="dt">key=</span><span class="st">&quot;Subject&quot;</span>, <span class="dt">colTime=</span><span class="st">&quot;time&quot;</span>, <span class="dt">colConc=</span><span class="st">&quot;conc&quot;</span>, <span class="dt">dose=</span><span class="dv">25</span>, </a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">                          <span class="dt">adm=</span><span class="st">&quot;Infusion&quot;</span>, <span class="dt">dur=</span><span class="fl">0.5</span>, <span class="dt">concUnit=</span><span class="st">&quot;mg/L&quot;</span>, <span class="dt">R2ADJ =</span> <span class="fl">0.8</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">Indometh_tblNCA &lt;-<span class="st"> </span><span class="kw">tblNCA</span>(Indometh, <span class="dt">key=</span><span class="st">&quot;Subject&quot;</span>, </a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">                          <span class="dt">colTime=</span><span class="st">&quot;time&quot;</span>, <span class="dt">colConc=</span><span class="st">&quot;conc&quot;</span>, <span class="dt">dose=</span><span class="dv">25</span>, </a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">                          <span class="dt">adm=</span><span class="st">&quot;Infusion&quot;</span>, <span class="dt">dur=</span><span class="fl">0.5</span>, </a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">                          <span class="dt">concUnit=</span><span class="st">&quot;mg/L&quot;</span>, <span class="dt">R2ADJ =</span> <span class="fl">0.8</span>)</a></code></pre></div>
 <p>역시 핵심적인 일부 파라메터 (C<sub>max</sub>, T<sub>max</sub>, AUC<sub>last</sub>)만 표시할 수도 있습니다.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">(Indometh_tblNCA_selected &lt;-<span class="st"> </span>Indometh_tblNCA <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Subject, CMAX, TMAX, AUCLST))</a></code></pre></div>
-<div class="kable-table">
-<table>
-<thead>
-<tr class="header">
-<th align="left">Subject</th>
-<th align="right">CMAX</th>
-<th align="right">TMAX</th>
-<th align="right">AUCLST</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">1</td>
-<td align="right">1.50</td>
-<td align="right">0.25</td>
-<td align="right">1.74125</td>
-</tr>
-<tr class="even">
-<td align="left">2</td>
-<td align="right">2.03</td>
-<td align="right">0.25</td>
-<td align="right">2.93250</td>
-</tr>
-<tr class="odd">
-<td align="left">3</td>
-<td align="right">2.72</td>
-<td align="right">0.25</td>
-<td align="right">2.93375</td>
-</tr>
-<tr class="even">
-<td align="left">4</td>
-<td align="right">1.85</td>
-<td align="right">0.25</td>
-<td align="right">2.47750</td>
-</tr>
-<tr class="odd">
-<td align="left">5</td>
-<td align="right">2.05</td>
-<td align="right">0.25</td>
-<td align="right">1.95375</td>
-</tr>
-<tr class="even">
-<td align="left">6</td>
-<td align="right">2.31</td>
-<td align="right">0.25</td>
-<td align="right">2.87250</td>
-</tr>
-</tbody>
-</table>
-</div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">Indometh_tblNCA_selected &lt;-<span class="st"> </span>Indometh_tblNCA <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(Subject, CMAX, TMAX, AUCLST) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">  </span><span class="kw">print</span>()</a></code></pre></div>
+<pre><code>##   Subject CMAX TMAX  AUCLST
+## 1       1 1.50 0.25 1.74125
+## 2       2 2.03 0.25 2.93250
+## 3       3 2.72 0.25 2.93375
+## 4       4 1.85 0.25 2.47750
+## 5       5 2.05 0.25 1.95375
+## 6       6 2.31 0.25 2.87250</code></pre>
 </div>
 <div id="snca" class="section level2">
 <h2><span class="header-section-number">2.2</span> sNCA()</h2>
 <p>한명의 대상자에 대해 비구획 분석을 시행합니다.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co"># For one subject</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2">x =<span class="st"> </span>Theoph[Theoph<span class="op">$</span>Subject<span class="op">==</span><span class="st">&quot;1&quot;</span>,<span class="st">&quot;Time&quot;</span>]</a>
-<a class="sourceLine" id="cb12-3" data-line-number="3">y =<span class="st"> </span>Theoph[Theoph<span class="op">$</span>Subject<span class="op">==</span><span class="st">&quot;1&quot;</span>,<span class="st">&quot;conc&quot;</span>]</a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="kw">sNCA</span>(x, y, <span class="dt">dose=</span><span class="dv">320</span>, <span class="dt">doseUnit=</span><span class="st">&quot;mg&quot;</span>, <span class="dt">concUnit=</span><span class="st">&quot;mg/L&quot;</span>, <span class="dt">timeUnit=</span><span class="st">&quot;h&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co"># For one subject</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">x =<span class="st"> </span>Theoph[Theoph<span class="op">$</span>Subject<span class="op">==</span><span class="st">&quot;1&quot;</span>,<span class="st">&quot;Time&quot;</span>]</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">y =<span class="st"> </span>Theoph[Theoph<span class="op">$</span>Subject<span class="op">==</span><span class="st">&quot;1&quot;</span>,<span class="st">&quot;conc&quot;</span>]</a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="kw">sNCA</span>(x, y, <span class="dt">dose=</span><span class="dv">320</span>, <span class="dt">doseUnit=</span><span class="st">&quot;mg&quot;</span>, <span class="dt">concUnit=</span><span class="st">&quot;mg/L&quot;</span>, <span class="dt">timeUnit=</span><span class="st">&quot;h&quot;</span>)</a></code></pre></div>
 <pre><code>##           b0         CMAX        CMAXD         TMAX         TLAG 
 ##    2.3687851   10.5000000    0.0328125    1.1200000    0.0000000 
 ##         CLST        CLSTP         TLST       LAMZHL         LAMZ 
@@ -367,12 +256,12 @@ NonCompart 패키지의 핵심적인 기능입니다.
 ## attr(,&quot;UsedPoints&quot;)
 ## [1]  9 10 11</code></pre>
 <p>이때의 그림은 다음과 같습니다. (Figure <a href="-noncompart.html#fig:ggtheophindi">2.1</a>)</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">ggplot</span>(Theoph <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(Subject <span class="op">==</span><span class="st"> </span><span class="dv">1</span>), </a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">       <span class="kw">aes</span>(Time, conc, <span class="dt">group =</span> Subject, <span class="dt">color =</span> Subject)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Oral Administration of Theoph (320 mg) (Subject 1)&#39;</span>,</a>
-<a class="sourceLine" id="cb14-6" data-line-number="6">       <span class="dt">x =</span> <span class="st">&#39;Time (hour)&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Concentration (ng/mL)&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">ggplot</span>(Theoph <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(Subject <span class="op">==</span><span class="st"> </span><span class="dv">1</span>), </a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">       <span class="kw">aes</span>(Time, conc, <span class="dt">group =</span> Subject, <span class="dt">color =</span> Subject)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Oral Administration of Theoph (320 mg) (Subject 1)&#39;</span>,</a>
+<a class="sourceLine" id="cb16-6" data-line-number="6">       <span class="dt">x =</span> <span class="st">&#39;Time (hour)&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Concentration (ng/mL)&#39;</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:ggtheophindi"></span>
 <img src="handout_files/figure-html/ggtheophindi-1.png" alt="Individual concentration-time curves of oral administration of Theoph (Subject 1)" width="576" />
 <p class="caption">
@@ -384,12 +273,12 @@ Figure 2.1: Individual concentration-time curves of oral administration of Theop
 <h2><span class="header-section-number">2.3</span> 기술통계 (Descriptive statistics)</h2>
 <p>R에서는 필요에 따라서 자신만의 함수를 만들 수도 있습니다.
 아래를 실행하면 <code>desc_tblNCA()</code> 함수를 사용하여 기술통계량을 쉽게 구할 수 있습니다. (Table <a href="-noncompart.html#tab:theodesc">2.1</a> and <a href="-noncompart.html#tab:indodesc">2.2</a>)</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">desc_tblNCA &lt;-<span class="st"> </span><span class="cf">function</span>(tblNCA){</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">  tblNCA <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">    </span>psych<span class="op">::</span><span class="kw">describe</span>()</a>
-<a class="sourceLine" id="cb15-4" data-line-number="4">}</a></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">desc_tblNCA</span>(Theoph_tblNCA_selected)</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw">desc_tblNCA</span>(Indometh_tblNCA_selected)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">desc_tblNCA &lt;-<span class="st"> </span><span class="cf">function</span>(tblNCA){</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">  tblNCA <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="st">    </span>psych<span class="op">::</span><span class="kw">describe</span>()</a>
+<a class="sourceLine" id="cb17-4" data-line-number="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">desc_tblNCA</span>(Theoph_tblNCA_selected)</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw">desc_tblNCA</span>(Indometh_tblNCA_selected)</a></code></pre></div>
 <table>
 <caption><span id="tab:theodesc">Table 2.1: </span>Descriptive statistics of selected PK parameters of Theoph oral administration</caption>
 <thead>

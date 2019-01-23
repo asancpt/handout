@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>R을 통한 비구획분석: 실습</title>
   <meta name="description" content="R을 통한 비구획분석: 실습">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
   <meta property="og:title" content="R을 통한 비구획분석: 실습" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="서울아산병원 임상약리학과 전공의 한성필">
 
 
-<meta name="date" content="2018-08-07">
+<meta name="date" content="2019-01-23">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,9 +33,10 @@
   
   
 
-<link rel="next" href="-noncompart.html">
+<link rel="next" href="noncompart.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -52,7 +53,7 @@
 <style type="text/css">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -65,13 +66,11 @@ code.sourceCode { white-space: pre-wrap; }
 a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
 pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
+  { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -132,28 +131,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 서론</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#section-1.1"><i class="fa fa-check"></i><b>1.1</b> 설치</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#section"><i class="fa fa-check"></i><b>1.1</b> 설치</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#r-"><i class="fa fa-check"></i><b>1.2</b> R에 대하여</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#-"><i class="fa fa-check"></i><b>1.3</b> 자료 탐색</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#parameters"><i class="fa fa-check"></i><b>1.4</b> 파라메터의 의미</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#section-1"><i class="fa fa-check"></i><b>1.3</b> 자료 탐색</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#loading"><i class="fa fa-check"></i><b>1.4</b> 자료 불러오기</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#parameters"><i class="fa fa-check"></i><b>1.5</b> 파라메터의 의미</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="-noncompart.html"><a href="-noncompart.html"><i class="fa fa-check"></i><b>2</b> 패키지: NonCompart</a><ul>
-<li class="chapter" data-level="2.1" data-path="-noncompart.html"><a href="-noncompart.html#tblnca----"><i class="fa fa-check"></i><b>2.1</b> tblNCA(): 전체 대상자 비구획 분석</a></li>
-<li class="chapter" data-level="2.2" data-path="-noncompart.html"><a href="-noncompart.html#snca"><i class="fa fa-check"></i><b>2.2</b> sNCA()</a></li>
-<li class="chapter" data-level="2.3" data-path="-noncompart.html"><a href="-noncompart.html#-descriptive-statistics"><i class="fa fa-check"></i><b>2.3</b> 기술통계 (Descriptive statistics)</a></li>
+<li class="chapter" data-level="2" data-path="noncompart.html"><a href="noncompart.html"><i class="fa fa-check"></i><b>2</b> 패키지: NonCompart</a><ul>
+<li class="chapter" data-level="2.1" data-path="noncompart.html"><a href="noncompart.html#tblnca----"><i class="fa fa-check"></i><b>2.1</b> tblNCA(): 전체 대상자 비구획 분석</a></li>
+<li class="chapter" data-level="2.2" data-path="noncompart.html"><a href="noncompart.html#snca"><i class="fa fa-check"></i><b>2.2</b> sNCA()</a></li>
+<li class="chapter" data-level="2.3" data-path="noncompart.html"><a href="noncompart.html#descriptive-statistics"><i class="fa fa-check"></i><b>2.3</b> 기술통계 (Descriptive statistics)</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="-ncar.html"><a href="-ncar.html"><i class="fa fa-check"></i><b>3</b> 패키지: ncar</a><ul>
-<li class="chapter" data-level="3.1" data-path="-ncar.html"><a href="-ncar.html#txtnca"><i class="fa fa-check"></i><b>3.1</b> txtNCA()</a></li>
-<li class="chapter" data-level="3.2" data-path="-ncar.html"><a href="-ncar.html#pdfnca"><i class="fa fa-check"></i><b>3.2</b> pdfNCA()</a></li>
-<li class="chapter" data-level="3.3" data-path="-ncar.html"><a href="-ncar.html#rtfnca"><i class="fa fa-check"></i><b>3.3</b> rtfNCA()</a></li>
+<li class="chapter" data-level="3" data-path="ncar.html"><a href="ncar.html"><i class="fa fa-check"></i><b>3</b> 패키지: ncar</a><ul>
+<li class="chapter" data-level="3.1" data-path="ncar.html"><a href="ncar.html#txtnca"><i class="fa fa-check"></i><b>3.1</b> txtNCA()</a></li>
+<li class="chapter" data-level="3.2" data-path="ncar.html"><a href="ncar.html#pdfnca"><i class="fa fa-check"></i><b>3.2</b> pdfNCA()</a></li>
+<li class="chapter" data-level="3.3" data-path="ncar.html"><a href="ncar.html#rtfnca"><i class="fa fa-check"></i><b>3.3</b> rtfNCA()</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="-pkr.html"><a href="-pkr.html"><i class="fa fa-check"></i><b>4</b> 패키지: pkr</a><ul>
-<li class="chapter" data-level="4.1" data-path="-pkr.html"><a href="-pkr.html#plotpk"><i class="fa fa-check"></i><b>4.1</b> plotPK()</a></li>
+<li class="chapter" data-level="4" data-path="pkr.html"><a href="pkr.html"><i class="fa fa-check"></i><b>4</b> 패키지: pkr</a><ul>
+<li class="chapter" data-level="4.1" data-path="pkr.html"><a href="pkr.html#plotpk"><i class="fa fa-check"></i><b>4.1</b> plotPK()</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="etc.html"><a href="etc.html"><i class="fa fa-check"></i><b>5</b> 기타 사항</a><ul>
 <li class="chapter" data-level="5.1" data-path="etc.html"><a href="etc.html#shiny-"><i class="fa fa-check"></i><b>5.1</b> shiny 앱</a></li>
-<li class="chapter" data-level="5.2" data-path="etc.html"><a href="etc.html#section-5.2"><i class="fa fa-check"></i><b>5.2</b> 지원</a></li>
-<li class="chapter" data-level="5.3" data-path="etc.html"><a href="etc.html#section-5.3"><i class="fa fa-check"></i><b>5.3</b> 고지</a></li>
+<li class="chapter" data-level="5.2" data-path="etc.html"><a href="etc.html#section-2"><i class="fa fa-check"></i><b>5.2</b> 지원</a></li>
+<li class="chapter" data-level="5.3" data-path="etc.html"><a href="etc.html#section-3"><i class="fa fa-check"></i><b>5.3</b> 고지</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>6</b> 참고문헌</a></li>
 <li class="divider"></li>
@@ -178,8 +178,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">R을 통한 비구획분석: 실습</h1>
-<h4 class="author"><em>서울아산병원 임상약리학과 전공의 한성필</em></h4>
-<h4 class="date"><em>2018-08-07</em></h4>
+<p class="author"><em>서울아산병원 임상약리학과 전공의 한성필</em></p>
+<p class="date"><em>2019-01-23</em></p>
 </div>
 <div id="intro" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> 서론</h1>
@@ -191,27 +191,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>ncar <span class="citation">(Bae <a href="#ref-R-ncar">2018</a><a href="#ref-R-ncar">a</a>)</span></li>
 <li>pkr <span class="citation">(Bae and Lee <a href="#ref-R-pkr">2018</a>)</span></li>
 </ul>
-<div id="section-1.1" class="section level2">
+<div id="section" class="section level2">
 <h2><span class="header-section-number">1.1</span> 설치</h2>
 <p>우선 R을 설치합니다.
 R은 아래 링크<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>에서 다운로드 받을 수 있습니다.</p>
 <p>R을 실행한 후, 콘솔 창에서 비구획분석을 위한 패키지를 설치하는 방법은 다음과 같습니다.
 홑따옴표 등의 인용 부호에 주의하세요.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&#39;NonCompart&#39;</span>)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">install.packages</span>(<span class="st">&#39;ncar&#39;</span>)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">install.packages</span>(<span class="st">&#39;pkr&#39;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&#39;NonCompart&#39;</span>)
+<span class="kw">install.packages</span>(<span class="st">&#39;ncar&#39;</span>)
+<span class="kw">install.packages</span>(<span class="st">&#39;pkr&#39;</span>)</code></pre>
 <p>설치는 한번만 하면 되지만, 비구획분석을 위해서는 매 세션마다 패키지를 <em>불러오기</em>해야 합니다.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(NonCompart)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(ncar)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#library(pkr) # NonCompart::tblNCA() can be overwritten.</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(NonCompart)
+<span class="kw">library</span>(ncar)
+<span class="co">#library(pkr) # NonCompart::tblNCA() can be overwritten.</span></code></pre>
 <p>아래 두 패키지는 비구획분석과는 관계없지만 자료 처리 혹은 그림 등을 그리는데 도움을 줍니다.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># install.packages(c(&#39;tidyverse&#39;, &#39;knitr&#39;)) </span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co"># 설치 안되어 있으면 맨앞의 #을 지우고 설치.</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">library</span>(tidyverse) <span class="co"># For presentation only, dplyr, tidyr, ggplot2</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">library</span>(knitr) <span class="co"># For reports</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(c(&#39;tidyverse&#39;, &#39;knitr&#39;)) </span>
+<span class="co"># 설치 안되어 있으면 맨앞의 #을 지우고 설치.</span>
+<span class="kw">library</span>(tidyverse) <span class="co"># For presentation only, dplyr, tidyr, ggplot2</span>
+<span class="kw">library</span>(knitr) <span class="co"># For reports</span></code></pre>
 <p>도움이 필요할때는 맨 앞에 물음표를 붙여서 콘솔창에 입력하거나 <code>help()</code> 함수를 사용합니다.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">?NonCompart</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">help</span>(tblNCA)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">?NonCompart
+<span class="kw">help</span>(tblNCA)</code></pre>
 </div>
 <div id="r-" class="section level2">
 <h2><span class="header-section-number">1.2</span> R에 대하여</h2>
@@ -220,12 +220,12 @@ R은 아래 링크<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></
 R에 대한 많은 책들을 bookdown.org<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>에서 무료로 읽을 수 있습니다.
 Coursera<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>에서 무료 온라인 강의를 들을 수 있습니다.</p>
 </div>
-<div id="-" class="section level2">
+<div id="section-1" class="section level2">
 <h2><span class="header-section-number">1.3</span> 자료 탐색</h2>
 <p>자료의 첫 10개 (Table <a href="index.html#tab:head">1.1</a>) 혹은 마지막 10개 관찰값만 보고 싶으면 다음을 입력합니다.
 대상자 번호가 첫 열에 나와있고 시간 순서대로 혈장에서 측정한 테오필린의 농도가 나와있습니다.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">head</span>(Theoph, <span class="dt">n=</span><span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">tail</span>(Theoph, <span class="dt">n=</span><span class="dv">10</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(Theoph, <span class="dt">n=</span><span class="dv">10</span>)
+<span class="kw">tail</span>(Theoph, <span class="dt">n=</span><span class="dv">10</span>)</code></pre>
 <table>
 <caption><span id="tab:head">Table 1.1: </span>Theoph 자료의 첫 10개 관찰값</caption>
 <thead>
@@ -311,12 +311,12 @@ Coursera<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>에서 �
 </tbody>
 </table>
 <p>그림을 그려서 대략적인 자료의 모습을 파악합니다. (Figure <a href="index.html#fig:ggtheoph">1.1</a>)</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">ggplot</span>(Theoph, <span class="kw">aes</span>(Time, conc, <span class="dt">group =</span> Subject, <span class="dt">color =</span> Subject)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Oral Administration of Theoph (320 mg)&#39;</span>,</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">       <span class="dt">x =</span> <span class="st">&#39;Time (hour)&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Concentration (ng/mL)&#39;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(Theoph, <span class="kw">aes</span>(Time, conc, <span class="dt">group =</span> Subject, <span class="dt">color =</span> Subject)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Oral Administration of Theoph (320 mg)&#39;</span>,
+       <span class="dt">x =</span> <span class="st">&#39;Time (hour)&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Concentration (ng/mL)&#39;</span>)</code></pre>
 <div class="figure"><span id="fig:ggtheoph"></span>
 <img src="handout_files/figure-html/ggtheoph-1.png" alt="Concentration-time curves of oral administration of Theoph (N = 12)" width="576" />
 <p class="caption">
@@ -324,11 +324,16 @@ Figure 1.1: Concentration-time curves of oral administration of Theoph (N = 12)
 </p>
 </div>
 </div>
+<div id="loading" class="section level2">
+<h2><span class="header-section-number">1.4</span> 자료 불러오기</h2>
+<p><code>read.csv()</code> 함수를 사용해서 자료를 불러 옵니다.
+엑셀 파일을 사용하는 경우 <code>readxl</code> 패키지를 설치한 후에 <code>read_excel()</code> 함수를 사용해서 불러올 수 있습니다.</p>
+</div>
 <div id="parameters" class="section level2">
-<h2><span class="header-section-number">1.4</span> 파라메터의 의미</h2>
+<h2><span class="header-section-number">1.5</span> 파라메터의 의미</h2>
 <p>비구획분석 시 여러 파라메터가 나오며 약어로 표현하는 경우가 많습니다. 또한 소프트웨어마다 약어가 상이하기 때문에 자주 그 의미를 찾아볼 필요가 있습니다. 콘솔창에 다음을 입력합니다.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">?ncar<span class="op">::</span><span class="kw">txtNCA</span>()</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">ncar<span class="op">::</span>RptCfg</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">?ncar<span class="op">::</span><span class="kw">txtNCA</span>()
+ncar<span class="op">::</span>RptCfg</code></pre>
 <p>ncar::RptCfg의 일부를 첨부합니다. (Table <a href="index.html#tab:rptcfg">1.2</a>) <code>PPTESTCD</code>는 NonCompart 패키지에서 출력하는 파라메터 이름이며, CDISC SDTM PPTESTCD (Parameter Short Name)<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>와 같은 값입니다. <code>WNL</code> 열은 Certara Phoenix WinNonLin에서 구한 파라메터 이름입니다.</p>
 <table>
 <caption><span id="tab:rptcfg">Table 1.2: </span>Description of NonCompart parameters</caption>
@@ -538,16 +543,16 @@ Figure 1.1: Concentration-time curves of oral administration of Theoph (N = 12)
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-R-NonCompart">
-<p>Bae, Kyun-Seop. 2018b. <em>NonCompart: Noncompartmental Analysis for Pharmacokinetic Data</em>. <a href="https://CRAN.R-project.org/package=NonCompart" class="uri">https://CRAN.R-project.org/package=NonCompart</a>.</p>
+<p>Bae, Kyun-Seop. 2018b. <em>NonCompart: Noncompartmental Analysis for Pharmacokinetic Data</em>. <a href="https://CRAN.R-project.org/package=NonCompart">https://CRAN.R-project.org/package=NonCompart</a>.</p>
 </div>
 <div id="ref-R-ncar">
-<p>Bae, Kyun-Seop. 2018a. <em>Ncar: Noncompartmental Analysis for Pharmacokinetic Report</em>. <a href="https://CRAN.R-project.org/package=ncar" class="uri">https://CRAN.R-project.org/package=ncar</a>.</p>
+<p>Bae, Kyun-Seop. 2018a. <em>Ncar: Noncompartmental Analysis for Pharmacokinetic Report</em>. <a href="https://CRAN.R-project.org/package=ncar">https://CRAN.R-project.org/package=ncar</a>.</p>
 </div>
 <div id="ref-R-pkr">
-<p>Bae, Kyun-Seop, and Jee Eun Lee. 2018. <em>Pkr: Pharmacokinetics in R</em>. <a href="https://CRAN.R-project.org/package=pkr" class="uri">https://CRAN.R-project.org/package=pkr</a>.</p>
+<p>Bae, Kyun-Seop, and Jee Eun Lee. 2018. <em>Pkr: Pharmacokinetics in R</em>. <a href="https://CRAN.R-project.org/package=pkr">https://CRAN.R-project.org/package=pkr</a>.</p>
 </div>
 <div id="ref-R-base">
-<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
 </div>
 </div>
 <div class="footnotes">
@@ -565,7 +570,7 @@ Figure 1.1: Concentration-time curves of oral administration of Theoph (N = 12)
         </div>
       </div>
 
-<a href="-noncompart.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="noncompart.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -585,7 +590,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -597,6 +602,10 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/asancpt/handout-ncar/edit/master/index.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": ["handout.pdf"],
 "toc": {

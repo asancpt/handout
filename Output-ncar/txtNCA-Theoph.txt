@@ -1,8 +1,8 @@
                         NONCOMPARTMENTAL ANALYSIS REPORT
                        Package version 0.4.1 (2018-06-20 KST)
-                          R version 3.5.1 (2018-07-02)
+                          R version 3.5.2 (2018-12-20)
 
-Date and Time: 2018-08-07 11:57:04 Asia/Seoul
+Date and Time: 2019-01-23 09:01:33 Asia/Seoul
 
 Calculation Setting
 -------------------

@@ -66,10 +66,12 @@ library(knitr)
 # options(knitr.table.format = 'html')
 #Sys.setlocale('LC_ALL','C')
 
-opts_chunk$set(#error = TRUE, 
+opts_chunk$set(
+  #error = TRUE, 
   #results = 'hide',
   #cache = TRUE,
-  message = FALSE, warning = FALSE)
+  message = FALSE, 
+  warning = FALSE)
 ```
 
 \mainmatter
@@ -155,6 +157,14 @@ ggplot(Theoph, aes(Time, conc, group = Subject, color = Subject)) +
   labs(title = 'Oral Administration of Theoph (320 mg)',
        x = 'Time (hour)', y = 'Concentration (ng/mL)')
 ```
+
+## 자료 불러오기 {#loading}
+
+`read.csv()` 함수를 사용해서 자료를 불러 옵니다.
+엑셀 파일을 사용하는 경우 `readxl` 패키지를 설치한 후에 `read_excel()` 함수를 사용해서 불러올 수 있습니다. 
+다만 이 경우 `tibble` 형태로 자료가 변형되므로 `as.data.frame()`을 사용해서 데이타프레임으로 변형해주어야 합니다.
+
+
 
 ## 파라메터의 의미 {#parameters}
 

@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Chapter 6 참고문헌 | R을 통한 비구획분석: 실습</title>
-  <meta name="description" content="Chapter 6 참고문헌 | R을 통한 비구획분석: 실습">
+  <title>Chapter 4 패키지: pkr | R을 통한 비구획분석: 실습</title>
+  <meta name="description" content="Chapter 4 패키지: pkr | R을 통한 비구획분석: 실습">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 6 참고문헌 | R을 통한 비구획분석: 실습" />
+  <meta property="og:title" content="Chapter 4 패키지: pkr | R을 통한 비구획분석: 실습" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 참고문헌 | R을 통한 비구획분석: 실습" />
+  <meta name="twitter:title" content="Chapter 4 패키지: pkr | R을 통한 비구획분석: 실습" />
   
   
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="etc.html">
-
+<link rel="prev" href="ncar.html">
+<link rel="next" href="etc.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -176,156 +176,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1">
-<h1><span class="header-section-number">Chapter 6</span> 참고문헌</h1>
-<!--
-# 세션 정보 {#sessioninfo}
-
-
-```r
-devtools::session_info()
-```
-
-```
-## - Session info -----------------------------------------------------------------------------------
-##  setting  value                       
-##  version  R version 3.5.2 (2018-12-20)
-##  os       Windows 7 x64 SP 1          
-##  system   x86_64, mingw32             
-##  ui       RTerm                       
-##  language (EN)                        
-##  collate  Korean_Korea.949            
-##  ctype    Korean_Korea.949            
-##  tz       Asia/Seoul                  
-##  date     2019-01-23                  
-## 
-## - Packages ---------------------------------------------------------------------------------------
-##  package     * version date       lib source                             
-##  assertthat    0.2.0   2017-04-11 [1] CRAN (R 3.5.0)                     
-##  backports     1.1.3   2018-12-14 [1] CRAN (R 3.5.1)                     
-##  bindr         0.1.1   2018-03-13 [1] CRAN (R 3.5.0)                     
-##  bindrcpp    * 0.2.2   2018-03-29 [1] CRAN (R 3.5.0)                     
-##  binr        * 1.1     2015-03-10 [1] CRAN (R 3.5.0)                     
-##  bookdown      0.9     2018-12-21 [1] CRAN (R 3.5.1)                     
-##  broom         0.5.1   2018-12-05 [1] CRAN (R 3.5.1)                     
-##  callr         3.1.1   2018-12-21 [1] CRAN (R 3.5.1)                     
-##  cellranger    1.1.0   2016-07-27 [1] CRAN (R 3.5.0)                     
-##  checkmate   * 1.9.1   2019-01-15 [1] CRAN (R 3.5.2)                     
-##  cli           1.0.1   2018-09-25 [1] CRAN (R 3.5.1)                     
-##  colorspace    1.4-0   2019-01-13 [1] CRAN (R 3.5.2)                     
-##  crayon        1.3.4   2018-10-25 [1] Github (gaborcsardi/crayon@467939b)
-##  desc          1.2.0   2018-05-01 [1] CRAN (R 3.5.0)                     
-##  devtools      2.0.1   2018-10-26 [1] CRAN (R 3.5.1)                     
-##  digest        0.6.18  2018-10-10 [1] CRAN (R 3.5.1)                     
-##  dplyr       * 0.7.8   2018-11-10 [1] CRAN (R 3.5.1)                     
-##  evaluate      0.12    2018-10-09 [1] CRAN (R 3.5.1)                     
-##  forcats     * 0.3.0   2018-02-19 [1] CRAN (R 3.5.0)                     
-##  foreign     * 0.8-71  2018-07-20 [2] CRAN (R 3.5.2)                     
-##  forestplot  * 1.7.2   2017-09-16 [1] CRAN (R 3.5.0)                     
-##  fs            1.2.6   2018-08-23 [1] CRAN (R 3.5.1)                     
-##  generics      0.0.2   2018-11-29 [1] CRAN (R 3.5.1)                     
-##  ggplot2     * 3.1.0   2018-10-25 [1] CRAN (R 3.5.1)                     
-##  glue          1.3.0   2018-07-17 [1] CRAN (R 3.5.1)                     
-##  gtable        0.2.0   2016-02-26 [1] CRAN (R 3.5.0)                     
-##  haven         2.0.0   2018-11-22 [1] CRAN (R 3.5.1)                     
-##  highr         0.7     2018-06-09 [1] CRAN (R 3.5.0)                     
-##  hms           0.4.2   2018-03-10 [1] CRAN (R 3.5.0)                     
-##  htmltools     0.3.6   2017-04-28 [1] CRAN (R 3.5.0)                     
-##  httr          1.4.0   2018-12-11 [1] CRAN (R 3.5.1)                     
-##  jsonlite      1.6     2018-12-07 [1] CRAN (R 3.5.1)                     
-##  knitr       * 1.21    2018-12-10 [1] CRAN (R 3.5.1)                     
-##  labeling      0.3     2014-08-23 [1] CRAN (R 3.5.0)                     
-##  lattice       0.20-38 2018-11-04 [1] CRAN (R 3.5.1)                     
-##  lazyeval      0.2.1   2017-10-29 [1] CRAN (R 3.5.0)                     
-##  lubridate     1.7.4   2018-04-11 [1] CRAN (R 3.5.2)                     
-##  magrittr    * 1.5     2014-11-22 [1] CRAN (R 3.5.0)                     
-##  memoise       1.1.0   2017-04-21 [1] CRAN (R 3.5.0)                     
-##  mnormt        1.5-5   2016-10-15 [1] CRAN (R 3.5.0)                     
-##  modelr        0.1.2   2018-05-11 [1] CRAN (R 3.5.0)                     
-##  munsell       0.5.0   2018-06-12 [1] CRAN (R 3.5.0)                     
-##  ncar        * 0.4.1   2018-07-10 [1] CRAN (R 3.5.0)                     
-##  nlme          3.1-137 2018-04-07 [2] CRAN (R 3.5.2)                     
-##  NonCompart  * 0.4.4   2018-07-10 [1] CRAN (R 3.5.0)                     
-##  pillar        1.3.1   2018-12-15 [1] CRAN (R 3.5.1)                     
-##  pkgbuild      1.0.2   2018-10-16 [1] CRAN (R 3.5.1)                     
-##  pkgconfig     2.0.2   2018-08-16 [1] CRAN (R 3.5.1)                     
-##  pkgload       1.0.2   2018-10-29 [1] CRAN (R 3.5.1)                     
-##  pkr         * 0.1.2   2018-06-04 [1] CRAN (R 3.5.1)                     
-##  plyr          1.8.4   2016-06-08 [1] CRAN (R 3.5.0)                     
-##  png           0.1-7   2013-12-03 [1] CRAN (R 3.5.0)                     
-##  prettyunits   1.0.2   2015-07-13 [1] CRAN (R 3.5.0)                     
-##  processx      3.2.1   2018-12-05 [1] CRAN (R 3.5.1)                     
-##  ps            1.3.0   2018-12-21 [1] CRAN (R 3.5.1)                     
-##  psych         1.8.12  2019-01-12 [1] CRAN (R 3.5.2)                     
-##  purrr       * 0.2.5   2018-05-29 [1] CRAN (R 3.5.0)                     
-##  R.methodsS3   1.7.1   2016-02-16 [1] CRAN (R 3.5.0)                     
-##  R.oo          1.22.0  2018-04-22 [1] CRAN (R 3.5.0)                     
-##  R6            2.3.0   2018-10-04 [1] CRAN (R 3.5.1)                     
-##  Rcpp          1.0.0   2018-11-07 [1] CRAN (R 3.5.1)                     
-##  readr       * 1.3.1   2018-12-21 [1] CRAN (R 3.5.1)                     
-##  readxl        1.2.0   2018-12-19 [1] CRAN (R 3.5.1)                     
-##  remotes       2.0.2   2018-10-30 [1] CRAN (R 3.5.1)                     
-##  rlang         0.3.1   2019-01-08 [1] CRAN (R 3.5.2)                     
-##  rmarkdown     1.11    2018-12-08 [1] CRAN (R 3.5.1)                     
-##  rprojroot     1.3-2   2018-01-03 [1] CRAN (R 3.5.0)                     
-##  rstudioapi    0.9.0   2019-01-09 [1] CRAN (R 3.5.2)                     
-##  rtf         * 0.4-13  2018-05-17 [1] CRAN (R 3.5.1)                     
-##  rvest         0.3.2   2016-06-17 [1] CRAN (R 3.5.0)                     
-##  scales        1.0.0   2018-08-09 [1] CRAN (R 3.5.1)                     
-##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.5.1)                     
-##  stringi       1.2.4   2018-07-20 [1] CRAN (R 3.5.1)                     
-##  stringr     * 1.3.1   2018-05-10 [1] CRAN (R 3.5.0)                     
-##  testthat      2.0.1   2018-10-13 [1] CRAN (R 3.5.1)                     
-##  tibble      * 2.0.1   2019-01-12 [1] CRAN (R 3.5.2)                     
-##  tidyr       * 0.8.2   2018-10-28 [1] CRAN (R 3.5.1)                     
-##  tidyselect    0.2.5   2018-10-11 [1] CRAN (R 3.5.1)                     
-##  tidyverse   * 1.2.1   2017-11-14 [1] CRAN (R 3.5.1)                     
-##  usethis       1.4.0   2018-08-14 [1] CRAN (R 3.5.1)                     
-##  viridisLite   0.3.0   2018-02-01 [1] CRAN (R 3.5.0)                     
-##  withr         2.1.2   2018-03-15 [1] CRAN (R 3.5.0)                     
-##  xfun          0.4     2018-10-23 [1] CRAN (R 3.5.1)                     
-##  xml2          1.2.0   2018-01-24 [1] CRAN (R 3.5.0)                     
-##  yaml          2.2.0   2018-07-25 [1] CRAN (R 3.5.1)                     
-## 
-## [1] C:/Users/mdlhs/Rlib
-## [2] C:/Program Files/R/R-3.5.2/library
-```
--->
-
-<div id="refs" class="references">
-<div>
-<p>Bae, Kyun-Seop. 2018a. <em>Ncar: Noncompartmental Analysis for Pharmacokinetic Report</em>. <a href="https://CRAN.R-project.org/package=ncar">https://CRAN.R-project.org/package=ncar</a>.</p>
-</div>
-<div>
-<p>———. 2018b. <em>NonCompart: Noncompartmental Analysis for Pharmacokinetic Data</em>. <a href="https://CRAN.R-project.org/package=NonCompart">https://CRAN.R-project.org/package=NonCompart</a>.</p>
-</div>
-<div>
-<p>Bae, Kyun-Seop, and Jee Eun Lee. 2018. <em>Pkr: Pharmacokinetics in R</em>. <a href="https://CRAN.R-project.org/package=pkr">https://CRAN.R-project.org/package=pkr</a>.</p>
-</div>
-<div>
-<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
+<div id="pkr" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> 패키지: pkr</h1>
+<div id="plotpk" class="section level2">
+<h2><span class="header-section-number">4.1</span> plotPK()</h2>
+<p>여러가지 기본적인 그림을 그려봅니다. Output 폴더 아래에 여러 파일이 생성됩니다.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pkr)
+pkr<span class="op">::</span><span class="kw">plotPK</span>(Theoph, <span class="st">&quot;Subject&quot;</span>, <span class="st">&quot;Time&quot;</span>, <span class="st">&quot;conc&quot;</span>, 
+            <span class="dt">unitTime =</span> <span class="st">&quot;hr&quot;</span>, <span class="dt">unitConc =</span> <span class="st">&quot;mg/L&quot;</span>, <span class="dt">dose =</span> <span class="dv">320</span>)</code></pre>
+<pre><code>## png 
+##   2</code></pre>
 </div>
 </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="etc.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="ncar.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="etc.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

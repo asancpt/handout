@@ -25,7 +25,7 @@
 <meta name="author" content="서울아산병원 임상약리학과 전공의 한성필">
 
 
-<meta name="date" content="2019-01-23">
+<meta name="date" content="2019-03-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -179,7 +179,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">R을 통한 비구획분석: 실습</h1>
 <p class="author"><em>서울아산병원 임상약리학과 전공의 한성필</em></p>
-<p class="date"><em>2019-01-23</em></p>
+<p class="date"><em>2019-03-04</em></p>
 </div>
 <div id="intro" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> 서론</h1>
@@ -327,7 +327,8 @@ Figure 1.1: Concentration-time curves of oral administration of Theoph (N = 12)
 <div id="loading" class="section level2">
 <h2><span class="header-section-number">1.4</span> 자료 불러오기</h2>
 <p><code>read.csv()</code> 함수를 사용해서 자료를 불러 옵니다.
-엑셀 파일을 사용하는 경우 <code>readxl</code> 패키지를 설치한 후에 <code>read_excel()</code> 함수를 사용해서 불러올 수 있습니다.</p>
+엑셀 파일을 사용하는 경우 <code>readxl</code> 패키지를 설치한 후에 <code>read_excel()</code> 함수를 사용해서 불러올 수 있습니다.
+다만 이 경우 <code>tibble</code> 형태로 자료가 변형되므로 <code>as.data.frame()</code>을 사용해서 데이타프레임으로 변형해주어야 합니다.</p>
 </div>
 <div id="parameters" class="section level2">
 <h2><span class="header-section-number">1.5</span> 파라메터의 의미</h2>
@@ -607,7 +608,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["handout.pdf"],
+"download": ["handout.pdf", "handout.epub"],
 "toc": {
 "collapse": "section",
 "download": "pdf"

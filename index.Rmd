@@ -9,7 +9,7 @@
 #geometry: "total={6.5in,8.75in}, top=1.2in, left=0.9in, includefoot"
 #geometry: "a4paper, nohead, nomarginpar, left=1.5in,right=1.5in,top=1in,bottom=1in, includeheadfoot"
 title: "R을 통한 비구획분석: 실습"
-author: "서울아산병원 임상약리학과 전공의 한성필"
+author: "가톨릭의대 약리학교실 연구강사 한성필"
 date: "`r Sys.Date()`"
 bibliography: "keynote.bib"
 knit: "bookdown::render_book"
@@ -21,7 +21,7 @@ colorlinks: yes
 fontsize: 9pt
 header-includes:
   - \usepackage{kotex}
-mainfont: NanumGothic
+#mainfont: NanumGothic
 output:
   bookdown::pdf_book: 
     keep_tex: yes
@@ -31,7 +31,8 @@ output:
     toc_appendix: yes
     template: null
     #dev: "cairo_pdf"
-    #latex_engine: xelatex
+     #latex_engine: xelatex
+    latex_engine: pdflatex
     #includes:
     #  in_header: latex/preamble.tex
     #  before_body: latex/before_body.tex
@@ -363,12 +364,12 @@ pkr::plotPK(Theoph, "Subject", "Time", "conc",
 
 ## 지원
 
-패키지와 관련한 모든 의문은 <shan@acp.kr> / 02-3010-4614 으로 연락 주시면 빠르게 도움 드리겠습니다.
+패키지와 관련한 모든 의문은 <shan@catholic.ac.kr> / 02-2258-7882 으로 연락 주시면 빠르게 도움 드리겠습니다.
 혹은 StackOverflow^[https://stackoverflow.com]에 영어로 질문 올려주시고 링크를 보내주시면 더 좋습니다.
 아직 미완성이지만 Gitbook (일종의 웹북)^[https://asancpt.github.io/book-ncar]을 통해 전자출판도 진행 중이므로 시간 나실때 틈틈이 확인해 주시면 감사하겠습니다. (Figure \@ref(fig:gitbook))
 이 실습자료도 Gitbook^[https://asancpt.github.io/handout]으로 열람 가능합니다.
 
-서울아산병원 임상약리학과 전공의 한성필
+가톨릭의대 약리학교실, 가톨릭계량약리학연구소 연구강사 한성필
 
 ```{r gitbook, fig.cap = 'Gitbook: Noncompartmental analysis by R (work in progress)', fig.width = 6, echo = FALSE}
 include_graphics('assets/gitbook.png')
@@ -376,7 +377,7 @@ include_graphics('assets/gitbook.png')
 
 ## 고지
 
-본 출판물은 2016, 2017, 2018년도 정부(미래창조과학부)의 재원으로 한국연구재단 첨단 사이언스·교육 허브 개발 사업의 지원을 받아 수행된 결과입니다 (NRF-2016-936606).
+본 출판물은 2016-2019년도 정부(미래창조과학부)의 재원으로 한국연구재단 첨단 사이언스·교육 허브 개발 사업의 지원을 받아 수행된 결과입니다 (NRF-2016-936606).
 
 
 # 참고문헌 {#references}

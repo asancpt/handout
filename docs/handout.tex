@@ -1,46 +1,52 @@
-\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
 %
-\documentclass[9pt,]{krantz}
+\documentclass[
+  9pt,
+]{krantz}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provides euro and other symbols
-\else % if luatex or xelatex
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
   \usepackage{unicode-math}
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
-    \setmainfont[]{NanumGothic}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-% use upquote if available, for straight quotes in verbatim environments
+% Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage[]{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
 \usepackage{xcolor}
-\usepackage{hyperref}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-            pdftitle={R을 통한 비구획분석: 실습},
-            pdfauthor={서울아산병원 임상약리학과 전공의 한성필},
-            colorlinks=true,
-            linkcolor=Maroon,
-            filecolor=Maroon,
-            citecolor=Blue,
-            urlcolor=Blue,
-            breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
+  pdftitle={R을 통한 비구획분석: 실습},
+  pdfauthor={가톨릭의대 약리학교실 연구강사 한성필},
+  colorlinks=true,
+  linkcolor=Maroon,
+  filecolor=Maroon,
+  citecolor=Blue,
+  urlcolor=Blue,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -82,8 +88,14 @@
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
-% Fix footnotes in tables (requires footnote package)
-\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -93,30 +105,19 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{5}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
-
-% set default figure placement to htbp
+% Set default figure placement to htbp
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
 \usepackage{kotex}
 
 \title{R을 통한 비구획분석: 실습}
-\author{서울아산병원 임상약리학과 전공의 한성필}
-\date{2019-01-23}
+\author{가톨릭의대 약리학교실 연구강사 한성필}
+\date{2019-11-06}
 
 \begin{document}
 \maketitle
@@ -138,15 +139,15 @@
 \begin{itemize}
 \tightlist
 \item
-  NonCompart (Bae \protect\hyperlink{ref-R-NonCompart}{2018}\protect\hyperlink{ref-R-NonCompart}{b})
+  NonCompart (Bae \protect\hyperlink{ref-R-NonCompart}{2019}\protect\hyperlink{ref-R-NonCompart}{b})
 \item
-  ncar (Bae \protect\hyperlink{ref-R-ncar}{2018}\protect\hyperlink{ref-R-ncar}{a})
+  ncar (Bae \protect\hyperlink{ref-R-ncar}{2019}\protect\hyperlink{ref-R-ncar}{a})
 \item
   pkr (Bae and Lee \protect\hyperlink{ref-R-pkr}{2018})
 \end{itemize}
 
-\hypertarget{section}{%
-\section{설치}\label{section}}
+\hypertarget{uxc124uxce58}{%
+\section{설치}\label{uxc124uxce58}}
 
 우선 R을 설치합니다.
 R은 아래 링크\footnote{\url{https://cran.r-project.org/}}에서 다운로드 받을 수 있습니다.
@@ -192,16 +193,16 @@ R을 실행한 후, 콘솔 창에서 비구획분석을 위한 패키지를 설�
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{r-}{%
-\section{R에 대하여}\label{r-}}
+\hypertarget{ruxc5d0-uxb300uxd558uxc5ec}{%
+\section{R에 대하여}\label{ruxc5d0-uxb300uxd558uxc5ec}}
 
-R (R Core Team \protect\hyperlink{ref-R-base}{2018})은 통계 소프트웨어 입니다.
+R (R Core Team \protect\hyperlink{ref-R-base}{2019})은 통계 소프트웨어 입니다.
 굉장히 유용한 소프트웨어이지만 이에 대해 여기서 자세히 설명하긴 힘듭니다.
 R에 대한 많은 책들을 bookdown.org\footnote{\url{https://bookdown.org}}에서 무료로 읽을 수 있습니다.
 Coursera\footnote{\url{https://coursera.com}}에서 무료 온라인 강의를 들을 수 있습니다.
 
-\hypertarget{section-1}{%
-\section{자료 탐색}\label{section-1}}
+\hypertarget{uxc790uxb8cc-uxd0d0uxc0c9}{%
+\section{자료 탐색}\label{uxc790uxb8cc-uxd0d0uxc0c9}}
 
 자료의 첫 10개 (Table \ref{tab:head}) 혹은 마지막 10개 관찰값만 보고 싶으면 다음을 입력합니다.
 대상자 번호가 첫 열에 나와있고 시간 순서대로 혈장에서 측정한 테오필린의 농도가 나와있습니다.
@@ -213,11 +214,11 @@ Coursera\footnote{\url{https://coursera.com}}에서 무료 온라인 강의를 �
 \end{Highlighting}
 \end{Shaded}
 
-\begin{table}[t]
+\begin{table}
 
 \caption{\label{tab:head}Theoph 자료의 첫 10개 관찰값}
 \centering
-\begin{tabular}{lrrrr}
+\begin{tabular}[t]{lrrrr}
 \toprule
 Subject & Wt & Dose & Time & conc\\
 \midrule
@@ -276,7 +277,7 @@ Subject & Wt & Dose & Time & conc\\
 
 ncar::RptCfg의 일부를 첨부합니다. (Table \ref{tab:rptcfg}) \texttt{PPTESTCD}는 NonCompart 패키지에서 출력하는 파라메터 이름이며, CDISC SDTM PPTESTCD (Parameter Short Name)\footnote{다음과 같이 CDISC note에 표시되어 있습니다. `Short name of the pharmacokinetic parameter. It can be used as a column name when converting a dataset from a vertical to a horizontal format. The value in PPTESTCD cannot be longer than 8 characters, nor can it start with a number (e.g., ``1TEST''). PPTESTCD cannot contain characters other than letters, numbers, or underscores. Examples: ``AUCALL'', ``TMAX'', ``CMAX''.' \url{https://wiki.cdisc.org/pages/viewpage.action?pageId=42309513}}와 같은 값입니다. \texttt{WNL} 열은 Certara Phoenix WinNonLin에서 구한 파라메터 이름입니다.
 
-\begin{longtable}{ll}
+\begin{longtable}[t]{ll}
 \caption{\label{tab:rptcfg}Description of NonCompart parameters}\\
 \toprule
 PPTESTCD & Description (WNL)\\
@@ -341,11 +342,11 @@ VSSP & Vol Dist Steady State Pred (Vss\_pred)\\
 \bottomrule
 \end{longtable}
 
-\hypertarget{noncompart}{%
-\chapter{패키지: NonCompart}\label{noncompart}}
+\hypertarget{uxd328uxd0a4uxc9c0-noncompart}{%
+\chapter{패키지: NonCompart}\label{uxd328uxd0a4uxc9c0-noncompart}}
 
-\hypertarget{tblnca----}{%
-\section{tblNCA(): 전체 대상자 비구획 분석}\label{tblnca----}}
+\hypertarget{tblnca-uxc804uxccb4-uxb300uxc0c1uxc790-uxbe44uxad6cuxd68d-uxbd84uxc11d}{%
+\section{tblNCA(): 전체 대상자 비구획 분석}\label{tblnca-uxc804uxccb4-uxb300uxc0c1uxc790-uxbe44uxad6cuxd68d-uxbd84uxc11d}}
 
 가장 많이 쓰는 함수 입니다!
 NonCompart 패키지의 핵심적인 기능입니다.
@@ -480,8 +481,8 @@ NonCompart 패키지의 핵심적인 기능입니다.
 \caption{\label{fig:ggtheophindi}Individual concentration-time curves of oral administration of Theoph (Subject 1)}
 \end{figure}
 
-\hypertarget{descriptive-statistics}{%
-\section{기술통계 (Descriptive statistics)}\label{descriptive-statistics}}
+\hypertarget{uxae30uxc220uxd1b5uxacc4-descriptive-statistics}{%
+\section{기술통계 (Descriptive statistics)}\label{uxae30uxc220uxd1b5uxacc4-descriptive-statistics}}
 
 R에서는 필요에 따라서 자신만의 함수를 만들 수도 있습니다.
 아래를 실행하면 \texttt{desc\_tblNCA()} 함수를 사용하여 기술통계량을 쉽게 구할 수 있습니다. (Table \ref{tab:theodesc} and \ref{tab:indodesc})
@@ -502,11 +503,11 @@ R에서는 필요에 따라서 자신만의 함수를 만들 수도 있습니다
 \end{Highlighting}
 \end{Shaded}
 
-\begin{table}[t]
+\begin{table}
 
 \caption{\label{tab:theodesc}Descriptive statistics of selected PK parameters of Theoph oral administration}
 \centering
-\begin{tabular}{lrrrrrrrrrrrrr}
+\begin{tabular}[t]{lrrrrrrrrrrrrr}
 \toprule
   & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se\\
 \midrule
@@ -518,11 +519,11 @@ AUCLST & 4 & 12 & 103.806775 & 23.645216 & 95.40665 & 102.2983 & 19.794711 & 73.
 \end{tabular}
 \end{table}
 
-\begin{table}[t]
+\begin{table}
 
 \caption{\label{tab:indodesc}Descriptive statistics of selected PK parameters of Indometh IV infusion}
 \centering
-\begin{tabular}{lrrrrrrrrrrrrr}
+\begin{tabular}[t]{lrrrrrrrrrrrrr}
 \toprule
   & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se\\
 \midrule
@@ -534,8 +535,8 @@ AUCLST & 4 & 6 & 2.485208 & 0.5267325 & 2.675 & 2.485208 & 0.3826961 & 1.74125 &
 \end{tabular}
 \end{table}
 
-\hypertarget{ncar}{%
-\chapter{패키지: ncar}\label{ncar}}
+\hypertarget{uxd328uxd0a4uxc9c0-ncar}{%
+\chapter{패키지: ncar}\label{uxd328uxd0a4uxc9c0-ncar}}
 
 보고서를 만드는 패키지입니다. 현재 설정된 working directory에 결과 파일이 생성됩니다.
 
@@ -554,10 +555,10 @@ txtNCA()를 통해서 다음 결과를 얻을 수 있습니다.
 
 \begin{verbatim}
 ##  [1] "                        NONCOMPARTMENTAL ANALYSIS REPORT"                           
-##  [2] "                       Package version 0.4.1 (2018-06-20 KST)"                      
-##  [3] "                          R version 3.5.2 (2018-12-20)"                             
+##  [2] "                       Package version 0.4.2 (2019-09-27 KST)"                      
+##  [3] "                          R version 3.6.1 (2019-07-05)"                             
 ##  [4] ""                                                                                   
-##  [5] "Date and Time: 2019-01-23 09:01:08 Asia/Seoul"                                      
+##  [5] "Date and Time: 2019-11-06 12:59:32 Asia/Seoul"                                      
 ##  [6] ""                                                                                   
 ##  [7] "Calculation Setting"                                                                
 ##  [8] "-------------------"                                                                
@@ -677,8 +678,8 @@ pdfNCA()로 pdf로 결과를 볼 수 있습니다. (Figure \ref{fig:pdfnca-outpu
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{pkr}{%
-\chapter{패키지: pkr}\label{pkr}}
+\hypertarget{uxd328uxd0a4uxc9c0-pkr}{%
+\chapter{패키지: pkr}\label{uxd328uxd0a4uxc9c0-pkr}}
 
 \hypertarget{plotpk}{%
 \section{plotPK()}\label{plotpk}}
@@ -701,8 +702,8 @@ pdfNCA()로 pdf로 결과를 볼 수 있습니다. (Figure \ref{fig:pdfnca-outpu
 \hypertarget{etc}{%
 \chapter{기타 사항}\label{etc}}
 
-\hypertarget{shiny-}{%
-\section{shiny 앱}\label{shiny-}}
+\hypertarget{shiny-uxc571}{%
+\section{shiny 앱}\label{shiny-uxc571}}
 
 웹브라우저를 통해 간단히 비구획분석을 할 수 있는 앱을 개발하였습니다.
 
@@ -724,39 +725,39 @@ pdfNCA()로 pdf로 결과를 볼 수 있습니다. (Figure \ref{fig:pdfnca-outpu
   Han, S. (2016) vtdm: Vancomycin TDM Shiny application. URL: \url{https://asan.shinyapps.io/vtdm}
 \end{itemize}
 
-\hypertarget{section-2}{%
-\section{지원}\label{section-2}}
+\hypertarget{uxc9c0uxc6d0}{%
+\section{지원}\label{uxc9c0uxc6d0}}
 
-패키지와 관련한 모든 의문은 \href{mailto:shan@acp.kr}{\nolinkurl{shan@acp.kr}} / 02-3010-4614 으로 연락 주시면 빠르게 도움 드리겠습니다.
+패키지와 관련한 모든 의문은 \href{mailto:shan@catholic.ac.kr}{\nolinkurl{shan@catholic.ac.kr}} / 02-2258-7882 으로 연락 주시면 빠르게 도움 드리겠습니다.
 혹은 StackOverflow\footnote{\url{https://stackoverflow.com}}에 영어로 질문 올려주시고 링크를 보내주시면 더 좋습니다.
 아직 미완성이지만 Gitbook (일종의 웹북)\footnote{\url{https://asancpt.github.io/book-ncar}}을 통해 전자출판도 진행 중이므로 시간 나실때 틈틈이 확인해 주시면 감사하겠습니다. (Figure \ref{fig:gitbook})
 이 실습자료도 Gitbook\footnote{\url{https://asancpt.github.io/handout}}으로 열람 가능합니다.
 
-서울아산병원 임상약리학과 전공의 한성필
+가톨릭의대 약리학교실, 가톨릭계량약리학연구소 연구강사 한성필
 
 \begin{figure}
 \includegraphics[width=17.74in]{assets/gitbook} \caption{Gitbook: Noncompartmental analysis by R (work in progress)}\label{fig:gitbook}
 \end{figure}
 
-\hypertarget{section-3}{%
-\section{고지}\label{section-3}}
+\hypertarget{uxace0uxc9c0}{%
+\section{고지}\label{uxace0uxc9c0}}
 
-본 출판물은 2016, 2017, 2018년도 정부(미래창조과학부)의 재원으로 한국연구재단 첨단 사이언스·교육 허브 개발 사업의 지원을 받아 수행된 결과입니다 (NRF-2016-936606).
+본 출판물은 2016-2019년도 정부(미래창조과학부)의 재원으로 한국연구재단 첨단 사이언스·교육 허브 개발 사업의 지원을 받아 수행된 결과입니다 (NRF-2016-936606).
 
 \hypertarget{references}{%
 \chapter{참고문헌}\label{references}}
 
 \hypertarget{refs}{}
 \leavevmode\hypertarget{ref-R-ncar}{}%
-Bae, Kyun-Seop. 2018a. \emph{Ncar: Noncompartmental Analysis for Pharmacokinetic Report}. \url{https://CRAN.R-project.org/package=ncar}.
+Bae, Kyun-Seop. 2019a. \emph{Ncar: Noncompartmental Analysis for Pharmacokinetic Report}. \url{https://CRAN.R-project.org/package=ncar}.
 
 \leavevmode\hypertarget{ref-R-NonCompart}{}%
----------. 2018b. \emph{NonCompart: Noncompartmental Analysis for Pharmacokinetic Data}. \url{https://CRAN.R-project.org/package=NonCompart}.
+---------. 2019b. \emph{NonCompart: Noncompartmental Analysis for Pharmacokinetic Data}. \url{https://CRAN.R-project.org/package=NonCompart}.
 
 \leavevmode\hypertarget{ref-R-pkr}{}%
 Bae, Kyun-Seop, and Jee Eun Lee. 2018. \emph{Pkr: Pharmacokinetics in R}. \url{https://CRAN.R-project.org/package=pkr}.
 
 \leavevmode\hypertarget{ref-R-base}{}%
-R Core Team. 2018. \emph{R: A Language and Environment for Statistical Computing}. Vienna, Austria: R Foundation for Statistical Computing. \url{https://www.R-project.org/}.
+R Core Team. 2019. \emph{R: A Language and Environment for Statistical Computing}. Vienna, Austria: R Foundation for Statistical Computing. \url{https://www.R-project.org/}.
 
 \end{document}

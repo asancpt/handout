@@ -1,52 +1,38 @@
-% Options for packages loaded elsewhere
-\PassOptionsToPackage{unicode}{hyperref}
-\PassOptionsToPackage{hyphens}{url}
-\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
-%
-\documentclass[
-  9pt,
-]{krantz}
+\documentclass[9pt,]{krantz}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provide euro and other symbols
-\else % if luatex or xetex
-  \usepackage{unicode-math}
-  \defaultfontfeatures{Scale=MatchLowercase}
-  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
 \fi
-% Use upquote if available, for straight quotes in verbatim environments
+% use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-\IfFileExists{microtype.sty}{% use microtype if available
-  \usepackage[]{microtype}
-  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\makeatletter
-\@ifundefined{KOMAClassName}{% if non-KOMA class
-  \IfFileExists{parskip.sty}{%
-    \usepackage{parskip}
-  }{% else
-    \setlength{\parindent}{0pt}
-    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
-}{% if KOMA class
-  \KOMAoptions{parskip=half}}
-\makeatother
-\usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
+\usepackage[unicode=true]{hyperref}
+\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
 \hypersetup{
-  pdftitle={R을 통한 비구획분석: 실습},
-  pdfauthor={가톨릭의대 약리학교실 연구강사 한성필},
-  colorlinks=true,
-  linkcolor=Maroon,
-  filecolor=Maroon,
-  citecolor=Blue,
-  urlcolor=Blue,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
+            pdftitle={R을 통한 비구획분석: 실습},
+            pdfauthor={가톨릭의대 약리학교실 연구강사 한성필},
+            colorlinks=true,
+            linkcolor=Maroon,
+            citecolor=Blue,
+            urlcolor=Blue,
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -56,46 +42,40 @@
 \usepackage{framed}
 \definecolor{shadecolor}{RGB}{248,248,248}
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
 \usepackage{longtable,booktabs}
-% Correct order of tables after \paragraph or \subparagraph
-\usepackage{etoolbox}
-\makeatletter
-\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
-\makeatother
-% Allow footnotes in longtable head/foot
-\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
-\makesavenoteenv{longtable}
+% Fix footnotes in tables (requires footnote package)
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{long table}}{}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -105,14 +85,31 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-% Set default figure placement to htbp
-\makeatletter
-\def\fps@figure{htbp}
-\makeatother
-\setlength{\emergencystretch}{3em} % prevent overfull lines
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
 \usepackage{kotex}
 
 \title{R을 통한 비구획분석: 실습}
@@ -123,37 +120,41 @@
 \maketitle
 
 {
-\hypersetup{linkcolor=}
+\hypersetup{linkcolor=black}
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
 \mainmatter
 
-\hypertarget{intro}{%
-\chapter{서론}\label{intro}}
+\chapter{서론}\label{intro}
 
-약동학 분야에서 가장 간단하고도 객관적이며 널리 쓰이는 방법은 비구획분석 (Non-compartmental analysis, NCA)입니다.
-\emph{미국의 FDA (Food and Drug Administration)를 비롯한 대부분의 규제기관에서는 NCA하는 소프트웨어를 규정하고 있지 않아}, 상용 소프트웨어를 사용하지 않고 약동학적 지표를 구하는 것을 허용하고 있습니다.
-따라서 무료로 누구나 사용할 수 있는 R 패키지를 사용하여 비구획분석을 통한 약동학적 주요 지표를 구할 수 있습니다.
+약동학 분야에서 가장 간단하고도 객관적이며 널리 쓰이는 방법은 비구획분석
+(Non-compartmental analysis, NCA)입니다. \emph{식약처, FDA (Food and
+Drug Administration)를 비롯한 대부분의 규제기관에서는 NCA하는
+소프트웨어를 규정하고 있지 않아}, 상용 소프트웨어를 사용하지 않고
+약동학적 지표를 구하는 것을 허용하고 있습니다. 따라서 무료로 누구나
+사용할 수 있는 R 패키지를 사용하여 비구획분석을 통한 약동학적 주요
+지표를 구할 수 있습니다.
 
 \begin{itemize}
 \tightlist
 \item
-  NonCompart (Bae \protect\hyperlink{ref-R-NonCompart}{2019}\protect\hyperlink{ref-R-NonCompart}{b})
+  NonCompart (Bae
+  \protect\hyperlink{ref-R-NonCompart}{2019}\protect\hyperlink{ref-R-NonCompart}{b})
 \item
-  ncar (Bae \protect\hyperlink{ref-R-ncar}{2019}\protect\hyperlink{ref-R-ncar}{a})
+  ncar (Bae
+  \protect\hyperlink{ref-R-ncar}{2019}\protect\hyperlink{ref-R-ncar}{a})
 \item
   pkr (Bae and Lee \protect\hyperlink{ref-R-pkr}{2018})
 \end{itemize}
 
-\hypertarget{uxc124uxce58}{%
-\section{설치}\label{uxc124uxce58}}
+\section{설치}\label{uxc124uxce58}
 
-우선 R을 설치합니다.
-R은 아래 링크\footnote{\url{https://cran.r-project.org/}}에서 다운로드 받을 수 있습니다.
+우선 R을 설치합니다. R은 아래 링크\footnote{\url{https://cran.r-project.org/}}에서
+다운로드 받을 수 있습니다.
 
-R을 실행한 후, 콘솔 창에서 비구획분석을 위한 패키지를 설치하는 방법은 다음과 같습니다.
-홑따옴표 등의 인용 부호에 주의하세요.
+R을 실행한 후, 콘솔 창에서 비구획분석을 위한 패키지를 설치하는 방법은
+다음과 같습니다. 홑따옴표 등의 인용 부호에 주의하세요.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -163,7 +164,8 @@ R을 실행한 후, 콘솔 창에서 비구획분석을 위한 패키지를 설�
 \end{Highlighting}
 \end{Shaded}
 
-설치는 한번만 하면 되지만, 비구획분석을 위해서는 매 세션마다 패키지를 \emph{불러오기}해야 합니다.
+설치는 한번만 하면 되지만, 비구획분석을 위해서는 매 세션마다 패키지를
+\emph{불러오기}해야 합니다.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -173,7 +175,8 @@ R을 실행한 후, 콘솔 창에서 비구획분석을 위한 패키지를 설�
 \end{Highlighting}
 \end{Shaded}
 
-아래 두 패키지는 비구획분석과는 관계없지만 자료 처리 혹은 그림 등을 그리는데 도움을 줍니다.
+아래 두 패키지는 비구획분석과는 관계없지만 자료 처리 혹은 그림 등을
+그리는데 도움을 줍니다.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -184,7 +187,8 @@ R을 실행한 후, 콘솔 창에서 비구획분석을 위한 패키지를 설�
 \end{Highlighting}
 \end{Shaded}
 
-도움이 필요할때는 맨 앞에 물음표를 붙여서 콘솔창에 입력하거나 \texttt{help()} 함수를 사용합니다.
+도움이 필요할때는 맨 앞에 물음표를 붙여서 콘솔창에 입력하거나
+\texttt{help()} 함수를 사용합니다.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -193,19 +197,19 @@ R을 실행한 후, 콘솔 창에서 비구획분석을 위한 패키지를 설�
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{ruxc5d0-uxb300uxd558uxc5ec}{%
-\section{R에 대하여}\label{ruxc5d0-uxb300uxd558uxc5ec}}
+\section{R에 대하여}\label{ruxc5d0-uxb300uxd558uxc5ec}
 
-R (R Core Team \protect\hyperlink{ref-R-base}{2019})은 통계 소프트웨어 입니다.
-굉장히 유용한 소프트웨어이지만 이에 대해 여기서 자세히 설명하긴 힘듭니다.
-R에 대한 많은 책들을 bookdown.org\footnote{\url{https://bookdown.org}}에서 무료로 읽을 수 있습니다.
-Coursera\footnote{\url{https://coursera.com}}에서 무료 온라인 강의를 들을 수 있습니다.
+R (R Core Team \protect\hyperlink{ref-R-base}{2019})은 통계 소프트웨어
+입니다. 굉장히 유용한 소프트웨어이지만 이에 대해 여기서 자세히 설명하긴
+힘듭니다. R에 대한 많은 책들을 bookdown.org\footnote{\url{https://bookdown.org}}에서
+무료로 읽을 수 있습니다. Coursera\footnote{\url{https://coursera.com}}에서
+무료 온라인 강의를 들을 수 있습니다.
 
-\hypertarget{uxc790uxb8cc-uxd0d0uxc0c9}{%
-\section{자료 탐색}\label{uxc790uxb8cc-uxd0d0uxc0c9}}
+\section{자료 탐색}\label{uxc790uxb8cc-uxd0d0uxc0c9}
 
-자료의 첫 10개 (Table \ref{tab:head}) 혹은 마지막 10개 관찰값만 보고 싶으면 다음을 입력합니다.
-대상자 번호가 첫 열에 나와있고 시간 순서대로 혈장에서 측정한 테오필린의 농도가 나와있습니다.
+자료의 첫 10개 (Table \ref{tab:head}) 혹은 마지막 10개 관찰값만 보고
+싶으면 다음을 입력합니다. 대상자 번호가 첫 열에 나와있고 시간 순서대로
+혈장에서 측정한 테오필린의 농도가 나와있습니다.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -237,7 +241,8 @@ Subject & Wt & Dose & Time & conc\\
 \end{tabular}
 \end{table}
 
-그림을 그려서 대략적인 자료의 모습을 파악합니다. (Figure \ref{fig:ggtheoph})
+그림을 그려서 대략적인 자료의 모습을 파악합니다. (Figure
+\ref{fig:ggtheoph})
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -253,20 +258,23 @@ Subject & Wt & Dose & Time & conc\\
 \begin{figure}
 \centering
 \includegraphics{handout_files/figure-latex/ggtheoph-1.pdf}
-\caption{\label{fig:ggtheoph}Concentration-time curves of oral administration of Theoph (N = 12)}
+\caption{\label{fig:ggtheoph}Concentration-time curves of oral
+administration of Theoph (N = 12)}
 \end{figure}
 
-\hypertarget{loading}{%
-\section{자료 불러오기}\label{loading}}
+\section{자료 불러오기}\label{loading}
 
-\texttt{read.csv()} 함수를 사용해서 자료를 불러 옵니다.
-엑셀 파일을 사용하는 경우 \texttt{readxl} 패키지를 설치한 후에 \texttt{read\_excel()} 함수를 사용해서 불러올 수 있습니다.
-다만 이 경우 \texttt{tibble} 형태로 자료가 변형되므로 \texttt{as.data.frame()}을 사용해서 데이타프레임으로 변형해주어야 합니다.
+\texttt{read.csv()} 함수를 사용해서 자료를 불러 옵니다. 엑셀 파일을
+사용하는 경우 \texttt{readxl} 패키지를 설치한 후에
+\texttt{read\_excel()} 함수를 사용해서 불러올 수 있습니다. 다만 이 경우
+\texttt{tibble} 형태로 자료가 변형되므로 \texttt{as.data.frame()}을
+사용해서 데이타프레임으로 변형해주어야 합니다.
 
-\hypertarget{parameters}{%
-\section{파라메터의 의미}\label{parameters}}
+\section{파라메터의 의미}\label{parameters}
 
-비구획분석 시 여러 파라메터가 나오며 약어로 표현하는 경우가 많습니다. 또한 소프트웨어마다 약어가 상이하기 때문에 자주 그 의미를 찾아볼 필요가 있습니다. 콘솔창에 다음을 입력합니다.
+비구획분석 시 여러 파라메터가 나오며 약어로 표현하는 경우가 많습니다.
+또한 소프트웨어마다 약어가 상이하기 때문에 자주 그 의미를 찾아볼 필요가
+있습니다. 콘솔창에 다음을 입력합니다.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -275,7 +283,18 @@ Subject & Wt & Dose & Time & conc\\
 \end{Highlighting}
 \end{Shaded}
 
-ncar::RptCfg의 일부를 첨부합니다. (Table \ref{tab:rptcfg}) \texttt{PPTESTCD}는 NonCompart 패키지에서 출력하는 파라메터 이름이며, CDISC SDTM PPTESTCD (Parameter Short Name)\footnote{다음과 같이 CDISC note에 표시되어 있습니다. `Short name of the pharmacokinetic parameter. It can be used as a column name when converting a dataset from a vertical to a horizontal format. The value in PPTESTCD cannot be longer than 8 characters, nor can it start with a number (e.g., ``1TEST''). PPTESTCD cannot contain characters other than letters, numbers, or underscores. Examples: ``AUCALL'', ``TMAX'', ``CMAX''.' \url{https://wiki.cdisc.org/pages/viewpage.action?pageId=42309513}}와 같은 값입니다. \texttt{WNL} 열은 Certara Phoenix WinNonLin에서 구한 파라메터 이름입니다.
+ncar::RptCfg의 일부를 첨부합니다. (Table \ref{tab:rptcfg})
+\texttt{PPTESTCD}는 NonCompart 패키지에서 출력하는 파라메터 이름이며,
+CDISC SDTM PPTESTCD (Parameter Short Name)\footnote{다음과 같이 CDISC
+  note에 표시되어 있습니다. `Short name of the pharmacokinetic
+  parameter. It can be used as a column name when converting a dataset
+  from a vertical to a horizontal format. The value in PPTESTCD cannot
+  be longer than 8 characters, nor can it start with a number (e.g.,
+  ``1TEST''). PPTESTCD cannot contain characters other than letters,
+  numbers, or underscores. Examples: ``AUCALL'', ``TMAX'', ``CMAX''.'
+  \url{https://wiki.cdisc.org/pages/viewpage.action?pageId=42309513}}와
+같은 값입니다. \texttt{WNL} 열은 Certara Phoenix WinNonLin에서 구한
+파라메터 이름입니다.
 
 \begin{longtable}[t]{ll}
 \caption{\label{tab:rptcfg}Description of NonCompart parameters}\\
@@ -342,16 +361,14 @@ VSSP & Vol Dist Steady State Pred (Vss\_pred)\\
 \bottomrule
 \end{longtable}
 
-\hypertarget{uxd328uxd0a4uxc9c0-noncompart}{%
-\chapter{패키지: NonCompart}\label{uxd328uxd0a4uxc9c0-noncompart}}
+\chapter{패키지: NonCompart}\label{uxd328uxd0a4uxc9c0-noncompart}
 
-\hypertarget{tblnca-uxc804uxccb4-uxb300uxc0c1uxc790-uxbe44uxad6cuxd68d-uxbd84uxc11d}{%
-\section{tblNCA(): 전체 대상자 비구획 분석}\label{tblnca-uxc804uxccb4-uxb300uxc0c1uxc790-uxbe44uxad6cuxd68d-uxbd84uxc11d}}
+\section{tblNCA(): 전체 대상자 비구획
+분석}\label{tblnca-uxc804uxccb4-uxb300uxc0c1uxc790-uxbe44uxad6cuxd68d-uxbd84uxc11d}
 
-가장 많이 쓰는 함수 입니다!
-NonCompart 패키지의 핵심적인 기능입니다.
-아래의 코드를 R의 콘솔창에 넣어보세요.
-테오필린 경구 투여시의 비구획 분석입니다.
+가장 많이 쓰는 함수 입니다! NonCompart 패키지의 핵심적인 기능입니다.
+아래의 코드를 R의 콘솔창에 넣어보세요. 테오필린 경구 투여시의 비구획
+분석입니다.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -359,7 +376,9 @@ NonCompart 패키지의 핵심적인 기능입니다.
 \end{Highlighting}
 \end{Shaded}
 
-결과는 \texttt{data.frame} 형태인데 너무 길기 때문에 핵심적인 일부 파라메터 (C\textsubscript{max}, T\textsubscript{max}, AUC\textsubscript{last})만 표시할 수도 있습니다.
+결과는 \texttt{data.frame} 형태인데 너무 길기 때문에 핵심적인 일부
+파라메터 (C\textsubscript{max}, T\textsubscript{max},
+AUC\textsubscript{last})만 표시할 수도 있습니다.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -385,8 +404,9 @@ NonCompart 패키지의 핵심적인 기능입니다.
 ## 12      12  9.75 3.52 119.97750
 \end{verbatim}
 
-인도메타신 정맥 투여시의 비구획 분석입니다.
-함수인자 \texttt{adm}을 infusion으로 바꾼 것을 볼 수 있고 \texttt{dur}가 추가된 것을 볼 수 있습니다.
+인도메타신 정맥 투여시의 비구획 분석입니다. 함수인자 \texttt{adm}을
+infusion으로 바꾼 것을 볼 수 있고 \texttt{dur}가 추가된 것을 볼 수
+있습니다.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -397,7 +417,8 @@ NonCompart 패키지의 핵심적인 기능입니다.
 \end{Highlighting}
 \end{Shaded}
 
-역시 핵심적인 일부 파라메터 (C\textsubscript{max}, T\textsubscript{max}, AUC\textsubscript{last})만 표시할 수도 있습니다.
+역시 핵심적인 일부 파라메터 (C\textsubscript{max}, T\textsubscript{max},
+AUC\textsubscript{last})만 표시할 수도 있습니다.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -417,8 +438,7 @@ NonCompart 패키지의 핵심적인 기능입니다.
 ## 6       6 2.31 0.25 2.87250
 \end{verbatim}
 
-\hypertarget{snca}{%
-\section{sNCA()}\label{snca}}
+\section{sNCA()}\label{snca}
 
 한명의 대상자에 대해 비구획 분석을 시행합니다.
 
@@ -478,20 +498,22 @@ NonCompart 패키지의 핵심적인 기능입니다.
 \begin{figure}
 \centering
 \includegraphics{handout_files/figure-latex/ggtheophindi-1.pdf}
-\caption{\label{fig:ggtheophindi}Individual concentration-time curves of oral administration of Theoph (Subject 1)}
+\caption{\label{fig:ggtheophindi}Individual concentration-time curves of
+oral administration of Theoph (Subject 1)}
 \end{figure}
 
-\hypertarget{uxae30uxc220uxd1b5uxacc4-descriptive-statistics}{%
-\section{기술통계 (Descriptive statistics)}\label{uxae30uxc220uxd1b5uxacc4-descriptive-statistics}}
+\section{기술통계 (Descriptive
+statistics)}\label{uxae30uxc220uxd1b5uxacc4-descriptive-statistics}
 
-R에서는 필요에 따라서 자신만의 함수를 만들 수도 있습니다.
-아래를 실행하면 \texttt{desc\_tblNCA()} 함수를 사용하여 기술통계량을 쉽게 구할 수 있습니다. (Table \ref{tab:theodesc} and \ref{tab:indodesc})
+R에서는 필요에 따라서 자신만의 함수를 만들 수도 있습니다. 아래를
+실행하면 \texttt{desc\_tblNCA()} 함수를 사용하여 기술통계량을 쉽게 구할
+수 있습니다. (Table \ref{tab:theodesc} and \ref{tab:indodesc})
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{desc_tblNCA <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(tblNCA)\{}
-\NormalTok{  tblNCA }\OperatorTok{%>%}\StringTok{ }
-\StringTok{    }\NormalTok{psych}\OperatorTok{::}\KeywordTok{describe}\NormalTok{()}
+\NormalTok{  psych}\OperatorTok{::}\KeywordTok{describe}\NormalTok{(tblNCA) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{select}\NormalTok{(n, mean, sd, median, min, max)}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -507,14 +529,14 @@ R에서는 필요에 따라서 자신만의 함수를 만들 수도 있습니다
 
 \caption{\label{tab:theodesc}Descriptive statistics of selected PK parameters of Theoph oral administration}
 \centering
-\begin{tabular}[t]{lrrrrrrrrrrrrr}
+\begin{tabular}[t]{lrrrrrr}
 \toprule
-  & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se\\
+  & n & mean & sd & median & min & max\\
 \midrule
-Subject* & 1 & 12 & 6.500000 & 3.605551 & 6.50000 & 6.5000 & 4.447800 & 1.00000 & 12.000 & 11.0000 & 0.0000000 & -1.501603 & 1.0408330\\
-CMAX & 2 & 12 & 8.759167 & 1.472959 & 8.46500 & 8.7270 & 1.623447 & 6.44000 & 11.400 & 4.9600 & 0.2137012 & -1.186397 & 0.4252066\\
-TMAX & 3 & 12 & 1.788333 & 1.112408 & 1.13500 & 1.7280 & 0.489258 & 0.63000 & 3.550 & 2.9200 & 0.6998568 & -1.345075 & 0.3211245\\
-AUCLST & 4 & 12 & 103.806775 & 23.645216 & 95.40665 & 102.2983 & 19.794711 & 73.77555 & 148.923 & 75.1475 & 0.5625746 & -1.117566 & 6.8257858\\
+Subject* & 12 & 6.500000 & 3.605551 & 6.50000 & 1.00000 & 12.000\\
+CMAX & 12 & 8.759167 & 1.472959 & 8.46500 & 6.44000 & 11.400\\
+TMAX & 12 & 1.788333 & 1.112408 & 1.13500 & 0.63000 & 3.550\\
+AUCLST & 12 & 103.806775 & 23.645216 & 95.40665 & 73.77555 & 148.923\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -523,25 +545,24 @@ AUCLST & 4 & 12 & 103.806775 & 23.645216 & 95.40665 & 102.2983 & 19.794711 & 73.
 
 \caption{\label{tab:indodesc}Descriptive statistics of selected PK parameters of Indometh IV infusion}
 \centering
-\begin{tabular}[t]{lrrrrrrrrrrrrr}
+\begin{tabular}[t]{lrrrrrr}
 \toprule
-  & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se\\
+  & n & mean & sd & median & min & max\\
 \midrule
-Subject* & 1 & 6 & 3.500000 & 1.8708287 & 3.500 & 3.500000 & 2.2239000 & 1.00000 & 6.00000 & 5.0000 & 0.0000000 & -1.797619 & 0.7637626\\
-CMAX & 2 & 6 & 2.076667 & 0.4135537 & 2.040 & 2.076667 & 0.3409980 & 1.50000 & 2.72000 & 1.2200 & 0.1777485 & -1.361889 & 0.1688326\\
-TMAX & 3 & 6 & 0.250000 & 0.0000000 & 0.250 & 0.250000 & 0.0000000 & 0.25000 & 0.25000 & 0.0000 & NaN & NaN & 0.0000000\\
-AUCLST & 4 & 6 & 2.485208 & 0.5267325 & 2.675 & 2.485208 & 0.3826961 & 1.74125 & 2.93375 & 1.1925 & -0.3695625 & -1.940994 & 0.2150376\\
+Subject* & 6 & 3.500000 & 1.8708287 & 3.500 & 1.00000 & 6.00000\\
+CMAX & 6 & 2.076667 & 0.4135537 & 2.040 & 1.50000 & 2.72000\\
+TMAX & 6 & 0.250000 & 0.0000000 & 0.250 & 0.25000 & 0.25000\\
+AUCLST & 6 & 2.485208 & 0.5267325 & 2.675 & 1.74125 & 2.93375\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\hypertarget{uxd328uxd0a4uxc9c0-ncar}{%
-\chapter{패키지: ncar}\label{uxd328uxd0a4uxc9c0-ncar}}
+\chapter{패키지: ncar}\label{uxd328uxd0a4uxc9c0-ncar}
 
-보고서를 만드는 패키지입니다. 현재 설정된 working directory에 결과 파일이 생성됩니다.
+보고서를 만드는 패키지입니다. 현재 설정된 working directory에 결과
+파일이 생성됩니다.
 
-\hypertarget{txtnca}{%
-\section{txtNCA()}\label{txtnca}}
+\section{txtNCA()}\label{txtnca}
 
 txtNCA()를 통해서 다음 결과를 얻을 수 있습니다.
 
@@ -552,81 +573,6 @@ txtNCA()를 통해서 다음 결과를 얻을 수 있습니다.
        \DataTypeTok{dose=}\DecValTok{320}\NormalTok{, }\DataTypeTok{doseUnit=}\StringTok{"mg"}\NormalTok{, }\DataTypeTok{concUnit=}\StringTok{"mg/L"}\NormalTok{, }\DataTypeTok{timeUnit=}\StringTok{"h"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-##  [1] "                        NONCOMPARTMENTAL ANALYSIS REPORT"                           
-##  [2] "                       Package version 0.4.2 (2019-09-27 KST)"                      
-##  [3] "                          R version 3.6.1 (2019-07-05)"                             
-##  [4] ""                                                                                   
-##  [5] "Date and Time: 2019-11-06 12:59:32 Asia/Seoul"                                      
-##  [6] ""                                                                                   
-##  [7] "Calculation Setting"                                                                
-##  [8] "-------------------"                                                                
-##  [9] "Drug Administration: Extravascular"                                                 
-## [10] "Observation count excluding trailing zero: 11"                                      
-## [11] "Dose at time 0: 320 mg"                                                             
-## [12] "AUC Calculation Method: Linear-up Linear-down"                                      
-## [13] "Weighting for lambda z: Uniform (Ordinary Least Square, OLS)"                       
-## [14] "Lambda z selection criterion: Heighest adjusted R-squared value with precision=1e-4"
-## [15] ""                                                                                   
-## [16] ""                                                                                   
-## [17] "Fitting, AUC, AUMC Result"                                                          
-## [18] "-------------------------"                                                          
-## [19] "      Time         Conc.      Pred.   Residual       AUC       AUMC"                
-## [20] "---------------------------------------------------------------------"              
-## [21] "     0.0000       0.7400                           0.0000     0.0000"               
-## [22] "     0.2500       2.8400                           0.4475     0.0888"               
-## [23] "     0.5700       6.5700                           1.9531     0.8015"               
-## [24] "     1.1200      10.5000                           6.6474     5.0654"               
-## [25] "     2.0200       9.6600                          15.7194    19.1383"               
-## [26] "     3.8200       8.5800                          32.1354    66.1982"               
-## [27] "     5.1000       8.3600                          42.9769   114.4617"               
-## [28] "     7.0300       7.4700                          58.2529   206.2815"               
-## [29] "     9.0500 *     6.8900     6.8912 -1.228e-03    72.7565   322.2988"               
-## [30] "    12.1200 *     5.9400     5.9387 +1.324e-03    92.4505   528.5219"               
-## [31] "    24.3700 *     3.2800     3.2801 -1.465e-04   148.9231  1459.0711"               
-## [32] ""                                                                                   
-## [33] "*: Used for the calculation of Lambda z."                                           
-## [34] ""                                                                                   
-## [35] ""                                                                                   
-## [36] "Calculated Values"                                                                  
-## [37] "-----------------"                                                                  
-## [38] "CMAX       Max Conc                                       10.5000 mg/L"             
-## [39] "CMAXD      Max Conc Norm by Dose                           0.0328 mg/L/mg"          
-## [40] "TMAX       Time of CMAX                                    1.1200 h"                
-## [41] "TLAG       Time Until First Nonzero Conc                   0.0000 h"                
-## [42] "CLST       Last Nonzero Conc                               3.2800 mg/L"             
-## [43] "CLSTP      Last Nonzero Conc Pred                          3.2801 mg/L"             
-## [44] "TLST       Time of Last Nonzero Conc                      24.3700 h"                
-## [45] "LAMZHL     Half-Life Lambda z                             14.3044 h"                
-## [46] "LAMZ       Lambda z                                        0.0485 /h"               
-## [47] "LAMZLL     Lambda z Lower Limit                            9.0500 h"                
-## [48] "LAMZUL     Lambda z Upper Limit                           24.3700 h"                
-## [49] "LAMZNPT    Number of Points for Lambda z                   3"                       
-## [50] "CORRXY     Correlation Between TimeX and Log ConcY        -1.0000 "                 
-## [51] "R2         R Squared                                       1.0000 "                 
-## [52] "R2ADJ      R Squared Adjusted                              1.0000 "                 
-## [53] "AUCLST     AUC to Last Nonzero Conc                      148.9231 h*mg/L"           
-## [54] "AUCALL     AUC All                                       148.9231 h*mg/L"           
-## [55] "AUCIFO     AUC Infinity Obs                              216.6119 h*mg/L"           
-## [56] "AUCIFOD    AUC Infinity Obs Norm by Dose                   0.6769 h*mg/L/mg"        
-## [57] "AUCIFP     AUC Infinity Pred                             216.6150 h*mg/L"           
-## [58] "AUCIFPD    AUC Infinity Pred Norm by Dose                  0.6769 h*mg/L/mg"        
-## [59] "AUCPEO     AUC %Extrapolation Obs                         31.2489 %"                
-## [60] "AUCPEP     AUC %Extrapolation Pred                        31.2499 %"                
-## [61] "AUMCLST    AUMC to Last Nonzero Conc                    1459.0711 h2*mg/L"          
-## [62] "AUMCIFO    AUMC Infinity Obs                            4505.5348 h2*mg/L"          
-## [63] "AUMCIFP    AUMC Infinity Pred                           4505.6709 h2*mg/L"          
-## [64] "AUMCPEO    AUMC %Extrapolation Obs                        67.6160 %"                
-## [65] "AUMCPEP    AUMC % Extrapolation Pred                      67.6170 %"                
-## [66] "VZFO       Vz Obs by F                                    30.4867 L"                
-## [67] "VZFP       Vz Pred by F                                   30.4863 L"                
-## [68] "CLFO       Total CL Obs by F                               1.4773 L/h"              
-## [69] "CLFP       Total CL Pred by F                              1.4773 L/h"              
-## [70] "MRTEVLST   MRT Extravasc to Last Nonzero Conc              9.7975 h"                
-## [71] "MRTEVIFO   MRT Extravasc Infinity Obs                     20.8000 h"                
-## [72] "MRTEVIFP   MRT Extravasc Infinity Pred                    20.8004 h"
-\end{verbatim}
 
 파일로 저장하려면 다음을 입력합니다.
 
@@ -640,8 +586,7 @@ txtNCA()를 통해서 다음 결과를 얻을 수 있습니다.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{pdfnca}{%
-\section{pdfNCA()}\label{pdfnca}}
+\section{pdfNCA()}\label{pdfnca}
 
 pdfNCA()로 pdf로 결과를 볼 수 있습니다. (Figure \ref{fig:pdfnca-output})
 
@@ -660,13 +605,11 @@ pdfNCA()로 pdf로 결과를 볼 수 있습니다. (Figure \ref{fig:pdfnca-outpu
 
 \begin{figure}
 \includegraphics[width=17.71in]{Output-ncar/pdfNCA-Theoph-01} \caption{pdfNCA() output}\label{fig:pdfnca-output1}
-\end{figure}
-\begin{figure}
+\end{figure}\begin{figure}
 \includegraphics[width=17.71in]{Output-ncar/pdfNCA-Theoph-02} \caption{pdfNCA() output}\label{fig:pdfnca-output2}
 \end{figure}
 
-\hypertarget{rtfnca}{%
-\section{rtfNCA()}\label{rtfnca}}
+\section{rtfNCA()}\label{rtfnca}
 
 마이크로소프트 워드에서 편집가능한 rtf파일을 만듭니다.
 
@@ -678,16 +621,17 @@ pdfNCA()로 pdf로 결과를 볼 수 있습니다. (Figure \ref{fig:pdfnca-outpu
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{uxd328uxd0a4uxc9c0-pkr}{%
-\chapter{패키지: pkr}\label{uxd328uxd0a4uxc9c0-pkr}}
+\chapter{패키지: pkr}\label{uxd328uxd0a4uxc9c0-pkr}
 
-\hypertarget{plotpk}{%
-\section{plotPK()}\label{plotpk}}
+\section{plotPK()}\label{plotpk}
 
-여러가지 기본적인 그림을 그려봅니다. Output 폴더 아래에 여러 파일이 생성됩니다.
+비구획분석에 대한 다양한 시각화는 여러 유용한 정보를 제공해 줍니다. 이를
+가능하게 해 주는 \texttt{pkr} 패키지(Bae and Lee
+\protect\hyperlink{ref-R-pkr}{2018})에 대해서 자세히 알아보겠습니다.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
 \KeywordTok{library}\NormalTok{(pkr)}
 \NormalTok{pkr}\OperatorTok{::}\KeywordTok{plotPK}\NormalTok{(Theoph, }\StringTok{"Subject"}\NormalTok{, }\StringTok{"Time"}\NormalTok{, }\StringTok{"conc"}\NormalTok{, }
             \DataTypeTok{unitTime =} \StringTok{"hr"}\NormalTok{, }\DataTypeTok{unitConc =} \StringTok{"mg/L"}\NormalTok{, }\DataTypeTok{dose =} \DecValTok{320}\NormalTok{)}
@@ -699,18 +643,91 @@ pdfNCA()로 pdf로 결과를 볼 수 있습니다. (Figure \ref{fig:pdfnca-outpu
 ##   2
 \end{verbatim}
 
-\hypertarget{etc}{%
-\chapter{기타 사항}\label{etc}}
+\section{pkr 사용법}\label{pkr-manual}
 
-\hypertarget{shiny-uxc571}{%
-\section{shiny 앱}\label{shiny-uxc571}}
+\texttt{pkr} 함수의 가장 핵심적인 기능은 \texttt{plotPK()} 함수에 있고
+이 함수의 인자는 다음과 같습니다.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{args}\NormalTok{(plotPK)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## function (concData, id, Time, conc, unitTime = "hr", unitConc = "ng/mL", 
+##     trt = "", fit = "Linear", dose = 0, adm = "Extravascular", 
+##     dur = 0, outdir = "Output") 
+## NULL
+\end{verbatim}
+
+\texttt{Theoph} 자료의 그림을 그리는 명령어를 실행해 보겠습니다.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plotPK}\NormalTok{(Theoph, }\StringTok{"Subject"}\NormalTok{, }\StringTok{"Time"}\NormalTok{, }\StringTok{"conc"}\NormalTok{, }\DataTypeTok{unitTime=}\StringTok{"hr"}\NormalTok{, }\DataTypeTok{unitConc=}\StringTok{"mg/L"}\NormalTok{, }\DataTypeTok{dose=}\DecValTok{320}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## pdf 
+##   2
+\end{verbatim}
+
+조금 기다린 후 \texttt{Output} 폴더를 확인해 보면 세개의 그림 파일이
+생성된 것을 알 수 있습니다.
+
+\begin{itemize}
+\tightlist
+\item
+  ./Output//PK Profile Linear Scale for Theoph.tiff
+\item
+  ./Output//PK Profile Log 10 Scale for Theoph.tiff
+\item
+  ./Output//PK Profile with CI for Theoph.tiff
+\end{itemize}
+
+\begin{figure}
+\includegraphics[width=0.95\linewidth]{Output/PK_Profile_Linear_Scale_for_Theoph} \caption{평균 약동학 파라메터와 그룹 농도-시간 그림 (선형)}\label{fig:unnamed-chunk-21}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=0.95\linewidth]{Output/PK_Profile_Log_10_Scale_for_Theoph} \caption{평균 약동학 파라메터와 그룹 농도-시간 그림 (로그)}\label{fig:unnamed-chunk-22}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=0.95\linewidth]{Output/PK_Profile_with_CI_for_Theoph} \caption{평균 약동학 파라메터와 그룹 평균 농도-시간 그림 (로그)}\label{fig:unnamed-chunk-23}
+\end{figure}
+
+또한 개개인 별로 여러개의 그림이 담긴 두개의 PDF 파일이 생성되었습니다.
+
+\begin{itemize}
+\tightlist
+\item
+  ./Output//Individual PK Linear Scale for Theoph.pdf
+\item
+  ./Output//Individual PK Log 10 Scale for Theoph.pdf
+\end{itemize}
+
+\begin{figure}
+\includegraphics[width=0.95\linewidth]{Output/Individual_PK_Linear_Scale_for_Theoph} \caption{약동학 파라메터와 함께 표시되는 농도-시간 그림 (선형)}\label{fig:unnamed-chunk-24}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=0.95\linewidth]{Output/Individual_PK_Log_10_Scale_for_Theoph} \caption{약동학 파라메터와 함께 표시되는 농도-시간 그림 (로그)}\label{fig:unnamed-chunk-25}
+\end{figure}
+
+\chapter{기타 사항}\label{etc}
+
+\section{shiny 앱}\label{shiny-uxc571}
 
 웹브라우저를 통해 간단히 비구획분석을 할 수 있는 앱을 개발하였습니다.
 
 \begin{itemize}
 \tightlist
 \item
-  Han, S. (2017) pkrshiny: Noncompartmental Analysis using pkr R package Shiny application. URL: \url{https://asan.shinyapps.io/pkrshiny}
+  Han, S. (2017) pkrshiny: Noncompartmental Analysis using pkr R package
+  Shiny application. URL: \url{https://asan.shinyapps.io/pkrshiny}
 \end{itemize}
 
 그 외 약동학과 관련된 몇가지 shiny 앱도 참고하세요.
@@ -718,46 +735,56 @@ pdfNCA()로 pdf로 결과를 볼 수 있습니다. (Figure \ref{fig:pdfnca-outpu
 \begin{itemize}
 \tightlist
 \item
-  Han, S. (2017) Pharmacokinetic Simulation of one-compartment Models. URL: \url{https://asan.shinyapps.io/pk1c/}
+  Han, S. (2017) Pharmacokinetic Simulation of one-compartment Models.
+  URL: \url{https://asan.shinyapps.io/pk1c/}
 \item
-  Han, S. (2017) caff: Monte Carlo Simulation of Caffeine Shiny application. URL: \url{https://asan.shinyapps.io/caff}
+  Han, S. (2017) caff: Monte Carlo Simulation of Caffeine Shiny
+  application. URL: \url{https://asan.shinyapps.io/caff}
 \item
-  Han, S. (2016) vtdm: Vancomycin TDM Shiny application. URL: \url{https://asan.shinyapps.io/vtdm}
+  Han, S. (2016) vtdm: Vancomycin TDM Shiny application. URL:
+  \url{https://asan.shinyapps.io/vtdm}
 \end{itemize}
 
-\hypertarget{uxc9c0uxc6d0}{%
-\section{지원}\label{uxc9c0uxc6d0}}
+\section{지원}\label{uxc9c0uxc6d0}
 
-패키지와 관련한 모든 의문은 \href{mailto:shan@catholic.ac.kr}{\nolinkurl{shan@catholic.ac.kr}} / 02-2258-7882 으로 연락 주시면 빠르게 도움 드리겠습니다.
-혹은 StackOverflow\footnote{\url{https://stackoverflow.com}}에 영어로 질문 올려주시고 링크를 보내주시면 더 좋습니다.
-아직 미완성이지만 Gitbook (일종의 웹북)\footnote{\url{https://asancpt.github.io/book-ncar}}을 통해 전자출판도 진행 중이므로 시간 나실때 틈틈이 확인해 주시면 감사하겠습니다. (Figure \ref{fig:gitbook})
-이 실습자료도 Gitbook\footnote{\url{https://asancpt.github.io/handout}}으로 열람 가능합니다.
+패키지와 관련한 모든 의문은
+\href{mailto:shan@catholic.ac.kr}{\nolinkurl{shan@catholic.ac.kr}} /
+02-2258-7882 으로 연락 주시면 빠르게 도움 드리겠습니다. 혹은
+StackOverflow\footnote{\url{https://stackoverflow.com}}에 영어로 질문
+올려주시고 링크를 보내주시면 더 좋습니다. 아직 미완성이지만 Gitbook
+(일종의 웹북)\footnote{\url{https://asancpt.github.io/book-ncar}}을 통해
+전자출판도 진행 중이므로 시간 나실때 틈틈이 확인해 주시면
+감사하겠습니다. (Figure \ref{fig:gitbook}) 이 실습자료도
+Gitbook\footnote{\url{https://asancpt.github.io/handout}}으로 열람
+가능합니다.
 
 가톨릭의대 약리학교실, 가톨릭계량약리학연구소 연구강사 한성필
 
-\begin{figure}
-\includegraphics[width=17.74in]{assets/gitbook} \caption{Gitbook: Noncompartmental analysis by R (work in progress)}\label{fig:gitbook}
-\end{figure}
+\section{고지}\label{uxace0uxc9c0}
 
-\hypertarget{uxace0uxc9c0}{%
-\section{고지}\label{uxace0uxc9c0}}
+본 출판물은 2016-2019년도 정부(미래창조과학부)의 재원으로 한국연구재단
+첨단 사이언스·교육 허브 개발 사업의 지원을 받아 수행된 결과입니다
+(NRF-2016-936606).
 
-본 출판물은 2016-2019년도 정부(미래창조과학부)의 재원으로 한국연구재단 첨단 사이언스·교육 허브 개발 사업의 지원을 받아 수행된 결과입니다 (NRF-2016-936606).
-
-\hypertarget{references}{%
-\chapter{참고문헌}\label{references}}
+\chapter{참고문헌}\label{references}
 
 \hypertarget{refs}{}
-\leavevmode\hypertarget{ref-R-ncar}{}%
-Bae, Kyun-Seop. 2019a. \emph{Ncar: Noncompartmental Analysis for Pharmacokinetic Report}. \url{https://CRAN.R-project.org/package=ncar}.
+\hypertarget{ref-R-ncar}{}
+Bae, Kyun-Seop. 2019a. \emph{Ncar: Noncompartmental Analysis for
+Pharmacokinetic Report}. \url{https://CRAN.R-project.org/package=ncar}.
 
-\leavevmode\hypertarget{ref-R-NonCompart}{}%
----------. 2019b. \emph{NonCompart: Noncompartmental Analysis for Pharmacokinetic Data}. \url{https://CRAN.R-project.org/package=NonCompart}.
+\hypertarget{ref-R-NonCompart}{}
+---------. 2019b. \emph{NonCompart: Noncompartmental Analysis for
+Pharmacokinetic Data}.
+\url{https://CRAN.R-project.org/package=NonCompart}.
 
-\leavevmode\hypertarget{ref-R-pkr}{}%
-Bae, Kyun-Seop, and Jee Eun Lee. 2018. \emph{Pkr: Pharmacokinetics in R}. \url{https://CRAN.R-project.org/package=pkr}.
+\hypertarget{ref-R-pkr}{}
+Bae, Kyun-Seop, and Jee Eun Lee. 2018. \emph{Pkr: Pharmacokinetics in
+R}. \url{https://CRAN.R-project.org/package=pkr}.
 
-\leavevmode\hypertarget{ref-R-base}{}%
-R Core Team. 2019. \emph{R: A Language and Environment for Statistical Computing}. Vienna, Austria: R Foundation for Statistical Computing. \url{https://www.R-project.org/}.
+\hypertarget{ref-R-base}{}
+R Core Team. 2019. \emph{R: A Language and Environment for Statistical
+Computing}. Vienna, Austria: R Foundation for Statistical Computing.
+\url{https://www.R-project.org/}.
 
 \end{document}
